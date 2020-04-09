@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Registrar nuevo anciano</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nuevo Anciano</h2>
+    <form action="#" th:action="@{/elderly/add}"
+                     th:object="${elderly}" method="post">
+      <table>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Surnames</label></td>
+            <td><input type="text" th:field="*{surNames}" required/></td>
+        </tr>
+        <tr>
+            <td><label>User name</label></td>
+            <td><input type="text" th:field="*{userName}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td><input type="text" th:field="*{password}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Telephone number</label></td>
+            <td><input type="number" th:field="*{telephoneNumber}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Mail</label></td>
+            <td><input type="text" th:field="*{mail}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Birth date</label></td>
+            <td><input type="date" th:field="*{birthDate}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Hobbies</label></td>
+            <td><input type="text" th:field="*{hobbies}" /></td>
+        </tr>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{DNI}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Illnesses</label></td>
+            <td><input type="text" th:field="*{illnesses}" /></td>
+        </tr>
+        <tr>
+            <td><label>Disability</label></td>
+            <td><input type="text" th:field="*{disability}" /></td>
+        </tr>
+        <tr>
+            <td><label>Social worker</label></td>
+            <td><input type="text" th:field="*{socialWorker}" /></td>
+        </tr>
+            <td><label>Street</label></td>
+            <td><input type="text" th:field="*{address.street}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Postal code</label></td>
+            <td><input type="number" th:field="*{address.postalCode}" required/></td>
+        </tr>
+        <tr>
+            <td><label>City</label></td>
+            <td><input type="text" th:field="*{address.city}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Country</label></td>
+            <td><input type="text" th:field="*{address.country}" required/></td>
+        </tr>
+        <tr>
+            <td><label>IBAN</label></td>
+            <td><input type="text" th:field="*{bankData.IBAN}" /></td>
+        </tr>
+        <tr>
+            <td><label>Bank</label></td>
+            <td><input type="text" th:field="*{bankData.bank}" /></td>
+        </tr>
+        <tr>
+            <td><label>Branch Office</label></td>
+            <td><input type="text" th:field="*{bankData.branch_office}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Registra anciano" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

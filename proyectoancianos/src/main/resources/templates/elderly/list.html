@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Ancianos</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+   <h1>Lista Ancianos</h1>
+   <table class="table table-striped">
+     <thead>
+       <tr>
+         <th>Name</th>
+         <th>Surnames</th>
+         <th>User name</th>
+         <th>Password</th>
+         <th>Telephone number</th>
+         <th>Mail</th>
+         <th>Birth date</th>
+         <th>Hobbies</th>
+         <th>DNI</th>
+         <th>Illnesses</th>
+         <th>Disability</th>
+         <th>Social Worker</th>
+         <th>Street</th>
+		 <th>City</th>
+		 <th>Postal Code</th>
+		 <th>Country</th>
+         <th>IBAN</th>
+		 <th>Bank</th>
+	     <th>Branch Office</th>
+         <th></th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="elderly: ${elderlies}"> 
+         <td th:text="${elderly.name}"></td> 
+         <td th:text="${elderly.surNames}"></td>
+         <td th:text="${elderly.userName}"></td>
+         <td th:text="${elderly.password}"></td>
+         <td th:text="${elderly.telephoneNumber}"></td>
+         <td th:text="${elderly.mail}"></td>
+         <td th:text="${#temporals.format(elderly.birthDate,'dd MMMM yyyy')}"></td>
+         <td th:text="${elderly.hobbies}"></td>
+         <td th:text="${elderly.DNI}"></td>
+         <td th:text="${elderly.illnesses}"></td>
+         <td th:text="${elderly.disability}"></td>
+         <td th:text="${elderly.socialWorker}"></td>
+         <td th:text="${elderly.address.street}"></td>
+		 <td th:text="${elderly.address.city}"></td>
+		 <td th:text="${elderly.address.postalCode}"></td>
+	 	 <td th:text="${elderly.address.city}"></td>
+         <td th:text="${elderly.bankData.IBAN}"></td>
+		 <td th:text="${elderly.bankData.bank}"></td>
+		 <td th:text="${elderly.bankData.branch_office}"></td>
+         <td><a th:href="@{/elderly/update/{DNI}(DNI=${elderly.DNI})}" class="btn btn-warning" role="button">Edita</a></td>
+         <td><a th:href="@{/elderly/delete/{DNI}(DNI=${elderly.DNI})}" class="btn btn-danger" role="button">Borra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add" class="btn btn-success" role="button">Registra anciano</a>
+   </div>
+</body>
+</html>
