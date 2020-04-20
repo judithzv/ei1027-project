@@ -17,6 +17,7 @@ public class RequestRowMapper implements RowMapper< Request>{
 		request.setService(rs.getString("service"));
 		request.setSchedule(rs.getString("schedule"));
 		request.setDNI(rs.getString("DNI"));
+		request.setIdContract(rs.getString("idContarct"));
 		return request;
 	}
 	

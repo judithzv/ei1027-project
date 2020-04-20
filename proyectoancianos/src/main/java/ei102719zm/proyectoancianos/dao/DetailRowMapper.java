@@ -15,6 +15,7 @@ public class DetailRowMapper implements RowMapper<Detail>{
 		detail.setConcept(rs.getString("concept"));
 		detail.setAmount(rs.getFloat("amount"));
 		detail.setCode(rs.getString("code"));
+		detail.setNumber(rs.getString("number"));
 		return detail;
 	}
 

@@ -25,9 +25,9 @@ public class AvailabilityDao {
 
 	   public void addAvailability(Availability availability) {		
 			jdbcTemplate.update(
-			     "INSERT INTO availability VALUES(?, ?, ?, ?)",
+			     "INSERT INTO availability VALUES(?, ?, ?, ?, ?)",
 			     availability.getDate(), availability.getStartTime(), availability.getEndTime(),
-			     availability.getDNI());
+			     availability.getDNI_elderly(), availability.getDNI_volunteer());
 		
 	   }
 

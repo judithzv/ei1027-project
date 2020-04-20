@@ -15,6 +15,7 @@ public class BankDataRowMapper implements RowMapper<BankData>{
 		bankData.setIBAN(rs.getString("IBAN"));
 		bankData.setBank(rs.getString("bank"));
 		bankData.setBranchOffice(rs.getString("branch_office"));
+		bankData.setDNI(rs.getString("DNI"));
 		return bankData;
 	}
 

@@ -4,7 +4,7 @@ public class Detail {
 	private String concept;
 	private float amount;
 	private String code;
-	private String DNI;
+	private String number;
 	
 	public Detail() {
 		
@@ -15,11 +15,11 @@ public class Detail {
 	public String getConcept() {
 		return concept;
 	}
-	public void setDNI(String DNI) {
-		this.DNI=DNI;
+	public void setNumber(String number) {
+		this.number=number;
 	}
-	public String getDNI() {
-		return DNI;
+	public String getNumber() {
+		return number;
 	}
 	public void setAmount(float amount) {
 		this.amount=amount;
@@ -39,6 +39,7 @@ public class Detail {
 	               "concept='" + concept + "\'" +
 	               ", amount='" + amount + "\'" +
 	               ", code='" + code + "\'" +
+	               ", number='" + number + "\'" +
 	               "}";
 	   }
 	

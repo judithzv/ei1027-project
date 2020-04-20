@@ -24,8 +24,8 @@ public class DetailDao {
 
 	   public void addDetail(Detail detail) {		
 			jdbcTemplate.update(
-			     "INSERT INTO detail VALUES(?, ?, ?)",
-			     detail.getConcept(), detail.getAmount(), detail.getCode()) ;
+			     "INSERT INTO detail VALUES(?, ?, ?, ?)",
+			     detail.getConcept(), detail.getAmount(), detail.getCode(), detail.getNumber()) ;
 		
 	   }
 

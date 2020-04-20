@@ -24,9 +24,9 @@ public class RequestDao {
 
 	   public void addRequest(Request request) {		
 			jdbcTemplate.update(
-			  "INSERT INTO Request VALUES(?, ?, ?, ?, ?)",
+			  "INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?)",
 			    request.getNumber(), request.getState(), request.getService(), 
-			    request.getSchedule(), request.getDNI());
+			    request.getSchedule(), request.getDNI(), request.getIdContract());
 		
 	   }
 	   
