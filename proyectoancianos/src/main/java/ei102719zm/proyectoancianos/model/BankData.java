@@ -4,6 +4,7 @@ public class BankData {
 	private String IBAN;
 	private String bank;
 	private String branchOffice;
+	private String DNI;
 	
 	
 	public BankData(){
@@ -16,6 +17,14 @@ public class BankData {
 	public void setIBAN(String IBAN) {
 		this.IBAN= IBAN;
 	}
+	public String getDNI() {
+		return DNI;
+	}
+	
+	public void setDNI(String DNI) {
+		this.DNI= DNI;
+	}
+	
 	public String getBank() {
 		return bank;
 	}
@@ -35,7 +44,8 @@ public class BankData {
 	       return "BankData{" +
 	               "IBAN='" + IBAN + "\'" +
 	               ", bank='" + bank + "\'" +
-	               ", branchOffice='" + branchOffice + "\'" +
+	               ", branchOffice='" + branchOffice + "\'" + ", DNI='" + DNI + "\'" +
+	               
 	               "}";
 	   }
 	

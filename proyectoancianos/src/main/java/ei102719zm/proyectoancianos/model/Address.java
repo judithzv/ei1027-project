@@ -5,6 +5,8 @@ public class Address {
 	private int postalCode;
 	private String city;
 	private String country;
+	private String DNI_elderly;
+	private String DNI_volunteer;
 
 	public Address() {
 	}
@@ -16,6 +18,20 @@ public class Address {
 	public void setStreet(String street) {
 		this.street = street;
 	}
+	public String getDNI_elderly() {
+		return DNI_elderly;
+	}
+	public void setDNI_elderly(String DNI_elderly) {
+		this.DNI_elderly = DNI_elderly;
+	}
+	public String getDNI_volunteer() {
+		return DNI_volunteer;
+	}
+
+	public void setDNI_volunteer(String DNI_volunteer) {
+		this.DNI_volunteer = DNI_volunteer;
+	}
+
 	public int getPostalCode() {
 		return postalCode;
 	}

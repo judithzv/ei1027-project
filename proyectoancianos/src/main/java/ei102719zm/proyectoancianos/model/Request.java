@@ -6,6 +6,7 @@ public class Request {
 	private String service;
 	private String schedule;
 	private String DNI;
+	private String idContarct;
 	
 	
 	public Request(){
@@ -16,6 +17,12 @@ public class Request {
 	}
 	public void setDNI(String DNI) {
 		this.DNI=DNI;
+	}
+	public String getIdContract() {
+		return idContarct;
+	}
+	public void setIdContract(String  idContarct) {
+		this. idContarct= idContarct;
 	}
 	public String getNumber() {
 		return number;
