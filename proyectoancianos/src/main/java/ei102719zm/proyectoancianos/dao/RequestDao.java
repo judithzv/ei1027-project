@@ -58,18 +58,23 @@ public class RequestDao {
 	       }
 	   }
 
-	   public List<Request> getInvoices() {
+	   public List<Request> getRequests(String DNI) {
 	       try {
 	    
 	    	   List<Request> invoices = jdbcTemplate.query(
-	        		    "SELECT * FROM Request",
-	        		     new RequestRowMapper());
+	        		    "SELECT * FROM Request WHERE DNI=?",
+	        		     new RequestRowMapper(), DNI);
 	        		return invoices;
 
 	       }
 	       catch(EmptyResultDataAccessException e) {
 	           return new ArrayList<Request>();
 	       }
+	   }
+	   
+	   public String getLastNumber() {
+		   List<Request> requests = jdbcTemplate.query("SELECT * FROM Request WHERE number=(SELECT MAX(number) FROM Request)" , new RequestRowMapper());
+		   return requests.get(0).getNumber();
 	   }
 
 }

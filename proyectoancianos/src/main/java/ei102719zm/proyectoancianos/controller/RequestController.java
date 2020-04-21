@@ -25,8 +25,6 @@ import ei102719zm.proyectoancianos.model.UserDetails;
 public class RequestController {
 	private RequestDao requestDao;
 	private int numRequest;
-	String r = "200000000";
-
 	   @Autowired
 	   public void setRequestDao(RequestDao requestDao) { 
 	       this.requestDao=requestDao;
@@ -46,14 +44,24 @@ public class RequestController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(HttpSession session, @ModelAttribute("request") Request request,
 	                                   BindingResult bindingResult) {  
-		   	int num = Integer.parseInt(r) + numRequest;
+		   	String number = requestDao.getLastNumber();
+		   	int num = Integer.parseInt(number) + 1;
 		   	Elderly elderly = (Elderly) session.getAttribute("user");
 			request.setDNI(elderly.getDNI());
 			request.setNumber(Integer.toString(num));
 			request.setState("in process");
 			requestDao.addRequest(request);
-			numRequest++;
 			return "redirect:../";
+	   }
+	   
+	   @RequestMapping(value="list")
+	   public String listRequests(HttpSession session, Model model) {
+		   String DNI = (String) session.getAttribute("dni");
+		   if(DNI != null) {
+			   model.addAttribute("requests", requestDao.getRequests(DNI));
+			   return "request/list";
+		   }
+		   return "redirect:../";
 	   }
 
 }

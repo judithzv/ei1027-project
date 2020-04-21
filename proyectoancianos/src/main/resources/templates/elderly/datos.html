@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Perfil</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<h1>Datos personales</h1>   
+   <ul>
+         <li><b>Name: </b><tr th:text="${elderly.name}"></tr></li>
+         <li><b>Surnames: </b><tr th:text="${elderly.surNames}"></tr></li>
+         <li><b>Username: </b><tr th:text="${elderly.userName}"></tr></li>
+         <li><b>Password: </b><tr th:text="${elderly.password}"></tr></li>
+         <li><b>Telephone number: </b><tr th:text="${elderly.telephoneNumber}"></tr></li>
+         <li><b>Mail: </b><tr th:text="${elderly.mail}"></tr></li>
+         <li><b>Birth date: </b><tr th:text="${#temporals.format(elderly.birthDate,'dd MMMM yyyy')}"></tr></li>
+         <li><b>Hobbies: </b><tr th:text="${elderly.hobbies}"></tr></li>
+         <li><b>DNI: </b><tr th:text="${elderly.DNI}"></tr></li>
+         <li><b>Illnesses: </b><tr th:text="${elderly.illnesses}"></tr></li>
+         <li><b>Disability: </b><tr th:text="${elderly.disability}"></tr></li>
+         <li><b>Social Worker: </b><tr th:text="${elderly.socialWorker}"></tr></li>
+         <li><b>Street: </b><tr th:text="${elderly.address.street}"></tr></li>
+		 <li><b>City: </b><tr th:text="${elderly.address.city}"></tr></li>
+		 <li><b>Postal Code: </b><tr th:text="${elderly.address.postalCode}"></tr></li>
+		 <li><b>Country: </b><tr th:text="${elderly.address.city}"></tr></li>
+         <li><b>IBAN: </b><tr th:text="${elderly.bankData.IBAN}"></tr></li>
+		 <li><b>Bank: </b><tr th:text="${elderly.bankData.bank}"></tr></li>
+	     <li><b>Branch Office: </b><tr th:text="${elderly.bankData.branch_office}"></tr></li>
+	</ul>
+</body>
+</html>

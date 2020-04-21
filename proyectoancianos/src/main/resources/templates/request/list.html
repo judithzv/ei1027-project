@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Peticiones</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+   <h1>Lista Peticiones</h1>
+   <table class="table table-striped">
+     <thead>
+       <tr>
+         <th>Number</th>
+         <th>State</th>
+         <th>Service</th>
+         <th>Schedule</th>
+		 <th>ID Contract</th>
+         <th></th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="request: ${requests}"> 
+         <td th:text="${request.number}"></td> 
+         <td th:text="${request.state}"></td>
+		 <td th:text="${request.service}"></td>
+         <td th:text="${request.schedule}"></td>
+		 <td th:text="${request.idContract}"></td>
+       </tr>
+     </tbody>
+   </table>
+   </div>
+</body>
+</html>

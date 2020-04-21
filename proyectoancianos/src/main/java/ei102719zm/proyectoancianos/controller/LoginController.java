@@ -44,9 +44,13 @@ public class LoginController {
 	private ElderlyDao elderlyDao;
 
 	@RequestMapping("/login")
-	public String login(Model model) {
-		model.addAttribute("user", new UserDetails());
-		return "login";
+	public String login(HttpSession session, Model model) {
+		if(session.getAttribute("user")== null) {
+			model.addAttribute("user", new UserDetails());
+			return "login";
+		}
+		Elderly elderly = (Elderly) session.getAttribute("user");
+		return "redirect:/elderly/perfil/"+elderly.getDNI();
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -74,7 +78,7 @@ public class LoginController {
 			return "redirect:" + nextUrl;
 		}
 		// Torna a la pàgina principal
-		return "redirect:/";
+		return "redirect:/elderly/perfil/"+elderly.getDNI();
 	}
 
 	@RequestMapping("/logout") 

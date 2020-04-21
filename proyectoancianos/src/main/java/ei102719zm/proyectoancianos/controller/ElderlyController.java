@@ -1,5 +1,7 @@
 package ei102719zm.proyectoancianos.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,5 +77,22 @@ public class ElderlyController {
 		   elderlyDao.deleteElderly(DNI);
 	       return "redirect:../list"; 
 		}
+	   
+	   @RequestMapping(value="/perfil/{DNI}")
+	   public String mostrarPerfil(HttpSession session, @PathVariable String DNI, Model model) {
+		   session.setAttribute("dni", DNI);
+		   model.addAttribute("dni", DNI);
+		   return "elderly/perfil";
+	   }
+	   @RequestMapping(value="/datos")
+	   public String mostrarDatos(HttpSession session, Model model) {
+		   String DNI = (String) session.getAttribute("dni");
+		   if(DNI!=null) {
+			   Elderly elderly = elderlyDao.getElderly(DNI);
+			   model.addAttribute("elderly",elderly);
+			   return "elderly/datos";
+		   }
+		   return "redirect:../";
+	   }
 
 }
