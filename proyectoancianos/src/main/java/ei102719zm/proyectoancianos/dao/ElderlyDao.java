@@ -1,6 +1,8 @@
 package ei102719zm.proyectoancianos.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Elderly;
+import ei102719zm.proyectoancianos.model.UserDetails;
 
 @Repository 
 public class ElderlyDao {
@@ -172,4 +175,17 @@ public class ElderlyDao {
 	           return new ArrayList<BankData>();
 	       }
 	   }
+	   
+		public Elderly loadUserByUsername(String username, String password) {
+			if(username == null || password == null)
+				return null;
+			Collection<Elderly> elderlies = getElderlies();
+			Iterator iter = elderlies.iterator();
+			while(iter.hasNext()) {
+				Elderly elderly = (Elderly) iter.next();
+				if(elderly.getUserName().equals(username) && elderly.getPassword().equals(password))
+					return elderly;
+			}
+			return null;
+		}
 }
