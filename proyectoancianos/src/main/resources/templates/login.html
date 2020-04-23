@@ -3,30 +3,38 @@
      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
      layout:decorate="~{fragments/base}">
 <head>
-<link rel="stylesheet" type="text/css"  
-      href="/css/natacio.css" 
-      th:href="@{/css/natacio.css}"/>
+ <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 <title>Login</title>
 <meta charset="UTF-8"/>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body >
+<body>
 <div layout:fragment="content">
-	<h2>Acceso</h2>
+	<h1>Acceso</h1>
 	<form action="#" th:action="@{/login}" 
 	      th:object="${user}" method="post">
-		<p>
-		   	<label>Nombre de usuario:</label>
+	  <table>
+	  <tr><td rowspan="10"><img src="app.png" style="max-height: 50%; max-height: 50%;"></td></tr>
+		<tr><td><p class="fa fa-user icon">
+		   	<b><label>Usuario:</label></b>
             <input class="form_control" type="text" th:field="*{username}"/>
             <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-		</p>
-		<p>
-		   	<label>Contraseña:</label>
+		</tr></td></p>
+		<tr><td><p class="fa fa-key icon">
+		   	<b><label>Contraseña:</label></b>
             <input class="form_control" type="password" th:field="*{password}"/>
             <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-		</p>		
-		<input type="submit" value="Acceder" />
+		</tr></td></p>	
+		<tr><td><p><input type="submit" class="btn1" value="Entrar" />
+		<input type="submit" class="btn1" value="Volver" /></tr></td></p>	
+	</table>
+	 <div class="container1">
+	<span class="psw1"><a href="#">Registrarme</a></span>
+    <span class="psw1"><a href="#">He olvidado mi contraseña</a></span> 
+  </div>
 	</form>
 </div>
 </body>

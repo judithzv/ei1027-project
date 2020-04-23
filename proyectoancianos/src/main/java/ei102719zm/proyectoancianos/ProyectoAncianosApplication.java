@@ -14,5 +14,6 @@ public class ProyectoAncianosApplication {
      // Auto-configura l'aplicació
      new SpringApplicationBuilder(ProyectoAncianosApplication.class).run();
   }
+  
 }
 

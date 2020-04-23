@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Perfil</title>
    <meta charset="UTF-8" />
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <title>Perfil</title>
+   <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 </head>
+<style>
+body {
+    background-image: url('../perfil.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+</style>
 <body>
-<div class="container">
-   <h1>Perfil</h1>
-	<ul>
-	<li><a href="../datos">Mostrar datos personales</a></li>
-	<li><a href="/request/list">Peticiones</a></li>
-	</ul>
+<div class="container" style="text-align:center;">
+   <h1>Mi perfil</h1>
+	<p><a href="../datos">Mostrar datos personales</a></p>
+	<a href="/request/list">Peticiones</a>
    </div>
 </body>
 </html>

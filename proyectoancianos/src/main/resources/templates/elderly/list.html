@@ -5,10 +5,20 @@
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
+<style>
+h1{
+  font-size: 72px;  
+  background: -webkit-linear-gradient(left top, red, yellow);
+  background: linear-gradient(to bottom right, red, yellow);
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent; 
+  text-align:center; 
+} 
+</style>
 <body>
-<div class="container">
-   <h1>Lista Ancianos</h1>
-   <table class="table table-striped">
+<div class="table-responsive">
+   <p><h1>Lista Ancianos</h1></p>
+   <table class="table table-striped table-hover">
      <thead>
        <tr>
          <th>Name</th>
@@ -61,7 +71,7 @@
        </tr>
      </tbody>
    </table>
-   <a href="add" class="btn btn-success" role="button">Registra anciano</a>
+   <a href="add" class="btn btn-success" role="button">Registra</a>
    </div>
 </body>
 </html>

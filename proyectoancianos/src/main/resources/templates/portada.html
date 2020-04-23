@@ -4,14 +4,16 @@
    <meta charset="UTF-8" />
    <title>EI1027</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+   <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 </head>
 <body>
 	<h1>Gestion</h1>
-	<ul>
-	<li><a href="elderly/list">Gestión de Ancianos</a></li>
-	<li><a href="request/add">Solicitar servicio</a></li>
-	<li><a href="login">Login</a></li>
-	<li><a href="logout">Logout</a></li>
-	</ul>
+	<table>
+	<tr><td><p><a href="elderly/list">Gestión de Ancianos</a></p></tr></td>
+	<tr><td><p><a href="request/add">Solicitar servicio</a></p></tr></td>
+	<tr><td><p><a href="login">Login</a></p></tr></td>
+	<tr><td><p><a href="logout">Logout</a></p></tr></td>
+	</table>
 </body>
 </html>
