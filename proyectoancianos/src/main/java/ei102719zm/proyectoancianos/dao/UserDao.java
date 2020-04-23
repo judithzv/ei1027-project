@@ -7,12 +7,14 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.UserDetails;
 
 @Repository
@@ -37,11 +39,24 @@ public class UserDao {
 		return null;
 	}
 	
- 	Collection<UserDetails> listAllUsers(){
+	public Elderly getElderly(String username) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT * FROM Elderly INNER JOIN address ON address.DNI=elderly.DNI INNER JOIN bankdata ON bankdata.DNI=elderly.DNI WHERE username=?", new ElderlyRowMapper(), username);
+		} catch (EmptyResultDataAccessException e) {
+	           return null;
+		       
+	       }
+	}
+	
+ 	public Collection<UserDetails> listAllUsers(){
 	       try {
-		   	    
-	    	   List<UserDetails> users = jdbcTemplate.query("SELECT userName, password FROM Elderly", new UserRowMapper());
-	        		return users;
+	    	   Collection<UserDetails> users = jdbcTemplate.query("SELECT userName, password FROM Elderly", new UserRowMapper());
+	    	   BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor(); 
+	    	   UserDetails admin = new UserDetails();
+	    	   admin.setUsername("admin");
+	    	   admin.setPassword("admin");
+	    	   users.add(admin);
+	    	   return users;
 
 	       }
 	       catch(EmptyResultDataAccessException e) {

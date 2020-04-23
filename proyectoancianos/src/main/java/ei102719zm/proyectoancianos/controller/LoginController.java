@@ -1,5 +1,6 @@
 package ei102719zm.proyectoancianos.controller;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired; 
@@ -25,32 +26,42 @@ class UserValidator implements Validator {
 	}
 	@Override 
 	public void validate(Object obj, Errors errors) {
-	  // Exercici: Afegeix codi per comprovar que 
-         // l'usuari i la contrasenya no estiguen buits 
-         // ...
 		UserDetails user = (UserDetails) obj;
 		if(user.getUsername().equals(""))
-			errors.rejectValue("username", "obligatori",
-                    "Cal introduir un valor");
+			errors.rejectValue("username", "obligatorio",
+                    "Es necesario introducir un nombre de usuario");
 		if(user.getPassword().equals(""))
 			errors.rejectValue("password", "obligatoria",
-                    "Cal introduir un valor");
+                    "Es necesario introducir una contraseña");
 	}
 }
 
 @Controller
 public class LoginController {
+	UserDao userDao = new UserDao();
+	
 	@Autowired
-	private ElderlyDao elderlyDao;
+	public void setElderlyDao(UserDao userDao) { 
+		this.userDao=userDao;
+	}
 
+	
 	@RequestMapping("/login")
 	public String login(HttpSession session, Model model) {
-		if(session.getAttribute("user")== null) {
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		if(user == null) {
 			model.addAttribute("user", new UserDetails());
 			return "login";
 		}
-		Elderly elderly = (Elderly) session.getAttribute("user");
-		return "redirect:/elderly/perfil/"+elderly.getDNI();
+		String nextUrl = (String) session.getAttribute("nextUrl");
+		if(nextUrl != null) {
+			session.removeAttribute("nextUrl");
+			return "redirect:"+nextUrl;
+		}
+		Elderly elderly = userDao.getElderly(user.getUsername());
+		if(elderly != null)
+			return "redirect:/elderly/perfil/"+elderly.getDNI();
+		return "redirect:/";
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -63,22 +74,22 @@ public class LoginController {
 		}
 	       // Comprova que el login siga correcte 
 		// intentant carregar les dades de l'usuari 
-		Elderly elderly = elderlyDao.loadUserByUsername(user.getUsername(), user.getPassword()); 
-		if (elderly == null) {
+		user = userDao.loadUserByUsername(user.getUsername(), user.getPassword());
+		if (user == null) {
 			bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta"); 
 			return "login";
 		}
-		// Autenticats correctament. 
-		// Guardem les dades de l'usuari autenticat a la sessió
-		session.setAttribute("user", elderly); 
-			
-		if(session.getAttribute("nextUrl") != null) {
-			String nextUrl = (String) session.getAttribute("nextUrl");
+		
+		session.setAttribute("user", user);
+		String nextUrl = (String) session.getAttribute("nextUrl");
+		if(nextUrl != null) {
 			session.removeAttribute("nextUrl");
 			return "redirect:" + nextUrl;
 		}
-		// Torna a la pàgina principal
-		return "redirect:/elderly/perfil/"+elderly.getDNI();
+		Elderly elderly = userDao.getElderly(user.getUsername());
+		if(elderly != null)
+			return "redirect:/elderly/perfil/"+elderly.getDNI();
+		return "redirect:/";
 	}
 
 	@RequestMapping("/logout") 

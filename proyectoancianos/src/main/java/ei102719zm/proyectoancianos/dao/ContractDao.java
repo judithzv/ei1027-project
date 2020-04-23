@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import ei102719zm.proyectoancianos.model.Contract;
+import ei102719zm.proyectoancianos.model.Request;
 
 @Repository 
 public class ContractDao {
@@ -72,6 +73,11 @@ public class ContractDao {
 	       catch(EmptyResultDataAccessException e) {
 	           return new ArrayList<Contract>();
 	       }
+	   }
+	   
+	   public String getLastId() {
+		   List<Contract> contracts = jdbcTemplate.query("SELECT * FROM Contract WHERE id=(SELECT MAX(id) FROM Contract)" , new ContractRowMapper());
+		   return contracts.get(0).getId();
 	   }
 	
 	

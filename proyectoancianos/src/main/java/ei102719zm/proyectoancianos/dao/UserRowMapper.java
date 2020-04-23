@@ -3,9 +3,9 @@ package ei102719zm.proyectoancianos.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.jasypt.util.password.BasicPasswordEncryptor; 
 import org.springframework.jdbc.core.RowMapper;
 
-import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.UserDetails;
 
 public class UserRowMapper implements RowMapper<UserDetails> {

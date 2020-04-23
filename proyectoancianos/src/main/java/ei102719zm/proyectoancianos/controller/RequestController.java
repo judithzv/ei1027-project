@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ei102719zm.proyectoancianos.dao.RequestDao;
+import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Elderly;
@@ -24,11 +25,11 @@ import ei102719zm.proyectoancianos.model.UserDetails;
 @RequestMapping("/request") 
 public class RequestController {
 	private RequestDao requestDao;
-	private int numRequest;
+	private UserDao userDao;
 	   @Autowired
-	   public void setRequestDao(RequestDao requestDao) { 
+	   public void setRequestDao(RequestDao requestDao, UserDao userDao) { 
 	       this.requestDao=requestDao;
-	       numRequest = 0;
+	       this.userDao=userDao;
 	   }
 	   
 	   @RequestMapping(value="/add") 
@@ -45,13 +46,16 @@ public class RequestController {
 	   public String processAddSubmit(HttpSession session, @ModelAttribute("request") Request request,
 	                                   BindingResult bindingResult) {  
 		   	String number = requestDao.getLastNumber();
+		   	if(number==null)
+		   		number = "199999999";
 		   	int num = Integer.parseInt(number) + 1;
-		   	Elderly elderly = (Elderly) session.getAttribute("user");
+		   	UserDetails user = (UserDetails) session.getAttribute("user");
+		   	Elderly elderly = userDao.getElderly(user.getUsername());
 			request.setDNI(elderly.getDNI());
 			request.setNumber(Integer.toString(num));
 			request.setState("in process");
 			requestDao.addRequest(request);
-			return "redirect:../";
+			return "redirect:../elderly/perfil/"+elderly.getDNI();
 	   }
 	   
 	   @RequestMapping(value="list")

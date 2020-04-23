@@ -3,7 +3,7 @@ package ei102719zm.proyectoancianos.model;
 public class BankData {
 	private String IBAN;
 	private String bank;
-	private String branchOffice;
+	private String branch_office;
 	private String DNI;
 	
 	
@@ -33,18 +33,18 @@ public class BankData {
 		this.bank= bank;
 	}
 	public String getBranch_office() {
-		return branchOffice;
+		return branch_office;
 	}
 	
-	public void setBranchOffice(String branchOffice) {
-		this.branchOffice= branchOffice;
+	public void setBranchOffice(String branch_office) {
+		this.branch_office = branch_office;
 	}
 	@Override
 	   public String toString() {
 	       return "BankData{" +
 	               "IBAN='" + IBAN + "\'" +
 	               ", bank='" + bank + "\'" +
-	               ", branchOffice='" + branchOffice + "\'" + ", DNI='" + DNI + "\'" +
+	               ", branch office='" + branch_office + "\'" + ", DNI='" + DNI + "\'" +
 	               
 	               "}";
 	   }

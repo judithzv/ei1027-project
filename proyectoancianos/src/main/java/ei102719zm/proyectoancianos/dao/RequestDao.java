@@ -74,7 +74,9 @@ public class RequestDao {
 	   
 	   public String getLastNumber() {
 		   List<Request> requests = jdbcTemplate.query("SELECT * FROM Request WHERE number=(SELECT MAX(number) FROM Request)" , new RequestRowMapper());
-		   return requests.get(0).getNumber();
+		   if(!requests.isEmpty())
+			   return requests.get(0).getNumber();
+		   return null;
 	   }
 
 }

@@ -16,7 +16,7 @@ public class AddressRowMapper implements RowMapper<Address>{
 	       address.setPostalCode(rs.getInt("postalCode"));
 	       address.setCity(rs.getString("city"));
 	       address.setCountry(rs.getString("country"));
-	       address.setDNI_elderly(rs.getString("DNI_velderly"));
+	       address.setDNI_elderly(rs.getString("DNI_elderly"));
 	       address.setDNI_volunteer(rs.getString("DNI_volunteer"));
 
 	       return address;
