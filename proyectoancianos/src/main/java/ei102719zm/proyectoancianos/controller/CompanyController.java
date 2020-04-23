@@ -45,9 +45,10 @@ public class CompanyController {
 		   if (bindingResult.hasErrors()) 
 		   	return "company/add";
 	   	 companyDao.addCompany(company);
+		 companyDao.addCompany(company);
 	   	 session.setAttribute("company", company);
-	   	 return "redirect:list"; 
-	   	 
+	   	 // pa que se suba el commit
+	   	 return "redirect:list";    	 
 	    }
 
 	   @RequestMapping(value="/update/{CIF}", method = RequestMethod.GET) 

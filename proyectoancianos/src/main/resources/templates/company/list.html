@@ -39,6 +39,7 @@ h1{
          <td th:text="${company.password}"></td>
          <td><a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" class="btn btn-warning" role="button">Edita</a></td>
          <td><a th:href="@{/company/delete/{CIF}(CIF=${company.CIF})}" class="btn btn-danger" role="button">Borra</a>
+         <td><a th:href="@{/company/delete/{CIF}(CIF=${company.CIF})}" class="btn btn-danger" role="button">Borra</a>
          </td>
        </tr>
      </tbody>
