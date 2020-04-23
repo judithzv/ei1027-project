@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
+ <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
    <title>Registrar nuevo anciano</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-    <h2>Nuevo Anciano</h2>
+    <h1>Nuevo Anciano</h1>
     <form action="#" th:action="@{/elderly/add}"
                      th:object="${elderly}" method="post">
       <table>
@@ -87,7 +89,7 @@
             <td><input type="text" th:field="*{bankData.branch_office}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Registra anciano" /></td>
+            <td colspan="2"><input type="submit" class="btn1" value="Registra anciano" /></td>
         </tr>
       </table>
     </form>
