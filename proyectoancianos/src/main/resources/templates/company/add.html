@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+ <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
+   <title>Registrar nuevo anciano</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h1>Nueva Empresa</h1>
+    <form action="#" th:action="@{/company/add}"
+                     th:object="${company}" method="post">
+      <table>
+        <tr>
+            <td><p><label>Name</label></p></td>
+            <td><input type="text" th:field="*{name}" required/></td>
+        </tr>
+        <tr>
+            <td><p><label>CIF</label></p></td>
+            <td><input type="text" th:field="*{CIF}" required/></td>
+        </tr>
+        <tr>
+            <td><p><label>Contact person</label></p></td>
+            <td><input type="text" th:field="*{contactPerson}" required/></td>
+        </tr>
+        <tr>
+            <td><p><label>Telephone Number</label></p></td>
+            <td><input type="text" th:field="*{telephoneNumber}" required/></td>
+        </tr>
+        <tr>
+            <td><p><label>User Name</label></p></td>
+            <td><input type="text" th:field="*{userName}" required/></td>
+        </tr>
+        <tr>
+            <td><p><label>password</label></p></td>
+            <td><input type="text" th:field="*{password}" required/></td>
+        </tr>
+         <td colspan="2"><input type="submit" class="btn1" value="Registra empresa" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

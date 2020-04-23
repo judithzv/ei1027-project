@@ -23,8 +23,7 @@ public class CompanyDao {
 	   
 
 	   public void addCompany(Company company) {		
-			jdbcTemplate.update(
-			     "INSERT INTO company VALUES(?, ?, ?, ?, ?, ?)",
+			jdbcTemplate.update( "INSERT INTO company VALUES(?, ?, ?, ?, ?, ?)",
 			    company.getName(), company.getCIF(), company.getContactPerson(), company.getTelephoneNumber(), 
 			    company.getUserName(), company.getPassword());
 		
@@ -38,8 +37,8 @@ public class CompanyDao {
 
 	   public void updateCompany(Company company) {
 		  
-			jdbcTemplate.update("UPDATE company SET name = ?, contactPerson= ?, telephoneNumber=?, userName=?"
-					+ ", password=?" + " WHERE CIF = ?",
+			jdbcTemplate.update("UPDATE company SET name = ?, contactPerson= ?, telephoneNumber= ?, userName= ?"
+					+ ", password= ?" + " WHERE CIF = ?;",
 					company.getName(), company.getContactPerson(), company.getTelephoneNumber(), 
 				    company.getUserName(), company.getPassword(), company.getCIF());
 			
@@ -47,7 +46,7 @@ public class CompanyDao {
 
 	   public Company getCompany(String CIF) {
 	       try {
-	           return jdbcTemplate.queryForObject("SELECT * FROM company WHERE CIF = ?",
+	           return jdbcTemplate.queryForObject("SELECT * FROM company WHERE CIF = ?;",
 	        	        new CompanyRowMapper(),
 	        	        CIF);
 

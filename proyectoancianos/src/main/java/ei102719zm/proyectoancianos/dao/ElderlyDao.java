@@ -32,15 +32,14 @@ public class ElderlyDao {
 		
 			jdbcTemplate.update(
 			     "INSERT INTO elderly VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-			    elderly.getName(),elderly.getSurNames(),elderly.getUserName(), elderly.getPassword()
+			     elderly.getName(),elderly.getSurNames(),elderly.getUserName(), elderly.getPassword()
 			    , elderly.getTelephoneNumber(), elderly.getMail(), elderly.getBirthDate(), elderly.getHobbies(), elderly.getDNI()
 			    , elderly.getIllnesses(), elderly.getDisability(), elderly.getSocialWorker() );
 		
 	   }
 
 	   
-	   public void deleteElderly(String DNI) {
-		
+	   public void deleteElderly(String DNI) {	
 			jdbcTemplate.update("DELETE FROM elderly WHERE DNI = ?;",
 					DNI);
 			

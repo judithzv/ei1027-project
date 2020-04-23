@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
+<link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
    <title>Modificar usuario</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-    <h2>Modifica el perfil</h2>
+    <h1>Modifica el perfil</h1>
     <form action="#" th:action="@{/elderly/update}"
                      th:object="${elderly}" method="post">
       <table>

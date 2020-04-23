@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+ <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
+   <title>Registrar nuevo anciano</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h1>Nuevo Contrato</h1>
+    <form action="#" th:action="@{/contract/add}"
+                     th:object="${contract}" method="post">
+      <table>
+        <tr>
+            <td><label>ID</label></td>
+            <td><input type="text" th:field="*{id}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Start Date</label></td>
+            <td><input type="date" th:field="*{startDate}" required/></td>
+        </tr>
+        <tr>
+            <td><label>End Date</label></td>
+            <td><input type="date" th:field="*{endDate}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Service type</label></td>
+            <td><input type="text" th:field="*{serviceType}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Price</label></td>
+            <td><input type="int" th:field="*{price}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Signature date</label></td>
+            <td><input type="date" th:field="*{signatureDate}" required/></td>
+        </tr>
+         <tr>
+            <td><label>CIF</label></td>
+            <td><input type="text" th:field="*{CIF}" required/></td>
+        </tr>
+         <td colspan="2"><input type="submit" class="btn1" value="Añadir contrato" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

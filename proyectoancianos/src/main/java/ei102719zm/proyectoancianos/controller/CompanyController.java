@@ -27,18 +27,14 @@ public class CompanyController {
 	   public void setCompanyDao(CompanyDao companyDao) { 
 	       this.companyDao = companyDao;
 	   }
+	   @RequestMapping("/list")
+	   public String listCompany(Model model) {
+	      model.addAttribute("companies", companyDao.getCompanies());
+	      return "company/list";
+	   }
 	   
-	   @RequestMapping(value="/add/{CIF}")
-	   public String addCompany(HttpSession session, Model model, @PathVariable String CIF) {
-		   if(session.getAttribute("user") == null) {
-			   session.setAttribute("nextURL", "/company/add/"+CIF);
-			   return "redirect:../../login";
-		   }
-		   Company company = companyDao.getCompany(CIF);
-		   if(company != null) {
-			   session.setAttribute("company", company);
-			   return "contract/add";
-		   }
+	   @RequestMapping(value="/add")
+	   public String addCompany(HttpSession session, Model model) {
 		   model.addAttribute("company", new Company());
 		   return "company/add";
 	   }
@@ -50,9 +46,29 @@ public class CompanyController {
 		   	return "company/add";
 	   	 companyDao.addCompany(company);
 	   	 session.setAttribute("company", company);
-	   	 return "redirect:../contract/add"; 
+	   	 return "redirect:list"; 
 	   	 
 	    }
 
+	   @RequestMapping(value="/update/{CIF}", method = RequestMethod.GET) 
+	 		public String editCompany(Model model, @PathVariable String CIF) { 
+	 			model.addAttribute("company", companyDao.getCompany(CIF));
+	 			return "company/update"; 
+	 		}
+	 	    @RequestMapping(value="/update", method = RequestMethod.POST) 
+	 		public String processUpdateSubmit(
+	 	                            @ModelAttribute("company") Company company, 
+	 	                            BindingResult bindingResult) {
+	 			 if (bindingResult.hasErrors()) 
+	 				 return "company/update";
+	 			 companyDao.updateCompany(company);
+	 			 return "redirect:list"; 
+	 		}    
+
+	 	   @RequestMapping(value="/delete/{CIF}")
+	 		public String processDelete(@PathVariable String CIF) {
+	 		   companyDao.deleteCompany(CIF);
+	 	       return "redirect:../list"; 
+	 		}
 
 }

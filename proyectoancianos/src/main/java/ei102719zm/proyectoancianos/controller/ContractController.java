@@ -3,6 +3,7 @@ package ei102719zm.proyectoancianos.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,12 +17,19 @@ import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
 
+@Controller
+@RequestMapping("/contract") 
 public class ContractController {
 	private ContractDao contractDao;
 	
 	@Autowired
 	 public void setCompanyDao(ContractDao contractDao) { 
 	       this.contractDao = contractDao;
+	   }
+	  @RequestMapping("/list")
+	   public String listContract(Model model) {
+	      model.addAttribute("contracts", contractDao.getContracts());
+	      return "contracts/list";
 	   }
 	   
 	
