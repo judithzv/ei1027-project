@@ -65,7 +65,7 @@ public class ContractController {
 	    }
 	   @RequestMapping(value="/update/{id}", method = RequestMethod.GET) 
 		public String editContract(Model model, @PathVariable String id) { 
-			model.addAttribute("contract", contractDao.getCompany(id));
+			model.addAttribute("contract", contractDao.getContract(id));
 			return "contract/update"; 
 		}
 	    @RequestMapping(value="/update", method = RequestMethod.POST) 
