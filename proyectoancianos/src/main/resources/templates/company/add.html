@@ -3,7 +3,7 @@
 <head>
  <link rel="stylesheet" type="text/css" href="/css/app.css"
                                     th:href="@{/css/app.css}"/>
-   <title>Registrar nuevo anciano</title>
+   <title>Registrar nueva empresa</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -34,10 +34,9 @@
             <td><input type="text" th:field="*{userName}" required/></td>
         </tr>
         <tr>
-            <td><p><label>password</label></p></td>
-            <td><input type="text" th:field="*{password}" required/></td>
+            <td><p><label>Password</label></p></td>
+            <td><input type="password" th:field="*{password}" required/></td>
         </tr>
-         <td colspan="2"><input type="submit" class="btn1" value="Registra empresa" /></td>
          <td colspan="2"><input type="submit" class="btn1" value="Registra empresa" /></td>
         </tr>
       </table>

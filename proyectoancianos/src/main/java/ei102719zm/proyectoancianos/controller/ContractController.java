@@ -35,6 +35,11 @@ public class ContractController {
 	
 	   @RequestMapping(value="/add")
 	   public String addContract(HttpSession session, Model model) {
+		   Contract contract = (Contract) session.getAttribute("contract");
+		   if(contract != null) {
+			   contractDao.addContract(contract);
+			   return "redirect:list";
+		   }
 		   model.addAttribute("contract", new Contract());
 		   return "contract/add";
 	   }
@@ -42,15 +47,18 @@ public class ContractController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(HttpSession session, @ModelAttribute("contract") Contract contract,
 	                                   BindingResult bindingResult) {  
-		   if (bindingResult.hasErrors()) 
-		   	return "elderly/add";
-		   Company company = (Company) session.getAttribute("company");
-		   contract.setCIF(company.getCIF());
+		   if(bindingResult.hasErrors())
+			   return "contract/add";
 		   String lastId = contractDao.getLastId();
 		   if(lastId == null)
-			   lastId = "2999999999";
+			   lastId = "299999999";
 		   int num = Integer.parseInt(lastId) + 1;
 		   contract.setId(Integer.toString(num));
+		   Company company = contractDao.getCompany(contract.getCIF());
+		   if(company == null) {
+			   session.setAttribute("contract", contract);
+			   return "redirect:../company/add";
+		   }
 		   contractDao.addContract(contract);
 		   return "redirect:list"; 
 	   	 

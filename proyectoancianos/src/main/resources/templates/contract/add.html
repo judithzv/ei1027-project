@@ -3,7 +3,7 @@
 <head>
  <link rel="stylesheet" type="text/css" href="/css/app.css"
                                     th:href="@{/css/app.css}"/>
-   <title>Registrar nuevo anciano</title>
+   <title>Registrar nuevo contrato</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -13,10 +13,6 @@
     <form action="#" th:action="@{/contract/add}"
                      th:object="${contract}" method="post">
       <table>
-        <tr>
-            <td><label>ID</label></td>
-            <td><input type="text" th:field="*{id}" required/></td>
-        </tr>
         <tr>
             <td><label>Start Date</label></td>
             <td><input type="date" th:field="*{startDate}" required/></td>
@@ -31,7 +27,7 @@
         </tr>
         <tr>
             <td><label>Price</label></td>
-            <td><input type="int" th:field="*{price}" required/></td>
+            <td><input type="number" th:field="*{price}" required/></td>
         </tr>
         <tr>
             <td><label>Signature date</label></td>

@@ -1,14 +1,19 @@
 package ei102719zm.proyectoancianos.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Contract {
 	public String id;
-	public Date startDate;
-	public Date endDate;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+	public LocalDate startDate;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+	public LocalDate endDate;
 	public String serviceType;
 	public int price;
-	public Date signatureDate;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+	public LocalDate signatureDate;
 	public String CIF;
 	
 	
@@ -21,16 +26,16 @@ public class Contract {
 	public String getId() {
 		return id;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate=startDate;
 	}
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate=endDate;
 	}
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 	public String getServiceType() {
@@ -45,10 +50,10 @@ public class Contract {
 	public void setPrice(int price) {
 		this.price=price;
 	}
-	public Date getSignatureDate() {
+	public LocalDate getSignatureDate() {
 		return signatureDate;
 	}
-	public void setSignatureDate(Date signatureDate) {
+	public void setSignatureDate(LocalDate signatureDate) {
 		this.signatureDate=signatureDate;
 	}
 	public void setCIF(String CIF) {

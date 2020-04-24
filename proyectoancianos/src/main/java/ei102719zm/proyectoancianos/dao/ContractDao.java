@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Request;
 
@@ -25,7 +26,7 @@ public class ContractDao {
 
 	   public void addContract(Contract contract) {		
 			jdbcTemplate.update(
-			     "INSERT INTO contract VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			     "INSERT INTO contract VALUES(?, ?, ?, ?, ?, ?, ?)",
 			      contract.getId(),contract.getStartDate(), contract.getEndDate(),
 			      contract.getServiceType(), contract.getPrice(), contract.getSignatureDate(),
 			      contract.getCIF());
@@ -76,10 +77,22 @@ public class ContractDao {
 	   }
 	   
 	   public String getLastId() {
-		   List<Contract> contracts = jdbcTemplate.query("SELECT * FROM Contract WHERE id=(SELECT MAX(id) FROM Contract)" , new ContractRowMapper());
-		   return contracts.get(0).getId();
+		   try {
+			   Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE id=(SELECT MAX(id) FROM Contract)" , new ContractRowMapper());
+			   return contract.getId();
+		   } catch(EmptyResultDataAccessException e) {
+			   return null;
+		   }
 	   }
-	
+	   
+	   public Company getCompany(String CIF) {
+		   try {
+			   return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE CIF=?", new CompanyRowMapper(), CIF);
+		   } catch(EmptyResultDataAccessException e) {
+			   return null;
+		   }
+		   
+	   }
 	
 
 }

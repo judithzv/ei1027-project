@@ -35,7 +35,11 @@ public class CompanyController {
 	   
 	   @RequestMapping(value="/add")
 	   public String addCompany(HttpSession session, Model model) {
-		   model.addAttribute("company", new Company());
+		   Company company = new Company();
+		   Contract contract = (Contract) session.getAttribute("contract");
+		   if(contract != null)
+			   company.setCIF(contract.getCIF());
+		   model.addAttribute("company", company);
 		   return "company/add";
 	   }
 	   
@@ -45,9 +49,8 @@ public class CompanyController {
 		   if (bindingResult.hasErrors()) 
 		   	return "company/add";
 	   	 companyDao.addCompany(company);
-		 companyDao.addCompany(company);
-	   	 session.setAttribute("company", company);
-	   	 // pa que se suba el commit
+	   	 if(session.getAttribute("contract") != null)
+	   		 return "redirect:../contract/add";
 	   	 return "redirect:list";    	 
 	    }
 

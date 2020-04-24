@@ -47,7 +47,8 @@ public class ElderlyController {
 		   	return "elderly/add";
 	   	 elderlyDao.addElderly(elderly);
 	   	 elderlyDao.addAddress(elderly.getAddress(), elderly.getDNI());
-		 elderlyDao.addBankData(elderly.getBankData(), elderly.getDNI());
+	   	 if(elderly.getBankData().getIBAN() != null)
+	   		 elderlyDao.addBankData(elderly.getBankData(), elderly.getDNI());
 	   	 return "redirect:list"; 
 	   	 
 	    }
