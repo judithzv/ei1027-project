@@ -35,16 +35,16 @@ public class ContractDao {
 
 	   
 	   public void deleteContract(String id) {		
-			jdbcTemplate.update("DELETE FROM contract WHERE id = ?;",
+			jdbcTemplate.update("DELETE FROM contract WHERE id=?;",
 					id);
 			
 	   }
 
 	   public void updateContract(Contract contract) {
 		  
-			jdbcTemplate.update("UPDATE Contract SET CIF = ?, startDate= ?, endDate=?, serviceType=?"
+			jdbcTemplate.update("UPDATE Contract SET CIF=?, startDate=?, endDate=?, serviceType=?"
 					+ ", price=?, signatureDate=?"
-					+ " WHERE id = ?",
+					+ " WHERE id=?",
 					contract.getCIF(),contract.getStartDate(), contract.getEndDate(),
 				    contract.getServiceType(), contract.getPrice(), contract.getSignatureDate(),
 				    contract.getId());
@@ -53,7 +53,7 @@ public class ContractDao {
 
 	   public Contract getContract(String id) {
 	       try {
-	           return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE id = ?",
+	           return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE id=?",
 	        	        new ContractRowMapper(),
 	        	        id);
 

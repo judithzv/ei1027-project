@@ -34,9 +34,9 @@ public class ElderlyRowMapper implements RowMapper<Elderly>{
 		   address.setPostalCode(rs.getInt("postalCode"));
 		   address.setStreet(rs.getString("street"));
 		   elderly.setAddress(address);
+		   bankData.setIBAN(rs.getString("IBAN"));
 		   bankData.setBank(rs.getString("bank"));
 		   bankData.setBranchOffice(rs.getString("branch_office"));
-		   bankData.setIBAN(rs.getString("IBAN"));
 		   elderly.setBankData(bankData);
 	       return elderly;
 	}

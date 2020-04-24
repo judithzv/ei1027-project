@@ -13,6 +13,7 @@ public class ProyectoAncianosApplication {
   public static void main(String[] args) {
      // Auto-configura l'aplicació
      new SpringApplicationBuilder(ProyectoAncianosApplication.class).run();
+     
   }
   
 }

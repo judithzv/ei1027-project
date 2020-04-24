@@ -29,7 +29,7 @@ public class ContractController {
 	  @RequestMapping("/list")
 	   public String listContract(Model model) {
 	      model.addAttribute("contracts", contractDao.getContracts());
-	      return "contracts/list";
+	      return "contract/list";
 	   }
 	   
 	
@@ -63,5 +63,25 @@ public class ContractController {
 		   return "redirect:list"; 
 	   	 
 	    }
+	   @RequestMapping(value="/update/{id}", method = RequestMethod.GET) 
+		public String editContract(Model model, @PathVariable String id) { 
+			model.addAttribute("contract", contractDao.getCompany(id));
+			return "contract/update"; 
+		}
+	    @RequestMapping(value="/update", method = RequestMethod.POST) 
+		public String processUpdateSubmit(
+	                            @ModelAttribute("contract") Contract contract, 
+	                            BindingResult bindingResult) {
+			 if (bindingResult.hasErrors()) 
+				 return "contract/update";
+			 contractDao.updateContract(contract);
+			 return "redirect:list"; 
+		}    
+
+	   @RequestMapping(value="/delete/{id}")
+		public String processDelete(@PathVariable String id) {
+		   contractDao.deleteContract(id);
+	       return "redirect:../list"; 
+		}
 
 }

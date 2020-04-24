@@ -40,15 +40,15 @@ public class ElderlyDao {
 
 	   
 	   public void deleteElderly(String DNI) {	
-			jdbcTemplate.update("DELETE FROM elderly WHERE DNI = ?;",
+			jdbcTemplate.update("DELETE FROM elderly WHERE DNI =?;",
 					DNI);
 			
 	   }
 
 	   public void updateElderly(Elderly elderly) {
-			jdbcTemplate.update("UPDATE Elderly SET name = ?, surNames= ?, userName=?, password=?"
+			jdbcTemplate.update("UPDATE Elderly SET name =?, surNames=?, userName=?, password=?"
 					+ ", telephoneNumber=?, mail=?, birthDate=?, illnesses=?, hobbies=?, disability=?, socialWorker=?"
-					+ " WHERE DNI = ?",
+					+ " WHERE DNI =?",
 					 elderly.getName(),elderly.getSurNames(),elderly.getUserName(), elderly.getPassword(),
 					    elderly.getTelephoneNumber(), elderly.getMail(), elderly.getBirthDate(), elderly.getIllnesses(), 
 					    elderly.getHobbies(), elderly.getDisability(), elderly.getSocialWorker(), elderly.getDNI() );
@@ -152,7 +152,7 @@ public class ElderlyDao {
 
 	   public BankData getBankData(String DNI) {
 	       try {
-	           return jdbcTemplate.queryForObject("SELECT * FROM BankData WHERE DNI = ?",
+	           return jdbcTemplate.queryForObject("SELECT * FROM BankData WHERE DNI =?",
 	        	        new BankDataRowMapper(),
 	        	        DNI);
 
