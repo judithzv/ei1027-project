@@ -90,7 +90,8 @@ public class LoginController {
 		Elderly elderly = userDao.getElderly(user.getUsername());
 		if(elderly != null)
 			return "redirect:/elderly/perfil/"+elderly.getDNI();
-		return "redirect:/";
+		else
+			return "portada";
 	}
 
 	@RequestMapping("/logout") 

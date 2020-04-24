@@ -37,8 +37,8 @@ public class CompanyDao {
 
 	   public void updateCompany(Company company) {
 		  
-			jdbcTemplate.update("UPDATE company SET name = ?, contactPerson= ?, telephoneNumber= ?, userName= ?"
-					+ ", password= ?" + " WHERE CIF = ?;",
+			jdbcTemplate.update("UPDATE company SET name=?, contactPerson=?, telephoneNumber=?, userName=?"
+					+ ", password=?" + " WHERE CIF =?;",
 					company.getName(), company.getContactPerson(), company.getTelephoneNumber(), 
 				    company.getUserName(), company.getPassword(), company.getCIF());
 			
