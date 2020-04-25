@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <meta charset="UTF-8" />
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <title>Perfil</title>
+   <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
+</head>
+<style>
+body {
+    background-image: url('../perfil.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+</style>
+<body>
+<div class="container" style="text-align:center;">
+   <h1>Mi perfil de empresa</h1>
+   <table>
+       <tr><td><form method="get" action="#">
+		<button type="submit" class="btn btn3">Mostrar datos de la empresa
+		</form></tr></td>
+		<tr><td><form method="get" action="#">
+		<button type="submit" class="btn btn3">Editar datos de la empresa
+		</form></tr></td>
+		<tr><td><form method="get" action="#">
+		<button type="submit" class="btn btn3">Eliminar cuenta
+		</form></tr></td>
+		<tr><td><form method="get" action="#">
+		<button type="submit" class="btn btn3">Ver contrato
+		</form></tr></td>
+		<tr><td><form method="get" action="#">
+		<button type="submit" class="btn btn3">Ver personas mayores asignadas
+		</form></tr></td>
+		<tr><td><form method="get" action="logout">
+		<button type="submit" class="btn btn3">Salir
+		</form></tr></td>
+	</table>
+   </div>
+</body>
+</html>

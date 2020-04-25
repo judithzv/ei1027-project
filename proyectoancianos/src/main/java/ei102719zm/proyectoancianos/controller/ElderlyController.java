@@ -51,8 +51,7 @@ public class ElderlyController {
 	   		 elderlyDao.addBankData(elderly.getBankData(), elderly.getDNI());
 	   	 return "redirect:list"; 
 	   	 
-	    }
-	   
+	    }	   
 	   
 	   @RequestMapping(value="/update/{DNI}", method = RequestMethod.GET) 
 		public String editElderly(Model model, @PathVariable String DNI) { 
@@ -83,6 +82,7 @@ public class ElderlyController {
 	   public String mostrarPerfil(HttpSession session, @PathVariable String DNI, Model model) {
 		   session.setAttribute("dni", DNI);
 		   model.addAttribute("dni", DNI);
+		   model.addAttribute("elderly",elderlyDao.getElderly(DNI));
 		   return "elderly/perfil";
 	   }
 	   @RequestMapping(value="/datos")
@@ -92,6 +92,16 @@ public class ElderlyController {
 			   Elderly elderly = elderlyDao.getElderly(DNI);
 			   model.addAttribute("elderly",elderly);
 			   return "elderly/datos";
+		   }
+		   return "redirect:../";
+	   }
+	   @RequestMapping(value="/eliminarcuenta")
+	   public String eliminarcuenta(HttpSession session, Model model) {
+		   String DNI = (String) session.getAttribute("dni");
+		   if(DNI!=null) {
+			   Elderly elderly = elderlyDao.getElderly(DNI);
+			   model.addAttribute("elderly",elderly);
+			   return "elderly/eliminarcuenta";
 		   }
 		   return "redirect:../";
 	   }

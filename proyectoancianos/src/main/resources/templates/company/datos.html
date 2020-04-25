@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Perfil</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
+</head>
+<body>
+	<h1>Datos de mi empresa</h1>
+	<div class="container">
+	<table class="table table-striped table-hover">
+
+         <tr><td>Name:</td><td th:text="${company.name}"></td></tr>
+         <tr><td>CIF: </td><td th:text="${company.CIF}"></td></tr>
+         <tr><td>Contract Person: </td><td th:text="${company.contactPerson}"></td></tr>
+         <tr><td>Telephone number: </td><td th:text="${company.telephoneNumber}"></td></tr>
+         <tr><td>User name: </td><td th:text="${company.userName}"></td></tr>
+         <tr><td>Password: </td><td th:text="${company.password}"></td></tr>
+	</table>
+	</div>
+</body>
+</html>

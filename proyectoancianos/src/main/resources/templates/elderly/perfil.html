@@ -22,10 +22,9 @@ body {
        <tr><td><form method="get" action="../datos">
 		<button type="submit" class="btn btn3">Mostrar datos personales
 		</form></tr></td>
-		<tr><td><form method="get" action="#">
-		<button type="submit" class="btn btn3">Editar datos personales
-		</form></tr></td>
-		<tr><td><form method="get" action="#">
+		<tr><td><a th:href="@{/elderly/update/{DNI}(DNI=${elderly.DNI})}" 
+		role="button" class="a1">Editar mi perfil</a></tr></td>
+		<tr><td><form method="get" action="../eliminarcuenta">
 		<button type="submit" class="btn btn3">Eliminar cuenta
 		</form></tr></td>
 		<tr><td><form method="get" action="/request/list">
@@ -34,7 +33,7 @@ body {
 		<tr><td><form method="get" action="/request/add">
 		<button type="submit" class="btn btn3">Solicitar servicio
 		</form></tr></td>
-		<tr><td><form method="get" action="logout">
+		<tr><td><form method="get" action="">
 		<button type="submit" class="btn btn3">Salir
 		</form></tr></td>
 	</table>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <meta charset="UTF-8" />
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <title>Perfil</title>
+   <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
+</head>
+<style>
+body {
+    background-image: url('../perfil.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+</style>
+<body>
+<div class="container" style="text-align:center;">
+   <h1>¿Está seguro que desea eliminar su cuenta?</h1>   
+   <table>
+   <tr><td><a th:href="@{/elderly/perfil/{DNI}(DNI=${elderly.DNI})}" 
+		role="button" class="a2"><b>VOLVER ATRÁS</b></a></tr></td>
+	<tr><td><a th:href="@{/elderly/perfil/{DNI}(DNI=${elderly.DNI})}" 
+		role="button" class="a2"><b>ELIMINAR CUENTA</b></a></tr></td>
+	</table>
+   
+   </div>
+</body>
+</html>
