@@ -74,5 +74,13 @@ public class CompanyController {
 	 		   companyDao.deleteCompany(CIF);
 	 	       return "redirect:../list"; 
 	 		}
+	 	   
+		   @RequestMapping(value="/perfil/{CIF}")
+		   public String mostrarPerfil(HttpSession session, @PathVariable String CIF, Model model) {
+			   session.setAttribute("cif", CIF);
+			   model.addAttribute("cif", CIF);
+			   model.addAttribute("company",companyDao.getCompany(CIF));
+			   return "company/perfil";
+		   }
 
 }

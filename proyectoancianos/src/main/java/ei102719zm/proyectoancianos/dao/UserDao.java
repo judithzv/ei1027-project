@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.UserDetails;
 
@@ -48,10 +49,17 @@ public class UserDao {
 	       }
 	}
 	
+	public Company getCompany(String username) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE username=?", new CompanyRowMapper(), username);
+		} catch (EmptyResultDataAccessException e) {
+	           return null;
+		}
+	}
+	
  	public Collection<UserDetails> listAllUsers(){
 	       try {
-	    	   Collection<UserDetails> users = jdbcTemplate.query("SELECT userName, password FROM Elderly", new UserRowMapper());
-	    	   BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor(); 
+	    	   Collection<UserDetails> users = jdbcTemplate.query("SELECT userName, password FROM Elderly UNION SELECT userName, password FROM Company", new UserRowMapper());
 	    	   UserDetails admin = new UserDetails();
 	    	   admin.setUsername("admin");
 	    	   admin.setPassword("admin");

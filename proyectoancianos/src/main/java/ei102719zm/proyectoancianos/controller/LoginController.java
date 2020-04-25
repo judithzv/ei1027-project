@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult; 
-import org.springframework.web.bind.annotation.ModelAttribute; 
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.bind.annotation.RequestMethod; 
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +17,7 @@ import org.springframework.validation.Validator;
 
 import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.dao.UserDao;
+import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.UserDetails;
 
@@ -59,15 +61,24 @@ public class LoginController {
 			return "redirect:"+nextUrl;
 		}
 		Elderly elderly = userDao.getElderly(user.getUsername());
-		if(elderly != null)
+		if(elderly != null) {
+			model.addAttribute("elderly", elderly);
 			return "redirect:/elderly/perfil/"+elderly.getDNI();
-		else
-			return "portada";
+		}
+		else {
+			Company company = userDao.getCompany(user.getUsername());
+			if(company != null) {
+				model.addAttribute("company", company);
+				return "redirect:/company/perfil/"+company.getCIF();
+			}
+			else
+				return "portada";
+		}
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String checkLogin(@ModelAttribute("user") UserDetails user,  		
-				BindingResult bindingResult, HttpSession session) {
+				BindingResult bindingResult, HttpSession session, Model model) {
 		UserValidator userValidator = new UserValidator(); 
 		userValidator.validate(user, bindingResult); 
 		if (bindingResult.hasErrors()) {
@@ -80,7 +91,6 @@ public class LoginController {
 			bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta"); 
 			return "login";
 		}
-		
 		session.setAttribute("user", user);
 		String nextUrl = (String) session.getAttribute("nextUrl");
 		if(nextUrl != null) {
@@ -88,10 +98,19 @@ public class LoginController {
 			return "redirect:" + nextUrl;
 		}
 		Elderly elderly = userDao.getElderly(user.getUsername());
-		if(elderly != null)
+		if(elderly != null) {
+			model.addAttribute("elderly", elderly);
 			return "redirect:/elderly/perfil/"+elderly.getDNI();
-		else
-			return "portada";
+		}
+		else {
+			Company company = userDao.getCompany(user.getUsername());
+			if(company != null) {
+				model.addAttribute("company", company);
+				return "redirect:/company/perfil/"+company.getCIF();
+			}
+			else
+				return "portada";
+		}
 	}
 
 	@RequestMapping("/logout") 
