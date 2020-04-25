@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-<link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
    <title>Modificar usuario</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 </head>
 <body>
     <h1>Modifica el perfil</h1>
@@ -89,7 +89,7 @@
             <td><input type="text" th:field="*{bankData.branch_office}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Modifica usuario" /></td>
+            <td colspan="2"><input type="submit" class="btn btn2" value="Modifica usuario" /></td>
         </tr>
       </table>
     </form>

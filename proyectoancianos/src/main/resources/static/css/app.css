@@ -1,6 +1,11 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
-
+ul {
+  FONT-SIZE: 15pt; 
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+}
 .btn{
   text-align: center;
   display: inline-block;
@@ -18,25 +23,31 @@ body {font-family: Arial, Helvetica, sans-serif;}
   cursor: pointer;
   width: 100%;
 }
-.btn1{
-  background: #2079b0;
-  background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -ms-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: -o-linear-gradient(top, #2079b0, #eb94d0);
-  background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
-  text-decoration: none;
-  FONT-SIZE: 18pt; 
-  padding: 14px 20px;
+.btn3{
+  FONT-SIZE: 15pt; 
+  padding: 20px 70px;
   margin: 8px 0;
-  border: none;
-  cursor: pointer;
   width: 100%;
 }
 
-
+.btn4{
+  FONT-SIZE: 20pt; 
+  padding: 20px 70px;
+  width: 120%;
+}
+.btn1{
+  FONT-SIZE: 18pt; 
+  padding: 20px 25px;
+  width: 100%;
+}
+.btn2{
+  FONT-SIZE: 18pt; 
+  padding: 20px 25px;
+  width: 113%;
+}
 h1{
   font-size: 72px;  
+  font-weight: bold;
   background: -webkit-linear-gradient(left top, red, yellow);
   background: linear-gradient(to bottom right, red, yellow);
   -webkit-background-clip: text;  
@@ -50,8 +61,8 @@ label{
   display: inline-block;
   width: 120px;
 }
-input[type=text], input[type=password],input[type=month], input[type=date], input[type=int]{
-  width: 100%;
+input[type=text], input[type=password],input[type=month], input[type=date], input[type=int], input[type=number]{
+  width: 120%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;

@@ -8,6 +8,7 @@
 <style>
 h1{
   font-size: 72px;  
+  font-weight: bold;
   background: -webkit-linear-gradient(left top, red, yellow);
   background: linear-gradient(to bottom right, red, yellow);
   -webkit-background-clip: text;  
@@ -66,8 +67,7 @@ h1{
 		 <td th:text="${elderly.bankData.bank}"></td>
 		 <td th:text="${elderly.bankData.branch_office}"></td>
          <td><a th:href="@{/elderly/update/{DNI}(DNI=${elderly.DNI})}" class="btn btn-warning" role="button">Edita</a></td>
-         <td><a th:href="@{/elderly/delete/{DNI}(DNI=${elderly.DNI})}" class="btn btn-danger" role="button">Borra</a>
-         </td>
+         <td><a th:href="@{/elderly/delete/{DNI}(DNI=${elderly.DNI})}" class="btn btn-danger" role="button">Borra</a></td>
        </tr>
      </tbody>
    </table>

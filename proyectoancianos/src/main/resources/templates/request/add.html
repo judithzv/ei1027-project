@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
    <title>Nuevo servicio</title>
-   <link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
    <meta charset="UTF-8" />
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 </head>
+<style>
+</style>
 <body>
 <div layout:fragment="content">
     <h1>Nueva Petición</h1>
@@ -19,7 +21,7 @@
         <tr><td><b><label>Horario:</label></b>
         <input type="month" th:field="*{schedule}" required/></td>
         </tr>
-        <tr><td><input type="submit" class="btn1"  value="Solicitar servicio" /></td>
+        <tr><td><input type="submit" class="btn btn4"  value="Solicitar servicio" /></td>
         </tr>
       </table>
     </form>

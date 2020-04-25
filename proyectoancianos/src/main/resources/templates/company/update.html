@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
- <link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
    <title>Modificar usuario</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+     <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 </head>
 <body>
     <h1>Modifica la empresa</h1>
@@ -37,7 +37,7 @@
             <td><label>password</label></td>
             <td><input type="text" th:field="*{password}" required/></td>
         </tr>
-        <td colspan="2"><input class="btn" type="submit" value="Modifica usuario" /></td>
+        <td colspan="2"><input class="btn btn2" type="submit" value="Modifica usuario" /></td>
       </table>
     </form>
 </body>

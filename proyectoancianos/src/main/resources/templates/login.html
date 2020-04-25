@@ -25,13 +25,14 @@
             <input class="form_control" type="password" th:field="*{password}"/>
             <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 		</tr></td></p>	
-		<tr><td><p><input type="submit" class="btn1" value="Entrar" />
-		<input type="submit" class="btn1" value="Volver" /></tr></td></p>	
+		<tr><td><p><input type="submit" class="btn btn1" value="Entrar" />
+		<form method="get" action="../">
+		<button type="submit" class="btn btn1">Volver
+		</form>
+		<form method="get" action="elderly/add">
+		<button type="submit" class="btn btn1">Registrarme
+		</form></tr></td>		
 	</table>
-	 <div class="container1">
-	<span class="psw1"><a href="elderly/add">Registrarme</a></span>
-    <span class="psw1"><a href="#">He olvidado mi contraseña</a></span> 
-  </div>
 	</form>
 </div>
 </body>

@@ -4,29 +4,35 @@
    <title>Perfil</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 </head>
 <body>
-	<h1>Datos personales</h1>   
-   <ul>
-         <li><b>Name: </b><tr th:text="${elderly.name}"></tr></li>
-         <li><b>Surnames: </b><tr th:text="${elderly.surNames}"></tr></li>
-         <li><b>Username: </b><tr th:text="${elderly.userName}"></tr></li>
-         <li><b>Password: </b><tr th:text="${elderly.password}"></tr></li>
-         <li><b>Telephone number: </b><tr th:text="${elderly.telephoneNumber}"></tr></li>
-         <li><b>Mail: </b><tr th:text="${elderly.mail}"></tr></li>
-         <li><b>Birth date: </b><tr th:text="${#temporals.format(elderly.birthDate,'dd MMMM yyyy')}"></tr></li>
-         <li><b>Hobbies: </b><tr th:text="${elderly.hobbies}"></tr></li>
-         <li><b>DNI: </b><tr th:text="${elderly.DNI}"></tr></li>
-         <li><b>Illnesses: </b><tr th:text="${elderly.illnesses}"></tr></li>
-         <li><b>Disability: </b><tr th:text="${elderly.disability}"></tr></li>
-         <li><b>Social Worker: </b><tr th:text="${elderly.socialWorker}"></tr></li>
-         <li><b>Street: </b><tr th:text="${elderly.address.street}"></tr></li>
-		 <li><b>City: </b><tr th:text="${elderly.address.city}"></tr></li>
-		 <li><b>Postal Code: </b><tr th:text="${elderly.address.postalCode}"></tr></li>
-		 <li><b>Country: </b><tr th:text="${elderly.address.city}"></tr></li>
-         <li><b>IBAN: </b><tr th:text="${elderly.bankData.IBAN}"></tr></li>
-		 <li><b>Bank: </b><tr th:text="${elderly.bankData.bank}"></tr></li>
-	     <li><b>Branch Office: </b><tr th:text="${elderly.bankData.branch_office}"></tr></li>
-	</ul>
+	<h1>Datos personales</h1>
+	<div class="container">
+	<table class="table table-striped table-hover">
+         <tr><td>Name:</td>
+         <td th:text="${elderly.name}"></td></tr>
+         
+         <tr><td>Surnames:</td><td th:text="${elderly.surNames}"></td></tr>
+         <tr><td>Username: </td><td th:text="${elderly.userName}"></td></tr>
+         <tr><td>Password: </td><td th:text="${elderly.password}"></td></tr>
+         <tr><td>Telephone number: </td><td th:text="${elderly.telephoneNumber}"></td></tr>
+         <tr><td>Mail: </td><td th:text="${elderly.mail}"></td></tr>
+         <tr><td>Birth date:</td><td th:text="${#temporals.format(elderly.birthDate,'dd MMMM yyyy')}"></td></tr>
+         <tr><td>Hobbies: </td><td th:text="${elderly.hobbies}"></td></tr>
+         <tr><td>DNI: </td><td th:text="${elderly.DNI}"></td></tr>
+         <tr><td>Illnesses: </td><td th:text="${elderly.illnesses}"></td></tr>
+         <tr><td>Disability: </td><td th:text="${elderly.disability}"></td></tr>
+         <tr><td>Social Worker: </td><td th:text="${elderly.socialWorker}"></td></tr>
+         <tr><td>Street: </td><td th:text="${elderly.address.street}"></td></tr>
+		 <tr><td>City: </td><td th:text="${elderly.address.city}"></td></tr>
+		 <tr><td>Postal Code: </td><td th:text="${elderly.address.postalCode}"></td></tr>
+		 <tr><td>Country: </td><td th:text="${elderly.address.city}"></td></tr>
+         <tr><td>IBAN: </td><td th:text="${elderly.bankData.IBAN}"></td></tr>
+		 <tr><td>Bank: </td><td th:text="${elderly.bankData.bank}"></td></tr>
+	     <tr><td>Branch Office: </td><td th:text="${elderly.bankData.branch_office}"></td></tr>
+	</table>
+	</div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
- <link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
    <title>Registrar nueva empresa</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+      <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
 </head>
 <body>
     <h1>Nueva Empresa</h1>
@@ -37,7 +37,7 @@
             <td><p><label>Password</label></p></td>
             <td><input type="password" th:field="*{password}" required/></td>
         </tr>
-         <td colspan="2"><input type="submit" class="btn1" value="Registra empresa" /></td>
+         <td colspan="2"><input type="submit" class="btn btn2" value="Registra empresa" /></td>
         </tr>
       </table>
     </form>

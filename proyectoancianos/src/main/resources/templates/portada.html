@@ -10,13 +10,28 @@
 <body>
 	<h1>Gestion</h1>
 	<table>
-	<tr><td><p><a href="elderly/list">Gestión de Ancianos</a></p></tr></td>
-	<tr><td><p><a href="company/list">Gestión de Empresas</a></p></tr></td>
-	<tr><td><p><a href="contract/list">Gestión de Contratos</a></p></tr></td>
-	<tr><td><p><a href="contract/add">Añadir contrato</a></p></tr></td>
-	<tr><td><p><a href="contract/add">Añadir empresa</a></p></tr></td>
-	<tr><td><p><a href="login">Login</a></p></tr></td>
-	<tr><td><p><a href="logout">Logout</a></p></tr></td>
+	<tr><td rowspan="10"><img src="app.png" style="max-height: 70%; max-height: 80%;"></td></tr>
+	<tr><td><form method="get" action="elderly/list">
+		<button type="submit" class="btn btn3">Gestión de Ancianos
+		</form></tr></td>
+	<tr><td><form method="get" action="company/list">
+	    <button type="submit" class="btn btn3">Gestión de Empresas
+		</form></tr></td>
+	<tr><td><form method="get" action="contract/list">
+		<button type="submit" class="btn btn3">Gestión de Contratos
+		</form></tr></td>
+	<tr><td><form method="get" action="contract/add">
+		<button type="submit" class="btn btn3">Añadir contrato
+		</form></tr></td>
+	<tr><td><form method="get" action="contract/add">
+		<button type="submit" class="btn btn3">Añadir empresa
+		</form></tr></td>
+	<tr><td><form method="get" action="elderly/add">
+		<button type="submit" class="btn btn3">Añadir persona mayor
+		</form></tr></td>
+	<tr><td><form method="get" action="logout">
+		<button type="submit" class="btn btn3">Salir
+		</form></tr></td>
 	</table>
 </body>
 </html>
