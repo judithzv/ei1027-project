@@ -18,6 +18,7 @@ import org.springframework.validation.Validator;
 import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Company;
+import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.UserDetails;
 
@@ -48,6 +49,7 @@ public class LoginController {
 	}
 
 	
+	@SuppressWarnings("unused")
 	@RequestMapping("/login")
 	public String login(HttpSession session, Model model) {
 		UserDetails user = (UserDetails) session.getAttribute("user");
@@ -76,6 +78,7 @@ public class LoginController {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String checkLogin(@ModelAttribute("user") UserDetails user,  		
 				BindingResult bindingResult, HttpSession session, Model model) {
@@ -106,7 +109,7 @@ public class LoginController {
 			Company company = userDao.getCompany(user.getUsername());
 			if(company != null) {
 				model.addAttribute("company", company);
-				return "redirect:/company/perfil/"+company.getCIF();
+				return "redirect:/company/perfil/"+ company.getCIF();
 			}
 			else
 				return "portada";

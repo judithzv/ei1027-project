@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import ei102719zm.proyectoancianos.model.Company;
+import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.UserDetails;
 
@@ -52,6 +53,13 @@ public class UserDao {
 	public Company getCompany(String username) {
 		try {
 			return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE username=?", new CompanyRowMapper(), username);
+		} catch (EmptyResultDataAccessException e) {
+	           return null;
+		}
+	}
+	public Contract getContract(String CIF) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE CIF=?", new ContractRowMapper(), CIF);
 		} catch (EmptyResultDataAccessException e) {
 	           return null;
 		}

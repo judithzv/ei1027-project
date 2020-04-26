@@ -62,6 +62,18 @@ public class ContractDao {
 	           return null;
 	       }
 	   }
+	   public List<Contract> getContractsCIF(String CIF) {
+	       try {	    
+	    	   List<Contract> contracts = jdbcTemplate.query(
+	        		    "SELECT * FROM contract WHERE CIF=?",
+	        		     new ContractRowMapper(), CIF);
+	        		return contracts;
+
+	       }
+	       catch(EmptyResultDataAccessException e) {
+	           return new ArrayList<Contract>();
+	       }
+	   }
 
 	   public List<Contract> getContracts() {
 	       try {	    

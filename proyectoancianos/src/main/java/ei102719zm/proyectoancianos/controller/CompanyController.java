@@ -1,5 +1,7 @@
 package ei102719zm.proyectoancianos.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ei102719zm.proyectoancianos.dao.CompanyDao;
+import ei102719zm.proyectoancianos.dao.ContractDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
@@ -22,11 +25,17 @@ import ei102719zm.proyectoancianos.model.Elderly;
 @RequestMapping("/company") 
 public class CompanyController {
 	 private CompanyDao companyDao;
+	 private ContractDao contractDao;
 
 	   @Autowired
 	   public void setCompanyDao(CompanyDao companyDao) { 
 	       this.companyDao = companyDao;
 	   }
+	   @Autowired
+	   public void setContractDao(ContractDao contractDao) { 
+	       this.contractDao = contractDao;
+	   }
+	   
 	   @RequestMapping("/list")
 	   public String listCompany(Model model) {
 	      model.addAttribute("companies", companyDao.getCompanies());
@@ -76,11 +85,46 @@ public class CompanyController {
 	 		}
 	 	   
 		   @RequestMapping(value="/perfil/{CIF}")
-		   public String mostrarPerfil(HttpSession session, @PathVariable String CIF, Model model) {
+		   public String mostrarPerfil(HttpSession session, @PathVariable String CIF,  Model model) {
 			   session.setAttribute("cif", CIF);
 			   model.addAttribute("cif", CIF);
 			   model.addAttribute("company",companyDao.getCompany(CIF));
+			   model.addAttribute("contract", contractDao.getContractsCIF(CIF));
 			   return "company/perfil";
 		   }
-
+		   @RequestMapping(value="/datos")
+		   public String mostrarDatos(HttpSession session, Model model) {
+			   String CIF = (String) session.getAttribute("cif");
+			   if(CIF!=null) {
+				   Company company = companyDao.getCompany(CIF);
+				   model.addAttribute("company",company);
+				   return "company/datos";
+			   }
+			   return "redirect:../";
+		   
+		   }
+		   @RequestMapping(value="/datoscontrato")
+		   public String mostrarDatosContrato(HttpSession session, Model model) {
+			   String CIF = (String) session.getAttribute("cif");
+			   if(CIF!=null) {
+				   List<Contract> contract = contractDao.getContractsCIF(CIF);
+				   model.addAttribute("contracts",contract);
+				   return "company/datoscontrato";
+			   }
+			   return "redirect:../";
+		   
+		   }
+		   @RequestMapping(value="/eliminarcuenta")
+		   public String eliminarcuenta(HttpSession session, Model model) {
+			   String CIF = (String) session.getAttribute("cif");
+			   String id = (String) session.getAttribute("id");
+			   if(CIF!=null) {
+				   Company company= companyDao.getCompany(CIF);
+				   model.addAttribute("company",company);
+				   Contract contract = contractDao.getContract(id);
+				   model.addAttribute("contract",contract);
+				   return "company/eliminarcuenta";
+			   }
+			   return "redirect:../";
+		   }
 }

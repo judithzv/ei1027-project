@@ -30,8 +30,7 @@ public class ContractController {
 	   public String listContract(Model model) {
 	      model.addAttribute("contracts", contractDao.getContracts());
 	      return "contract/list";
-	   }
-	   
+	   }	   
 	
 	   @RequestMapping(value="/add")
 	   public String addContract(HttpSession session, Model model) {

@@ -19,17 +19,16 @@ body {
 <div class="container" style="text-align:center;">
    <h1>Mi perfil de empresa</h1>
    <table>
-       <tr><td><form method="get" action="#">
+       <tr><td><form method="get" action="../datos">
 		<button type="submit" class="btn btn3">Mostrar datos de la empresa
-		</form></tr></td>
-		<tr><td><form method="get" action="#">
-		<button type="submit" class="btn btn3">Editar datos de la empresa
-		</form></tr></td>
-		<tr><td><form method="get" action="#">
+		</form></tr></td>				
+		<tr><td><a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" 
+		role="button" class="a1">Editar mi perfil</a></tr></td>			
+		<tr><td><form method="get" action="../eliminarcuenta">
 		<button type="submit" class="btn btn3">Eliminar cuenta
-		</form></tr></td>
-		<tr><td><form method="get" action="#">
-		<button type="submit" class="btn btn3">Ver contrato
+		</form></tr></td>		
+		<tr><td><form method="get" action="../datoscontrato">
+		<button type="submit" class="btn btn3">Ver contratos
 		</form></tr></td>
 		<tr><td><form method="get" action="#">
 		<button type="submit" class="btn btn3">Ver personas mayores asignadas
