@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ei102719zm.proyectoancianos.dao.CompanyDao;
 import ei102719zm.proyectoancianos.dao.ContractDao;
+import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
@@ -26,6 +27,7 @@ import ei102719zm.proyectoancianos.model.Elderly;
 public class CompanyController {
 	 private CompanyDao companyDao;
 	 private ContractDao contractDao;
+	 private ElderlyDao elderlyDao;
 
 	   @Autowired
 	   public void setCompanyDao(CompanyDao companyDao) { 
@@ -34,6 +36,10 @@ public class CompanyController {
 	   @Autowired
 	   public void setContractDao(ContractDao contractDao) { 
 	       this.contractDao = contractDao;
+	   }
+	   @Autowired
+	   public void setElderlyDao(ElderlyDao elderlyDao) { 
+	       this.elderlyDao = elderlyDao;
 	   }
 	   
 	   @RequestMapping("/list")
@@ -124,6 +130,17 @@ public class CompanyController {
 				   Contract contract = contractDao.getContract(id);
 				   model.addAttribute("contract",contract);
 				   return "company/eliminarcuenta";
+			   }
+			   return "redirect:../";
+		   }
+		   @RequestMapping(value="/datoselderly")
+		   public String datoselderly(HttpSession session, Model model) {
+			   String CIF = (String) session.getAttribute("cif");
+			   String ID = (String) session.getAttribute("id");
+			   if(CIF!=null) {
+				   List<Elderly> elderly = elderlyDao.getElderliesID(ID);
+				   model.addAttribute("elderlies", elderly);
+				   return "company/datoselderly";
 			   }
 			   return "redirect:../";
 		   }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Ancianos</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+h1{
+  font-size: 72px;  
+  font-weight: bold;
+  background: -webkit-linear-gradient(left top, red, yellow);
+  background: linear-gradient(to bottom right, red, yellow);
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent; 
+  text-align:center; 
+} 
+</style>
+<body>
+<div class="table-responsive">
+   <p><h1>Lista de personas mayores</h1></p>
+   <table class="table table-striped table-hover">
+     <thead>
+       <tr>
+         <th>Name</th>
+         <th>Surnames</th>
+         <th>User name</th>
+         <th>Password</th>
+         <th>Telephone number</th>
+         <th>Mail</th>
+         <th>Birth date</th>
+         <th>Hobbies</th>
+         <th>DNI</th>
+         <th>Illnesses</th>
+         <th>Disability</th>
+         <th>Social Worker</th>
+         <th>Street</th>
+		 <th>City</th>
+		 <th>Postal Code</th>
+		 <th>Country</th>
+         <th>IBAN</th>
+		 <th>Bank</th>
+	     <th>Branch Office</th>
+         <th></th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="elderly: ${elderlies}"> 
+         <td th:text="${elderly.name}"></td> 
+         <td th:text="${elderly.surNames}"></td>
+         <td th:text="${elderly.userName}"></td>
+         <td th:text="${elderly.password}"></td>
+         <td th:text="${elderly.telephoneNumber}"></td>
+         <td th:text="${elderly.mail}"></td>
+         <td th:text="${#temporals.format(elderly.birthDate,'dd MMMM yyyy')}"></td>
+         <td th:text="${elderly.hobbies}"></td>
+         <td th:text="${elderly.DNI}"></td>
+         <td th:text="${elderly.illnesses}"></td>
+         <td th:text="${elderly.disability}"></td>
+         <td th:text="${elderly.socialWorker}"></td>
+         <td th:text="${elderly.address.street}"></td>
+		 <td th:text="${elderly.address.city}"></td>
+		 <td th:text="${elderly.address.postalCode}"></td>
+	 	 <td th:text="${elderly.address.city}"></td>
+         <td th:text="${elderly.bankData.IBAN}"></td>
+		 <td th:text="${elderly.bankData.bank}"></td>
+		 <td th:text="${elderly.bankData.branch_office}"></td>
+       </tr>
+     </tbody>
+   </table>
+   </div>
+</body>
+</html>

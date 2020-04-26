@@ -81,6 +81,20 @@ public class ElderlyDao {
 	           return new ArrayList<Elderly>();
 	       }
 	   }
+	   public List<Elderly> getElderliesID(String id) {
+	       try {
+	    
+	    	   List<Elderly> elderlies = jdbcTemplate.query( 
+	        		    "SELECT * FROM Elderly INNER JOIN address ON address.DNI=elderly.DNI INNER JOIN bankdata ON bankdata.DNI=elderly.DNI "
+	        		    + "INNER JOIN request ON request.DNI=elderly.DNI WHERE request.idContract =?",
+	        		     new ElderlyRowMapper(),id);
+	        		return elderlies;
+
+	       }
+	       catch(EmptyResultDataAccessException e) {
+	           return new ArrayList<Elderly>();
+	       }
+	   }
 	   
 	   public void addAddress(Address address, String DNI) {
 			

@@ -14,16 +14,17 @@
     <h1>Nueva Petición</h1>
     <form action="#" th:action="@{/request/add}"
                      th:object="${request}" method="post">
-      <table>
-        <tr><td><b><label>Servicio:</label></b>
-        <input type="text" th:field="*{service}" required/></td>
-        </tr>
-        <tr><td><b><label>Horario:</label></b>
-        <input type="month" th:field="*{schedule}" required/></td>
-        </tr>
-        <tr><td><input type="submit" class="btn btn4"  value="Solicitar servicio" /></td>
-        </tr>
+      	<table>
+        <tr><td style="padding: 15px 590px;"><p>Elige un servicio:<p>
+		<select id="service" style="height: 50px; width:400px;">
+  		<option value="cleanning">LIMPIEZA</option>
+  		<option value="health">SALUD</option>
+  		<option value="catering">CATERING</option>
+		</select></tr></td>
       </table>
+      <table>
+      <tr><td><input type="submit" class="btn btn4"  value="Solicitar servicio" /></td>
+      </tr></table>
     </form>
     
 </div>
