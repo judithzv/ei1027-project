@@ -1,5 +1,6 @@
 package ei102719zm.proyectoancianos.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -136,10 +137,14 @@ public class CompanyController {
 		   @RequestMapping(value="/datoselderly")
 		   public String datoselderly(HttpSession session, Model model) {
 			   String CIF = (String) session.getAttribute("cif");
-			   String ID = (String) session.getAttribute("id");
-			   if(CIF!=null) {
-				   List<Elderly> elderly = elderlyDao.getElderliesID(ID);
-				   model.addAttribute("elderlies", elderly);
+			   List<Contract> contratos=contractDao.getContractsCIF(CIF);
+			   List<Elderly> elderlies = new ArrayList<Elderly>();
+			   for (Contract contract: contratos) {
+				   List<Elderly> elderly = elderlyDao.getElderliesID(contract.getId());
+				   elderlies.addAll(elderly);
+			   }
+			   if(! elderlies.isEmpty()) {
+				   model.addAttribute("elderlies", elderlies);
 				   return "company/datoselderly";
 			   }
 			   return "redirect:../";
