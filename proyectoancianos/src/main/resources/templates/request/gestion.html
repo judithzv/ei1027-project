@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Peticiones</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<style>
+h1{
+  font-size: 72px;  
+  font-weight: bold;
+  background: -webkit-linear-gradient(left top, red, yellow);
+  background: linear-gradient(to bottom right, red, yellow);
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent; 
+  text-align:center; 
+}  
+</style>
+<body>
+<div class="container">
+   <h1>Lista Peticiones</h1>
+   <table class="table table-striped">
+     <thead>
+       <tr>
+         <th>Number</th>
+         <th>State</th>
+         <th>Service</th>
+         <th>Schedule</th>
+         <th></th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="request: ${requests}"> 
+         <td th:text="${request.number}"></td> 
+         <td th:text="${request.state}"></td>
+		 <td th:text="${request.service}"></td>
+         <td th:text="${request.schedule}"></td>
+		 <td><a th:href="@{/request/accept/{number}(number=${request.number})}" class="btn btn-warning" role="button">Aceptar</a></td>
+         <td><a th:href="@{/request/cancel/{number}(number=${request.number})}" class="btn btn-danger" role="button">Cancelar</a></td>
+       </tr>
+     </tbody>
+   </table>
+   </div>
+</body>
+</html>

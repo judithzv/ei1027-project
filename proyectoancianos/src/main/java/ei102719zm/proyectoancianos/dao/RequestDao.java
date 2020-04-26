@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Request;
 
 @Repository 
@@ -38,11 +39,11 @@ public class RequestDao {
 
 	   public void updateRequest(Request request) {
 		  
-			jdbcTemplate.update("UPDATE invoice SET DNI = ?, state= ?, service=?, "
-					+ " schedule=?"
-					+ " WHERE code = ?",
+			jdbcTemplate.update("UPDATE Request SET DNI = ?, state= ?, service=?, "
+					+ " schedule=?, idContract=?"
+					+ " WHERE number = ?",
 					request.getDNI(), request.getState(), request.getService(), 
-				    request.getSchedule(), request.getNumber());
+				    request.getSchedule(), request.getIdContract(), request.getNumber());
 			
 	   }
 
@@ -61,10 +62,24 @@ public class RequestDao {
 	   public List<Request> getRequests(String DNI) {
 	       try {
 	    
-	    	   List<Request> invoices = jdbcTemplate.query(
+	    	   List<Request> requests = jdbcTemplate.query(
 	        		    "SELECT * FROM Request WHERE DNI=?",
 	        		     new RequestRowMapper(), DNI);
-	        		return invoices;
+	        		return requests;
+
+	       }
+	       catch(EmptyResultDataAccessException e) {
+	           return new ArrayList<Request>();
+	       }
+	   }
+	   
+	   public List<Request> getPendingRequests() {
+	       try {
+	    
+	    	   List<Request> requests = jdbcTemplate.query(
+	        		    "SELECT * FROM Request WHERE state='in process'",
+	        		     new RequestRowMapper());
+	        		return requests;
 
 	       }
 	       catch(EmptyResultDataAccessException e) {
@@ -77,6 +92,20 @@ public class RequestDao {
 		   if(!requests.isEmpty())
 			   return requests.get(0).getNumber();
 		   return null;
+	   }
+	   
+	   public List<Contract> getPossibleContracts(String serviceType){
+	       try {
+	   	    
+	    	   List<Contract> contracts = jdbcTemplate.query(
+	        		    "SELECT * FROM Contract WHERE id NOT IN (SELECT idContract FROM Request WHERE idContract IS NOT NULL) AND serviceType=?",
+	        		     new ContractRowMapper(), serviceType);
+	        		return contracts;
+
+	       }
+	       catch(EmptyResultDataAccessException e) {
+	    	   return new ArrayList<Contract>();
+	       }
 	   }
 
 }

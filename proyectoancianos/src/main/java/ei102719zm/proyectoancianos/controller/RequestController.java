@@ -1,5 +1,7 @@
 package ei102719zm.proyectoancianos.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import ei102719zm.proyectoancianos.dao.RequestDao;
 import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
+import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.Request;
 import ei102719zm.proyectoancianos.model.UserDetails;
@@ -67,5 +70,39 @@ public class RequestController {
 		   }
 		   return "redirect:../";
 	   }
+	   
+		  @RequestMapping("/gestion")
+		   public String gestionRequest(Model model) {
+			  List<Request> requests = requestDao.getPendingRequests();
+		      model.addAttribute("requests", requests);
+		      return "request/gestion";
+		   }
+	   
+	   @RequestMapping(value="accept/{number}")
+	   public String acceptRequest(HttpSession session, Model model, @PathVariable String number) {
+		   Request request = requestDao.getRequest(number);
+		   List<Contract> contracts = requestDao.getPossibleContracts(request.getService());
+		   session.setAttribute("request", request);
+		   model.addAttribute("contracts", contracts);
+		   return "request/accept";
+	   }
+	   
+	   @RequestMapping(value="accepted/{idContract}")
+	   public String processAcceptRequest(HttpSession session, Model model, @PathVariable("idContract") String idContract) {
+		   Request request = (Request) session.getAttribute("request");
+		   request.setState("accepted");
+		   request.setIdContract(idContract);
+		   requestDao.updateRequest(request);
+		   return "redirect:../gestion";
+	   }
+	   
+	   @RequestMapping(value="cancel/{number}")
+	   public String cancelRequest(HttpSession session, Model model, @PathVariable String number) {
+		   Request request = requestDao.getRequest(number);
+		   request.setState("rejected");
+		   requestDao.updateRequest(request);
+		   return "redirect:../gestion";
+	   }
+
 
 }
