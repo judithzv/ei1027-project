@@ -21,12 +21,13 @@
               th:value="${Item}" 
               th:text="${Item}"
               th:selected="false"
+              th:field="*{service}"
               />
 		</select></tr></td>
       </table>
       <table>
       <tr><td>Selecciona los dias que deseas el servicio:</tr></td>
-      <tr><td><select name=service style="height: 50px; width:430px;">
+      <tr><td><select name=schedule style="height: 50px; width:430px;">
   		 <option th:each="Item : ${days}"
               th:value="${Item}" 
               th:text="${Item}"
