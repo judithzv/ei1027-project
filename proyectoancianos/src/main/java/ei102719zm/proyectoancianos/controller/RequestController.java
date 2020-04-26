@@ -58,6 +58,12 @@ public class RequestController {
 		   	days.add("Sunday");
 		   	days.add("Everyday");
 		   	model.addAttribute("days", days);
+		   	List<String> morning= new ArrayList<String>();
+		   	morning.add("Morning");
+		   	morning.add("Afternoon");
+		   	morning.add("Evening");
+		   	morning.add("All");
+		   	model.addAttribute("morning", morning);
 		   	model.addAttribute("request", new Request());
 			return "request/add";
 		}

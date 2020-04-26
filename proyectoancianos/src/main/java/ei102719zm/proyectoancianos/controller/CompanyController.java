@@ -21,6 +21,7 @@ import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
+import ei102719zm.proyectoancianos.model.UserDetails;
 
 
 @Controller
@@ -64,6 +65,11 @@ public class CompanyController {
 	                                   BindingResult bindingResult) {  
 		   if (bindingResult.hasErrors()) 
 		   	return "company/add";
+		   
+		 if (companyDao.getCompany(company.getCIF())!=null) {
+			 bindingResult.rejectValue("CIF","CIF", company.getCIF() +" is already in use"); 
+			 return "company/add";
+		 }
 	   	 companyDao.addCompany(company);
 	   	 if(session.getAttribute("contract") != null)
 	   		 return "redirect:../contract/add";
@@ -81,6 +87,10 @@ public class CompanyController {
 	 	                            BindingResult bindingResult) {
 	 			 if (bindingResult.hasErrors()) 
 	 				 return "company/update";
+	 			if (companyDao.getCompany(company.getCIF())!=null) {
+	 				 bindingResult.rejectValue("CIF","CIF", company.getCIF() +" is already in use"); 
+	 				 return "company/add";
+	 			 }
 	 			 companyDao.updateCompany(company);
 	 			 return "redirect:list"; 
 	 		}    
@@ -147,6 +157,6 @@ public class CompanyController {
 				   model.addAttribute("elderlies", elderlies);
 				   return "company/datoselderly";
 			   }
-			   return "redirect:../";
+			   return "redirect:company/perfil" + CIF;
 		   }
 }

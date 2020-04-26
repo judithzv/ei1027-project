@@ -19,7 +19,8 @@
         </tr>
         <tr>
             <td><p><label>CIF</label></p></td>
-            <td><input type="text" th:field="*{CIF}" required/></td>
+            <td><input type="text" th:field="*{CIF}" required/>
+            <div class="error" th:if="${#fields.hasErrors('CIF')}" th:errors="*{CIF}"></div></td>             
         </tr>
         <tr>
             <td><p><label>Contact person</label></p></td>

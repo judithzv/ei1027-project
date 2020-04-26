@@ -26,8 +26,8 @@
 		</select></tr></td>
       </table>
       <table>
-      <tr><td>Select the days of the week on which</tr></td>
-	  <tr><td>you want to receive the service:</tr></td>
+      <tr><td>Select the days of the week on which you want to receive</tr></td>
+	  <tr><td>the service:</tr></td>
       <tr><td><select name=schedule  multiple style="height: 50px; width:430px;">
   		 <option th:each="Item : ${days}"
               th:value="${Item}" 
@@ -35,6 +35,16 @@
               th:selected="false"
               />
 		</select></tr></td>
+	<tr><td><p></p></tr></td>
+	 <tr><td>Select the schedule:</tr></td>
+      <tr><td><select name=schedule  multiple style="height: 50px; width:430px;">
+  		 <option th:each="Item : ${morning}"
+              th:value="${Item}" 
+              th:text="${Item}"
+              th:selected="false"
+              />
+		</select></tr></td>
+		<tr><td><p></p></tr></td>
       <tr><td><input type="submit" class="btn btn3"  value="Send" /></td>
       </tr></table>
       
