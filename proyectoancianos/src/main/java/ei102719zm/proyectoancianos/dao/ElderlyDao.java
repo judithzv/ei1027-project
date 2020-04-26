@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Elderly;
+import ei102719zm.proyectoancianos.model.Invoice;
 import ei102719zm.proyectoancianos.model.UserDetails;
 
 @Repository 
@@ -186,5 +187,14 @@ public class ElderlyDao {
 					return elderly;
 			}
 			return null;
+		}
+		
+		public List<Invoice> getInvoices(String DNI){
+			try {
+				return jdbcTemplate.query(
+	        		    "SELECT * FROM Invoice WHERE dni=?", new InvoiceRowMapper(), DNI);
+			} catch(EmptyResultDataAccessException e) {
+				return new ArrayList<Invoice>();
+			}
 		}
 }

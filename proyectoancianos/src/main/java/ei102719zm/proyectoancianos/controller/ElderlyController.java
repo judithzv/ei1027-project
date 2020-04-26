@@ -105,5 +105,14 @@ public class ElderlyController {
 		   }
 		   return "redirect:../";
 	   }
+	   @RequestMapping(value="/invoices")
+	   public String mostrarFacturas(HttpSession session, Model model) {
+		   String DNI = (String) session.getAttribute("dni");
+		   if(DNI!=null) {
+			   model.addAttribute("invoices", elderlyDao.getInvoices(DNI));
+			   return "invoice/list";
+		   }
+		   return "redirect:/";
+	   }
 
 }
