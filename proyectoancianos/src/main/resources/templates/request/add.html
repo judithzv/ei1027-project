@@ -15,24 +15,27 @@
     <form action="#" th:action="@{/request/add}"
                      th:object="${request}" method="post">
       	<table>
-        <tr><td style="padding: 15px 590px;"><p>Elige un servicio:<p>
-		<select id="service" style="height: 50px; width:400px;">
-  		<option value="cleanning">LIMPIEZA</option>
-  		<option value="health">SALUD</option>
-  		<option value="catering">CATERING</option>
+        <tr><td style="padding: 5px 20px;"><p>Elige un servicio:<p>
+		<select name=service style="height: 50px; width:430px;">
+  		 <option th:each="Item : ${services}"
+              th:value="${Item}" 
+              th:text="${Item}"
+              th:selected="false"
+              />
 		</select></tr></td>
       </table>
       <table>
-      <tr><td><input type="radio" id="lunes" name="dias" value="lunes"></tr></td>
-      <tr><td><input type="radio" id="martes" name="dias" value="martes"></tr></td>
-      <tr><td><input type="radio" id="lunes" name="dias" value="lunes"></tr></td>
-      <tr><td><input type="radio" id="lunes" name="dias" value="lunes"></tr></td>
-      <tr><td><input type="radio" id="lunes" name="dias" value="lunes"></tr></td>
-      <tr><td><input type="radio" id="lunes" name="dias" value="lunes"></tr></td>
-      <tr><td><input type="radio" id="lunes" name="dias" value="lunes"></tr></td>
-      <tr><td><input type="radio" id="lunes" name="dias" value="lunes"></tr></td>
-      <tr><td><input type="submit" class="btn btn4"  value="Solicitar servicio" /></td>
+      <tr><td>Selecciona los dias que deseas el servicio:</tr></td>
+      <tr><td><select name=service style="height: 50px; width:430px;">
+  		 <option th:each="Item : ${days}"
+              th:value="${Item}" 
+              th:text="${Item}"
+              th:selected="false"
+              />
+		</select></tr></td>
+      <tr><td><input type="submit" class="btn btn3"  value="Solicitar servicio" /></td>
       </tr></table>
+      
     </form>
     
 </div>

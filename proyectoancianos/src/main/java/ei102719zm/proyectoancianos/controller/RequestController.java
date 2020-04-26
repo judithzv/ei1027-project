@@ -1,5 +1,6 @@
 package ei102719zm.proyectoancianos.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -42,7 +43,22 @@ public class RequestController {
 	          session.setAttribute("nextUrl", "/request/add");
 	          return "redirect:../login";
 	       } 
-	       model.addAttribute("request", new Request());
+		   	List<String> services= new ArrayList<String>();
+		   	services.add("catering");
+		   	services.add("health");
+		   	services.add("cleaning");
+		   	model.addAttribute("services", services);
+		   	List<String> days= new ArrayList<String>();
+		   	days.add("lunes");
+		   	days.add("martes");
+		   	days.add("miercoles");
+		   	days.add("jueves");
+		   	days.add("viernes");
+		   	days.add("sabado");
+		   	days.add("domingo");
+		   	days.add("todos los dias");
+		   	model.addAttribute("days", days);
+		   	model.addAttribute("request", new Request());
 			return "request/add";
 		}
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
