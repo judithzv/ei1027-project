@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Registrar nuevo contrato</title>
+   <title>Register new contract</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -9,7 +9,7 @@
                                     th:href="@{/css/app.css}"/>
 </head>
 <body>
-    <h1>Nuevo Contrato</h1>
+    <h1>New contract</h1>
     <form action="#" th:action="@{/contract/add}"
                      th:object="${contract}" method="post">
       <table>
@@ -37,7 +37,7 @@
             <td><label>CIF</label></td>
             <td><input type="text" th:field="*{CIF}" required/></td>
         </tr>
-         <td colspan="2"><input type="submit" class="btn btn2" value="Añadir contrato" /></td>
+         <td colspan="2"><input type="submit" class="btn btn2" value="Add" /></td>
         </tr>
       </table>
     </form>

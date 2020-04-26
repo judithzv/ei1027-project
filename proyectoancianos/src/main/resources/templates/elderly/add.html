@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Registrar nuevo anciano</title>
+   <title>Register new elderly</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -9,7 +9,7 @@
                                     th:href="@{/css/app.css}"/>
 </head>
 <body>
-    <h1>Nueva persona mayor</h1>
+    <h1>New Elderly</h1>
     <form action="#" th:action="@{/elderly/add}"
                      th:object="${elderly}" method="post">
       <table>
@@ -89,7 +89,7 @@
             <td><input type="text" th:field="*{bankData.branch_office}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" class="btn btn2" value="Registra anciano" /></td>
+            <td colspan="2"><input type="submit" class="btn btn2" value="Register" /></td>
         </tr>
       </table>
     </form>

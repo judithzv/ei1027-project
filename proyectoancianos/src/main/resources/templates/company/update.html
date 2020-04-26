@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Modificar usuario</title>
+   <title>Edit company</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -9,7 +9,7 @@
                                     th:href="@{/css/app.css}"/>
 </head>
 <body>
-    <h1>Modifica la empresa</h1>
+    <h1>Edit company</h1>
     <form action="#" th:action="@{/company/update}"
                      th:object="${company}" method="post">
       <table>
@@ -37,7 +37,7 @@
             <td><label>password</label></td>
             <td><input type="text" th:field="*{password}" required/></td>
         </tr>
-        <td colspan="2"><input class="btn btn2" type="submit" value="Modifica usuario" /></td>
+        <td colspan="2"><input class="btn btn2" type="submit" value="Edit" /></td>
       </table>
     </form>
 </body>

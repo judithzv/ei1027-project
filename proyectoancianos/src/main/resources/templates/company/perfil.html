@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8" />
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-   <title>Perfil</title>
+   <title>Profile</title>
    <link rel="stylesheet" type="text/css" href="/css/app.css"
                                     th:href="@{/css/app.css}"/>
 </head>
@@ -17,24 +17,24 @@ body {
 </style>
 <body>
 <div class="container" style="text-align:center;">
-   <h1>Mi perfil de empresa</h1>
+   <h1>My profile</h1>
    <table>
        <tr><td><form method="get" action="../datos">
-		<button type="submit" class="btn btn3">Mostrar datos de la empresa
+		<button type="submit" class="btn btn3">Show company data
 		</form></tr></td>				
 		<tr><td><a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" 
-		role="button" class="a1">Editar mi perfil</a></tr></td>			
+		role="button" class="a1">Edit my profile</a></tr></td>			
 		<tr><td><form method="get" action="../eliminarcuenta">
-		<button type="submit" class="btn btn3">Eliminar cuenta
+		<button type="submit" class="btn btn3">Delete your account
 		</form></tr></td>		
 		<tr><td><form method="get" action="../datoscontrato">
-		<button type="submit" class="btn btn3">Ver contratos
+		<button type="submit" class="btn btn3">Show contracts
 		</form></tr></td>
 		<tr><td><form method="get" action="../datoselderly">
-		<button type="submit" class="btn btn3">Ver personas mayores asignadas
+		<button type="submit" class="btn btn3">Show clients
 		</form></tr></td>
 		<tr><td><form method="get" action="../../logout">
-		<button type="submit" class="btn btn3">Salir
+		<button type="submit" class="btn btn3">Logout
 		</form></tr></td>
 	</table>
    </div>

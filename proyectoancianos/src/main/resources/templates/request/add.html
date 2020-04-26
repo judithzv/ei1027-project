@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Nuevo servicio</title>
+   <title>New request</title>
    <meta charset="UTF-8" />
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
    <link rel="stylesheet" type="text/css" href="/css/app.css"
@@ -11,11 +11,11 @@
 </style>
 <body>
 <div layout:fragment="content">
-    <h1>Nueva Petición</h1>
+    <h1>New request</h1>
     <form action="#" th:action="@{/request/add}"
                      th:object="${request}" method="post">
       	<table>
-        <tr><td style="padding: 5px 20px;"><p>Elige un servicio:<p>
+        <tr><td style="padding: 5px 20px;"><p>Choose a service:<p>
 		<select name=service style="height: 50px; width:430px;">
   		 <option th:each="Item : ${services}"
               th:value="${Item}" 
@@ -26,7 +26,8 @@
 		</select></tr></td>
       </table>
       <table>
-      <tr><td>Selecciona los dias que deseas el servicio:</tr></td>
+      <tr><td>Select the days of the week on which</tr></td>
+	  <tr><td>you want to receive the service:</tr></td>
       <tr><td><select name=schedule  multiple style="height: 50px; width:430px;">
   		 <option th:each="Item : ${days}"
               th:value="${Item}" 
@@ -34,7 +35,7 @@
               th:selected="false"
               />
 		</select></tr></td>
-      <tr><td><input type="submit" class="btn btn3"  value="Solicitar servicio" /></td>
+      <tr><td><input type="submit" class="btn btn3"  value="Send" /></td>
       </tr></table>
       
     </form>

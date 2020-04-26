@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8" />
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-   <title>Perfil</title>
+   <title>Profile</title>
    <link rel="stylesheet" type="text/css" href="/css/app.css"
                                     th:href="@{/css/app.css}"/>
 </head>
@@ -17,26 +17,26 @@ body {
 </style>
 <body>
 <div class="container" style="text-align:center;">
-   <h1>Mi perfil</h1>
+   <h1>My profile</h1>
    <table>
        <tr><td><form method="get" action="../datos">
-		<button type="submit" class="btn btn3">Mostrar datos personales
+		<button type="submit" class="btn btn3">Show personal data
 		</form></tr></td>
 		<tr><td><a th:href="@{/elderly/update/{DNI}(DNI=${elderly.DNI})}" 
-		role="button" class="a1">Editar mi perfil</a></tr></td>
+		role="button" class="a1">Edit my profile</a></tr></td>
 		<tr><td><form method="get" action="../eliminarcuenta">
-		<button type="submit" class="btn btn3">Eliminar cuenta
+		<button type="submit" class="btn btn3">Delete my account
 		</form></tr></td>
 		<tr><td><form method="get" action="/request/list">
-		<button type="submit" class="btn btn3">Ver peticiones
+		<button type="submit" class="btn btn3">Show requests
 		</form></tr></td>
 		<tr><td><form method="get" action="/elderly/invoices">
-		<button type="submit" class="btn btn3">Ver facturas
+		<button type="submit" class="btn btn3">Show invoices
 		</form></tr></td>
 		<tr><td><form method="get" action="/request/add">
-		<button type="submit" class="btn btn3">Solicitar servicio
+		<button type="submit" class="btn btn3">Request a service
 		</form></tr></td>
-		<tr><td><a th:href="@{/logout}" role="button" class="a1">Salir
+		<tr><td><a th:href="@{/logout}" role="button" class="a1">Logout
 		</a></tr></td>
 	</table>
    </div>
