@@ -19,8 +19,7 @@
         </tr>
         <tr>
             <td><label>CIF</label></td>
-            <td><input type="text" th:field="*{CIF}" required/></td>
-            <div class="error" th:if="${#fields.hasErrors('CIF')}" th:errors="*{CIF}"></div></td>   
+            <td><input type="text" th:field="*{CIF}" readonly/></td>
         </tr>
         <tr>
             <td><label>Contact Person</label></td>
@@ -32,7 +31,8 @@
         </tr>
         <tr>
             <td><label>User Name</label></td>
-            <td><input type="text" th:field="*{userName}" required/></td>
+            <td><input type="text" th:field="*{userName}" required/>
+			<div class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div></td>  
         </tr>
         <tr>
             <td><label>password</label></td>

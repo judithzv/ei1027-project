@@ -80,4 +80,15 @@ public class UserDao {
 	       
 	       }
  	}
+ 	
+ 	public boolean userAlreadyExists(String username) {
+ 		try {
+ 			UserDetails user = jdbcTemplate.queryForObject("SELECT username, password FROM Elderly WHERE username=? UNION SELECT username, password FROM Company WHERE username=?", new UserRowMapper(), username, username);
+ 			return true;
+ 		} catch (EmptyResultDataAccessException e) {
+ 			if(username.equals("admin"))
+ 				return true;
+ 			return false;
+	       }
+ 	}
 }

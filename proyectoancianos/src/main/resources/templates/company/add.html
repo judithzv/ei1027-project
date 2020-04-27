@@ -32,7 +32,8 @@
         </tr>
         <tr>
             <td><p><label>User Name</label></p></td>
-            <td><input type="text" th:field="*{userName}" required/></td>
+            <td><input type="text" th:field="*{userName}" required/>
+			<div class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div></td>  
         </tr>
         <tr>
             <td><p><label>Password</label></p></td>

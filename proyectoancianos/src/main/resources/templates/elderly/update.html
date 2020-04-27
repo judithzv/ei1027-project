@@ -23,7 +23,8 @@
         </tr>
         <tr>
             <td><label>User name</label></td>
-            <td><input type="text" th:field="*{userName}" required/></td>
+            <td><input type="text" th:field="*{userName}" required/>
+			<div class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div></td>  
         </tr>
         <tr>
             <td><label>Password</label></td>
@@ -47,7 +48,7 @@
         </tr>
         <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{DNI}" required/></td>
+            <td><input type="text" th:field="*{DNI}" readonly/></td>
         </tr>
         <tr>
             <td><label>Illnesses</label></td>

@@ -23,11 +23,12 @@
         </tr>
         <tr>
             <td><label>User name</label></td>
-            <td><input type="text" th:field="*{userName}" required/></td>
+            <td><input type="text" th:field="*{userName}" required/>
+            <div class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div></td>    
         </tr>
         <tr>
             <td><label>Password</label></td>
-            <td><input type="text" th:field="*{password}" required/></td>
+            <td><input type="password" th:field="*{password}" required/></td>
         </tr>
         <tr>
             <td><label>Telephone number</label></td>
@@ -47,7 +48,8 @@
         </tr>
         <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{DNI}" required/></td>
+            <td><input type="text" th:field="*{DNI}" required/>
+            <div class="error" th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}"></div></td>    
         </tr>
         <tr>
             <td><label>Illnesses</label></td>

@@ -1,5 +1,8 @@
 package ei102719zm.proyectoancianos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,14 @@ import ei102719zm.proyectoancianos.model.Elderly;
 @RequestMapping("/contract") 
 public class ContractController {
 	private ContractDao contractDao;
+	private static List<String> services = new ArrayList<String>();
 	
 	@Autowired
 	 public void setCompanyDao(ContractDao contractDao) { 
 	       this.contractDao = contractDao;
+	       services.add("cleanning");
+	       services.add("catering");
+	       services.add("health");
 	   }
 	  @RequestMapping("/list")
 	   public String listContract(Model model) {
@@ -48,6 +55,14 @@ public class ContractController {
 	                                   BindingResult bindingResult) {  
 		   if(bindingResult.hasErrors())
 			   return "contract/add";
+		   boolean esta = false;
+		   for(String service : services)
+			   if(service.equals(contract.getServiceType()))
+				   esta = true;
+		   if(!esta) {
+			   bindingResult.rejectValue("serviceType","serviceType", contract.getServiceType()+" is not allowed");
+			   return "contract/add";
+		   }
 		   String lastId = contractDao.getLastId();
 		   if(lastId == null)
 			   lastId = "299999999";
@@ -73,6 +88,14 @@ public class ContractController {
 	                            BindingResult bindingResult) {
 			 if (bindingResult.hasErrors()) 
 				 return "contract/update";
+			   boolean esta = false;
+			   for(String service : services)
+				   if(service.equals(contract.getServiceType()))
+					   esta = true;
+			   if(!esta) {
+				   bindingResult.rejectValue("serviceType","serviceType", contract.getServiceType()+" is not allowed");
+				   return "contract/update";
+			   }
 			 contractDao.updateContract(contract);
 			 return "redirect:list"; 
 		}    

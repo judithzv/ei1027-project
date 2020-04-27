@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ei102719zm.proyectoancianos.dao.CompanyDao;
 import ei102719zm.proyectoancianos.dao.ContractDao;
 import ei102719zm.proyectoancianos.dao.ElderlyDao;
+import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
@@ -30,6 +31,7 @@ public class CompanyController {
 	 private CompanyDao companyDao;
 	 private ContractDao contractDao;
 	 private ElderlyDao elderlyDao;
+	 private UserDao userDao;
 
 	   @Autowired
 	   public void setCompanyDao(CompanyDao companyDao) { 
@@ -42,6 +44,11 @@ public class CompanyController {
 	   @Autowired
 	   public void setElderlyDao(ElderlyDao elderlyDao) { 
 	       this.elderlyDao = elderlyDao;
+	   }
+	   
+	   @Autowired
+	   public void setUserDao(UserDao userDao) { 
+	       this.userDao = userDao;
 	   }
 	   
 	   @RequestMapping("/list")
@@ -70,6 +77,11 @@ public class CompanyController {
 			 bindingResult.rejectValue("CIF","CIF", company.getCIF() +" is already in use"); 
 			 return "company/add";
 		 }
+		 
+		 if(userDao.userAlreadyExists(company.getUserName())) {
+			 bindingResult.rejectValue("userName","userName", company.getUserName()+" is already in use"); 
+			 return "company/add";
+		 }
 	   	 companyDao.addCompany(company);
 	   	 if(session.getAttribute("contract") != null)
 	   		 return "redirect:../contract/add";
@@ -87,9 +99,9 @@ public class CompanyController {
 	 	                            BindingResult bindingResult) {
 	 			 if (bindingResult.hasErrors()) 
 	 				 return "company/update";
-	 			if (companyDao.getCompany(company.getCIF())!=null) {
-	 				 bindingResult.rejectValue("CIF","CIF", company.getCIF() +" is already in use"); 
-	 				 return "company/add";
+	 			if(userDao.userAlreadyExists(company.getUserName())) {
+	 				 bindingResult.rejectValue("userName","userName", company.getUserName()+" is already in use"); 
+	 				 return "company/update";
 	 			 }
 	 			 companyDao.updateCompany(company);
 	 			 return "redirect:list"; 
