@@ -211,4 +211,14 @@ public class ElderlyDao {
 				return new ArrayList<Invoice>();
 			}
 		}
+		
+		public boolean hasService(String service, String DNI) {
+			try {
+				jdbcTemplate.queryForObject("SELECT * FROM Request WHERE service=? AND dni=?", new RequestRowMapper(), service, DNI);
+				return true;
+				
+			} catch(EmptyResultDataAccessException e) {
+				return false;
+			}
+		}
 }

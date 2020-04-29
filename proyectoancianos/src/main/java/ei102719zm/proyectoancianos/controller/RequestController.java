@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.dao.RequestDao;
 import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Address;
@@ -30,10 +31,20 @@ import ei102719zm.proyectoancianos.model.UserDetails;
 public class RequestController {
 	private RequestDao requestDao;
 	private UserDao userDao;
+	private ElderlyDao elderlyDao;
 	   @Autowired
-	   public void setRequestDao(RequestDao requestDao, UserDao userDao) { 
+	   public void setRequestDao(RequestDao requestDao) { 
 	       this.requestDao=requestDao;
+	   }
+	   
+	   @Autowired
+	   public void setUserDao(UserDao userDao) { 
 	       this.userDao=userDao;
+	   }
+	   
+	   @Autowired
+	   public void setElderlyDao(ElderlyDao elderlyDao) { 
+	       this.elderlyDao = elderlyDao;
 	   }
 	   
 	   @RequestMapping(value="/add") 
@@ -42,55 +53,27 @@ public class RequestController {
 	       { 
 	          session.setAttribute("nextUrl", "/request/add");
 	          return "redirect:../login";
-	       } 
-		   	List<String> services= new ArrayList<String>();
-		   	services.add("catering");
-		   	services.add("health");
-		   	services.add("cleaning");
-		   	model.addAttribute("services", services);
-		   	List<String> days= new ArrayList<String>();
-		   	days.add("Monday");
-		   	days.add("Tuesday");
-		   	days.add("Wednesday");
-		   	days.add("Thursday");
-		   	days.add("Friday");
-		   	days.add("Saturday");
-		   	days.add("Sunday");
-		   	days.add("Everyday");
-		   	model.addAttribute("days", days);
-		   	List<String> morning= new ArrayList<String>();
-		   	morning.add("Morning");
-		   	morning.add("Afternoon");
-		   	morning.add("Evening");
-		   	model.addAttribute("morning", morning);
-		   	List<String> catering= new ArrayList<String>();
-		   	catering.add("None");
-		   	catering.add("Celiac");
-		   	catering.add("Low in salt");
-		   	catering.add("Vegan");
-		   	catering.add("Hypertension");
-		   	model.addAttribute("catering", catering);
-		   	List<String> health= new ArrayList<String>();
-		   	health.add("None");
-		   	health.add("Doctor visit");
-		   	health.add("Cure");
-		   	health.add("Urgency");
-		   	health.add("Dentist");
-		   	model.addAttribute("health", health);
-		   	
-		   	
+	       }
 		   	model.addAttribute("request", new Request());
 			return "request/add";
 		}
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(HttpSession session, @ModelAttribute("request") Request request,
-	                                   BindingResult bindingResult) {  
-		   	String number = requestDao.getLastNumber();
+			   							BindingResult bindingResult) {  
+		   if(bindingResult.hasErrors())
+			   return "request/add";
+		   
+		   String number = requestDao.getLastNumber();
 		   	if(number==null)
 		   		number = "199999999";
 		   	int num = Integer.parseInt(number) + 1;
 		   	UserDetails user = (UserDetails) session.getAttribute("user");
 		   	Elderly elderly = userDao.getElderly(user.getUsername());
+		   	String DNI = elderly.getDNI();
+		   	if(elderlyDao.hasService(request.getService(), DNI)) {
+		   		bindingResult.rejectValue("service","service", "you already have a request for " + request.getService() + " service"); 
+		   		return "request/add";
+		   	}
 			request.setDNI(elderly.getDNI());
 			request.setNumber(Integer.toString(num));
 			request.setState("in process");

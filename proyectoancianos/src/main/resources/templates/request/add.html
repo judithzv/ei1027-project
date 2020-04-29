@@ -11,35 +11,34 @@
 </style>
 <body>
 <div layout:fragment="content">
-    <h1>New requesta</h1>
+    <h1>New request</h1>
     <form action="#" th:action="@{/request/add}"
                      th:object="${request}" method="post">
       	<table>
         <tr><td style="padding: 5px 20px;"><p>Choose a service:<p>
-		<select name=service style="height: 50px; width:430px;">
-  		 <option th:each="Item : ${services}"
-              th:value="${Item}" 
-              th:text="${Item}"
-              th:selected="false"
-              />
+		<select th:field="*{service}" name=service style="height: 50px; width:430px;">
+		<option value="catering">catering</option>
+		<option value="health">health</option>
+		<option value="cleanning">cleanning</option>
 		</select></tr></td>
+		<tr><td style="padding: 5px 20px;"><div class="error" th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></div></td></tr>
 		<tr><td style="padding: 5px 20px;">
 		<p>If you have chosen catering, indicate the type of menu:<p>
-		<select name=schedule style="height: 50px; width:430px;">
-  		 <option th:each="Item : ${catering}"
-              th:value="${Item}" 
-              th:text="${Item}"
-              th:selected="false"
-              />
+		<select th:field="*{schedule}" name=schedule style="height: 50px; width:430px;">
+  			<option value=" None">None</option>
+			<option value=" Low in salt">Low in salt</option>
+			<option value=" Celiac">Celiac</option>
+			<option value=" Vegan">Vegan</option>
+			<option value=" Hypertension">Hypertension</option>
 		</select></tr></td>
 		<tr><td style="padding: 5px 20px;">
 		<p>If you have chosen health indicate the reason:<p>
-		<select name=schedule style="height: 50px; width:430px;">
-  		 <option th:each="Item : ${health}"
-              th:value="${Item}" 
-              th:text="${Item}"
-              th:selected="false"
-              />
+		<select th:field="*{schedule}" name=schedule style="height: 50px; width:430px;">
+			<option value=" None">None</option>
+  		   	<option value=" Dentist">Dentist</option>
+			<option value=" Urgency">Urgency</option>
+			<option value=" Cure">Cure</option>
+			<option value=" Doctor's Visit">Doctor's visit</option>
 		</select></tr></td>
       </table>
       <table>
