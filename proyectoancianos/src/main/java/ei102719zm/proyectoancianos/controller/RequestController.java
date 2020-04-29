@@ -77,7 +77,7 @@ public class RequestController {
 		   	health.add("Urgency");
 		   	health.add("Dentist");
 		   	model.addAttribute("health", health);
-		   	List<String> nosesube= new ArrayList<String>();
+		   	
 		   	
 		   	model.addAttribute("request", new Request());
 			return "request/add";
