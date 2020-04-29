@@ -12,6 +12,7 @@
 <body>
 <div layout:fragment="content">
     <h1>New request</h1>
+    <h1>NO SE SUBE</h1>
     <form action="#" th:action="@{/request/add}"
                      th:object="${request}" method="post">
       	<table>
@@ -49,8 +50,7 @@
 		<tr><td>Select the end day:</tr></td>
 		<tr><td><input  style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
       <tr><td><input type="submit" class="btn btn3"  value="Send" /></td>
-      </tr></table>
-      
+      </tr></table>     
     </form>
     
 </div>
