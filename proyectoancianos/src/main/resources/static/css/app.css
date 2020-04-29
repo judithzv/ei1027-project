@@ -55,7 +55,7 @@ label{
   display: inline-block;
   width: 120px;
 }
-input[type=text], input[type=password],input[type=month], input[type=date], input[type=int], input[type=number]{
+input[type=text], input[type=password],input[type=month], input[type=int], input[type=number]{
   width: 120%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -87,7 +87,7 @@ span.psw1 {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 92%;
+  width: 91%;
   color: black;
 }
 .a2 {
@@ -108,5 +108,8 @@ span.psw1 {
   width: 92%;
   color: black;
 }
-
-
+.a3{
+padding: 10px 5px;
+height: 5px; 
+width:5px;
+ }

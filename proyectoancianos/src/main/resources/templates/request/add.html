@@ -21,30 +21,33 @@
               th:value="${Item}" 
               th:text="${Item}"
               th:selected="false"
-              th:field="*{service}"
+              />
+		</select></tr></td>
+		<tr><td style="padding: 5px 20px;">
+		<p>If you have chosen catering, indicate the type of menu:<p>
+		<select name=schedule style="height: 50px; width:430px;">
+  		 <option th:each="Item : ${catering}"
+              th:value="${Item}" 
+              th:text="${Item}"
+              th:selected="false"
+              />
+		</select></tr></td>
+		<tr><td style="padding: 5px 20px;">
+		<p>If you have chosen health indicate the reason:<p>
+		<select name=schedule style="height: 50px; width:430px;">
+  		 <option th:each="Item : ${health}"
+              th:value="${Item}" 
+              th:text="${Item}"
+              th:selected="false"
               />
 		</select></tr></td>
       </table>
       <table>
-      <tr><td>Select the days of the week on which you want to receive</tr></td>
-	  <tr><td>the service:</tr></td>
-      <tr><td><select name=schedule  multiple style="height: 50px; width:430px;">
-  		 <option th:each="Item : ${days}"
-              th:value="${Item}" 
-              th:text="${Item}"
-              th:selected="false"
-              />
-		</select></tr></td>
-	<tr><td><p></p></tr></td>
-	 <tr><td>Select the schedule:</tr></td>
-      <tr><td><select name=schedule  multiple style="height: 50px; width:430px;">
-  		 <option th:each="Item : ${morning}"
-              th:value="${Item}" 
-              th:text="${Item}"
-              th:selected="false"
-              />
-		</select></tr></td>
+		 <tr><td>Select the start day:</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
 		<tr><td><p></p></tr></td>
+		<tr><td>Select the end day:</tr></td>
+		<tr><td><input  style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
       <tr><td><input type="submit" class="btn btn3"  value="Send" /></td>
       </tr></table>
       

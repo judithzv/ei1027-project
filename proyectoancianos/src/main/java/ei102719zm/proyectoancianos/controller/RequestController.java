@@ -62,8 +62,22 @@ public class RequestController {
 		   	morning.add("Morning");
 		   	morning.add("Afternoon");
 		   	morning.add("Evening");
-		   	morning.add("All");
 		   	model.addAttribute("morning", morning);
+		   	List<String> catering= new ArrayList<String>();
+		   	catering.add("None");
+		   	catering.add("Celiac");
+		   	catering.add("Low in salt");
+		   	catering.add("Vegan");
+		   	catering.add("Hypertension");
+		   	model.addAttribute("catering", catering);
+		   	List<String> health= new ArrayList<String>();
+		   	health.add("None");
+		   	health.add("Doctor visit");
+		   	health.add("Cure");
+		   	health.add("Urgency");
+		   	health.add("Dentist");
+		   	model.addAttribute("health", health);
+		   	
 		   	model.addAttribute("request", new Request());
 			return "request/add";
 		}

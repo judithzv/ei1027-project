@@ -21,18 +21,18 @@ body {
    <table>
        <tr><td><form method="get" action="../datos">
 		<button type="submit" class="btn btn3">Show company data
-		</form></tr></td>				
-		<tr><td><a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" 
-		role="button" class="a1">Edit my profile</a></tr></td>			
-		<tr><td><form method="get" action="../eliminarcuenta">
-		<button type="submit" class="btn btn3">Delete your account
-		</form></tr></td>		
+		</form></tr></td>	
 		<tr><td><form method="get" action="../datoscontrato">
 		<button type="submit" class="btn btn3">Show contracts
 		</form></tr></td>
 		<tr><td><form method="get" action="../datoselderly">
 		<button type="submit" class="btn btn3">Show clients
-		</form></tr></td>
+		</form></tr></td>			
+		<tr><td><a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" 
+		role="button" class="a1">Edit my profile</a></tr></td>			
+		<tr><td><form method="get" action="../eliminarcuenta">
+		<button type="submit" class="btn btn3">Delete your account
+		</form></tr></td>		
 		<tr><td><form method="get" action="../../logout">
 		<button type="submit" class="btn btn3">Logout
 		</form></tr></td>

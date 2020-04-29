@@ -153,10 +153,8 @@ public class CompanyController {
 				   List<Elderly> elderly = elderlyDao.getElderliesID(contract.getId());
 				   elderlies.addAll(elderly);
 			   }
-			   if(! elderlies.isEmpty()) {
-				   model.addAttribute("elderlies", elderlies);
-				   return "company/datoselderly";
-			   }
-			   return "redirect:company/perfil" + CIF;
+			   model.addAttribute("elderlies", elderlies);
+			   return "company/datoselderly";
+
 		   }
 }

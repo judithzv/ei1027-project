@@ -24,8 +24,6 @@ h1{
        <tr>
          <th>Name</th>
          <th>Surnames</th>
-         <th>User name</th>
-         <th>Password</th>
          <th>Telephone number</th>
          <th>Mail</th>
          <th>Birth date</th>
@@ -33,14 +31,12 @@ h1{
          <th>DNI</th>
          <th>Illnesses</th>
          <th>Disability</th>
-         <th>Social Worker</th>
          <th>Street</th>
 		 <th>City</th>
 		 <th>Postal Code</th>
 		 <th>Country</th>
-         <th>IBAN</th>
-		 <th>Bank</th>
-	     <th>Branch Office</th>
+		 <th>Service</th>
+		 <th>Schedule</th>
          <th></th>
          <th></th>
        </tr>
@@ -49,8 +45,6 @@ h1{
        <tr th:each="elderly: ${elderlies}"> 
          <td th:text="${elderly.name}"></td> 
          <td th:text="${elderly.surNames}"></td>
-         <td th:text="${elderly.userName}"></td>
-         <td th:text="${elderly.password}"></td>
          <td th:text="${elderly.telephoneNumber}"></td>
          <td th:text="${elderly.mail}"></td>
          <td th:text="${#temporals.format(elderly.birthDate,'dd MMMM yyyy')}"></td>
@@ -58,14 +52,12 @@ h1{
          <td th:text="${elderly.DNI}"></td>
          <td th:text="${elderly.illnesses}"></td>
          <td th:text="${elderly.disability}"></td>
-         <td th:text="${elderly.socialWorker}"></td>
          <td th:text="${elderly.address.street}"></td>
 		 <td th:text="${elderly.address.city}"></td>
 		 <td th:text="${elderly.address.postalCode}"></td>
 	 	 <td th:text="${elderly.address.city}"></td>
-         <td th:text="${elderly.bankData.IBAN}"></td>
-		 <td th:text="${elderly.bankData.bank}"></td>
-		 <td th:text="${elderly.bankData.branch_office}"></td>
+	 	 <td th:text="${elderly.request.service}"></td>
+	 	 <td th:text="${elderly.request.schedule}"></td>
        </tr>
      </tbody>
    </table>
