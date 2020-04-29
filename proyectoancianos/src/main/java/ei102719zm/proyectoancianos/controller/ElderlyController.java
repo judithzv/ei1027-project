@@ -1,11 +1,14 @@
 package ei102719zm.proyectoancianos.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ei102719zm.proyectoancianos.dao.ElderlyDao;
+import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Elderly;
@@ -22,10 +26,16 @@ import ei102719zm.proyectoancianos.model.Elderly;
 @RequestMapping("/elderly") 
 public class ElderlyController {
 	   private ElderlyDao elderlyDao;
+	   private UserDao userDao;
 
 	   @Autowired
 	   public void setElderlyDao(ElderlyDao elderlyDao) { 
 	       this.elderlyDao=elderlyDao;
+	   }
+	   
+	   @Autowired
+	   public void setUserDao(UserDao userDao) { 
+	       this.userDao=userDao;
 	   }
 
 	   @RequestMapping("/list")
@@ -43,8 +53,23 @@ public class ElderlyController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly,
 	                                   BindingResult bindingResult) {  
-		   if (bindingResult.hasErrors()) 
-		   	return "elderly/add";
+		   if (bindingResult.hasErrors()) {
+			   List<FieldError> errors = bindingResult.getFieldErrors();
+			   for(FieldError error : errors) {
+				   bindingResult.rejectValue(error.getField(),error.getField(), error.getDefaultMessage());
+			   }
+			   return "elderly/add";
+		   }
+		 
+		 if (elderlyDao.getElderly(elderly.getDNI()) != null) {
+			 bindingResult.rejectValue("DNI","DNI", elderly.getDNI()+" is already in use"); 
+			 return "elderly/add";
+		 }
+		 
+		 if(userDao.userAlreadyExists(elderly.getUserName())) {
+			 bindingResult.rejectValue("userName","userName", elderly.getUserName()+" is already in use"); 
+			 return "elderly/add";
+		 }
 	   	 elderlyDao.addElderly(elderly);
 	   	 elderlyDao.addAddress(elderly.getAddress(), elderly.getDNI());
 	   	 if(elderly.getBankData().getIBAN() != null)
@@ -64,6 +89,11 @@ public class ElderlyController {
 	                            BindingResult bindingResult) {
 			 if (bindingResult.hasErrors()) 
 				 return "elderly/update";
+			 
+			 if(userDao.userAlreadyExists(elderly.getUserName())) {
+				 bindingResult.rejectValue("userName","userName", elderly.getUserName()+" is already in use"); 
+				 return "elderly/add";
+			 }
 			 elderlyDao.updateAddress(elderly.getAddress(), elderly.getDNI());
 			 elderlyDao.updateBankData(elderly.getBankData(), elderly.getDNI());
 			 elderlyDao.updateElderly(elderly);

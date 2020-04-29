@@ -23,7 +23,8 @@
         </tr>
         <tr>
             <td><label>Service type</label></td>
-            <td><input type="text" th:field="*{serviceType}" required/></td>
+            <td><input type="text" th:field="*{serviceType}" required/>
+			<div class="error" th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}"></div></td>  
         </tr>
         <tr>
             <td><label>Price</label></td>
