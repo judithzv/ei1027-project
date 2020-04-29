@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>New service</title>
+   <meta charset="UTF-8" />
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
+</head>
+<style>
+</style>
+<body>
+<div layout:fragment="content">
+    <h1>Service</h1>
+      	<table>
+        <tr><td style="padding: 5px 20px;"><p>Choose a service:<p>
+   		<tr><td><form method="get" action="/request/catering">
+		<button type="submit" class="btn btn3" value="catering">Catering
+		</form></tr></td>
+       <tr><td><form method="get" action="/request/health">
+		<button type="submit" class="btn btn3" value="health">Health
+		</form></tr></td>
+		<tr><td><form method="get" action="/request/cleaning">
+		<button type="submit" class="btn btn3" value="cleaning">Cleaning
+		</form></tr></td>
+		<tr><td><a th:href="@{/elderly/perfil/{DNI}(DNI=${elderly.DNI})}" 
+		role="button" class="a4"><b>GO BACK</b></a></tr></td>
+		
+      </tr></table>     
+    
+</div>
+</body>
+</html>

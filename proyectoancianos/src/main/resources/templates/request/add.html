@@ -15,13 +15,6 @@
     <form action="#" th:action="@{/request/add}"
                      th:object="${request}" method="post">
       	<table>
-        <tr><td style="padding: 5px 20px;"><p>Choose a service:<p>
-		<select th:field="*{service}" name=service style="height: 50px; width:430px;">
-		<option value="catering">catering</option>
-		<option value="health">health</option>
-		<option value="cleanning">cleanning</option>
-		</select></tr></td>
-		<tr><td style="padding: 5px 20px;"><div class="error" th:if="${#fields.hasErrors('service')}" th:errors="*{service}"></div></td></tr>
 		<tr><td style="padding: 5px 20px;">
 		<p>If you have chosen catering, indicate the type of menu:<p>
 		<select th:field="*{schedule}" name=schedule style="height: 50px; width:430px;">

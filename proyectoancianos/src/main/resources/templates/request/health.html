@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>New request</title>
+   <meta charset="UTF-8" />
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <link rel="stylesheet" type="text/css" href="/css/app.css"
+                                    th:href="@{/css/app.css}"/>
+</head>
+<style>
+td {
+	padding: 5px 20px;
+}
+</style>
+<body>
+<div layout:fragment="content">
+    <h1>New health request</h1>
+    <form action="#" th:action="@{/request/add}"
+                     th:object="${request}" method="post">
+      	</tr><td><input type="hidden" th:field="*{DNI}"/></td></tr>
+		</tr><td><input type="hidden" th:field="*{service}"/></td></tr>
+		</tr><td><input type="hidden" th:field="*{state}"/></td></tr>
+		<table>
+		<tr><td>
+		<p>What do you need?<p>
+		<select th:field="*{schedule}" name=schedule style="height: 50px; width:430px;">
+			<option value="Doctor's visit'">Doctor's visit</option>
+			<option value="Dentist">Dentist</option>
+			<option value="Cure">Cure</option>
+			<option value="Urgency">Urgency</option>
+			<option value="Other">Other</option>
+		</select></tr></td>
+		<tr><td>
+		<p>If you choose other, please explain it here:<p></td></tr>
+		
+		</tr><td><textarea  style="height: 200px; width:430px;" id="other" th:field="*{schedule}" rows="4" cols="50">
+		</textarea></td></tr>
+		      <table>
+		 <tr><td>Select the start day:</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
+		<tr><td><p></p></tr></td>
+		<tr><td>Select the end day:</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
+      <tr><td><input type="submit" class="btn btn3"  value="Send" /></td>
+      </tr></table>     
+    </form>
+    
+</div>
+</body>
+</html>
