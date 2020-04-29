@@ -8,23 +8,26 @@
                                     th:href="@{/css/app.css}"/>
 </head>
 <style>
+td{
+FONT-SIZE: 15pt; 
+}
 </style>
 <body>
 <div layout:fragment="content">
     <h1>Service</h1>
       	<table>
-        <tr><td style="padding: 5px 20px;"><p>Choose a service:<p>
+        <tr><td style="padding: 5px 5px;" ><p>Choose a service:<p>
    		<tr><td><form method="get" action="/request/catering">
-		<button type="submit" class="btn btn3" value="catering">Catering
+		<button type="submit" class="btn btn3" value="catering">CATERING
 		</form></tr></td>
        <tr><td><form method="get" action="/request/health">
-		<button type="submit" class="btn btn3" value="health">Health
+		<button type="submit" class="btn btn3" value="health">HEALTH
 		</form></tr></td>
 		<tr><td><form method="get" action="/request/cleaning">
-		<button type="submit" class="btn btn3" value="cleaning">Cleaning
+		<button type="submit" class="btn btn3" value="cleaning">CLEANING
 		</form></tr></td>
 		<tr><td><a th:href="@{/elderly/perfil/{DNI}(DNI=${elderly.DNI})}" 
-		role="button" class="a4"><b>GO BACK</b></a></tr></td>
+		role="button" class="a4">GO BACK</a></tr></td>
 		
       </tr></table>     
     
