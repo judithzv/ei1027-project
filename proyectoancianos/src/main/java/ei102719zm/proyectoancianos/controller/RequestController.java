@@ -76,9 +76,7 @@ public class RequestController {
 		   	health.add("Cure");
 		   	health.add("Urgency");
 		   	health.add("Dentist");
-		   	model.addAttribute("health", health);
-		   	
-		   	
+		   	model.addAttribute("health", health);	   	
 		   	model.addAttribute("request", new Request());
 			return "request/add";
 		}
