@@ -29,20 +29,24 @@ td {
 			<option value="Other">Other</option>
 		</select></tr></td>
 		<tr><td>
-		<p>If you choose other, please explain it here:<p></td></tr>
-		
+		<p>If you choose other, please explain it here:<p></td></tr>		
 		</tr><td><textarea  style="height: 200px; width:430px;" id="other" th:field="*{schedule}" rows="4" cols="50">
 		</textarea></td></tr>
-		      <table>
+		<table>
 		 <tr><td>Select the start day:</tr></td>
 		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
 		<tr><td><p></p></tr></td>
 		<tr><td>Select the end day:</tr></td>
 		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
-      <tr><td><input type="submit" class="btn"  value="SEND" /></td>
+      <tr><td><input type="submit" class="btn" onclick="myFunction()" value="SEND" /></td>
       </tr></table>     
     </form>
     
 </div>
 </body>
+<script>
+function myFunction() {
+  alert("You have requested a cleaning service");
+}
+</script>
 </html>
