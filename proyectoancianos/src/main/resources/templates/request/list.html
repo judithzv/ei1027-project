@@ -24,7 +24,9 @@ h1{
        <tr>
          <th>State</th>
          <th>Service</th>
-         <th>Schedule</th>
+         <th>Start date</th>
+         <th>End date</th>
+         <th>Details</th>
          <th></th>
          <th></th>
        </tr>
@@ -33,7 +35,9 @@ h1{
        <tr th:each="request: ${requests}"> 
          <td th:text="${request.state}"></td>
 		 <td th:text="${request.service}"></td>
-         <td th:text="${request.schedule}"></td>
+		 <td th:text="${request.startDate}"></td>
+         <td th:text="${request.endDate}"></td>
+         <td th:text="${request.details}"></td>
 		 <td></td>
 		 <td></td>
        </tr>

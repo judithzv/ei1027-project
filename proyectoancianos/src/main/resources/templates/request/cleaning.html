@@ -22,7 +22,7 @@ td {
 		<table>
 		<tr><td>
 		<p>How many days do you need?<p>
-		<select th:field="*{schedule}" name=schedule style="height: 50px; width:430px;">
+		<select th:field="*{details}" name=schedule style="height: 50px; width:430px;">
 			<option value="Once a week">Once a week</option>
 			<option value="Twice a week">Twice a week</option>
 			<option value="Everyday">Everyday</option>
@@ -30,14 +30,14 @@ td {
 		</select></tr></td>
 		<tr><td>
 		<p>If you choose other, please explain it here:<p></td></tr>		
-		</tr><td><textarea  style="height: 200px; width:430px;" id="other" th:field="*{schedule}" rows="4" cols="50">
+		</tr><td><textarea  style="height: 200px; width:430px;" id="other" th:field="*{details}" rows="4" cols="50">
 		</textarea></td></tr>
 		<table>
 		 <tr><td>Select the start day:</tr></td>
-		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{startDate}"</tr></td>
 		<tr><td><p></p></tr></td>
 		<tr><td>Select the end day:</tr></td>
-		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{schedule}"</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{endDate}"</tr></td>
       <tr><td><input type="submit" class="btn" onclick="myFunction()" value="SEND" /></td>
       </tr></table>     
     </form>
