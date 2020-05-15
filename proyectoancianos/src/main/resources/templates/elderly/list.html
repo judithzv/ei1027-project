@@ -32,7 +32,6 @@ h1{
          <th>DNI</th>
          <th>Illnesses</th>
          <th>Disability</th>
-         <th>Social Worker</th>
          <th></th>
          <th></th>
        </tr>
@@ -49,7 +48,6 @@ h1{
          <td th:text="${elderly.DNI}"></td>
          <td th:text="${elderly.illnesses}"></td>
          <td th:text="${elderly.disability}"></td>
-         <td th:text="${elderly.socialWorker}"></td>
          <td><a th:href="@{/elderly/address/{DNI}(DNI=${elderly.DNI})}" 
 		  role="button">Address</td>
 	 	 <td><a th:href="@{/elderly/bankdata/{DNI}(DNI=${elderly.DNI})}" 
