@@ -17,12 +17,14 @@
             <td><input type="text" th:field="*{id}" readonly/></td>
         </tr>
         <tr>
-            <td><label>Start date</label></td>
-            <td><input type="text" th:field="*{startDate}" required/></td>
+            <td><label>Start Date</label></td>
+            <td><input type="date" th:field="*{startDate}" required/>
+			<div class="error" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></div></td>
         </tr>
         <tr>
-            <td><label>End date</label></td>
-            <td><input type="text" th:field="*{endDate}" required/></td>
+            <td><label>End Date</label></td>
+            <td><input type="date" th:field="*{endDate}" required/>
+			<div class="error" th:if="${#fields.hasErrors('startDate')}" th:errors="*{endDate}"></div></td>
         </tr>
         <tr>
             <td><label>Service type</label></td>
@@ -31,15 +33,18 @@
         </tr>
         <tr>
             <td><label>Price</label></td>
-            <td><input type="number" th:field="*{price}" required/></td>
+            <td><input type="number"  min="0" th:field="*{price}" required/>
+			<div class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div></td>
         </tr>
         <tr>
             <td><label>Signature date</label></td>
-            <td><input type="text" th:field="*{signatureDate}" required/></td>
+            <td><input type="date" th:field="*{signatureDate}" required/>
+			<div class="error" th:if="${#fields.hasErrors('signatureDate')}" th:errors="*{signatureDate}"></div></td>
         </tr>
-        <tr>
+         <tr>
             <td><label>CIF</label></td>
-            <td><input type="text" th:field="*{CIF}" readonly/></td>
+            <td><input type="text" th:field="*{CIF}" readonly/>
+			<div class="error" th:if="${#fields.hasErrors('CIF')}" th:errors="*{CIF}"></div></td>
         </tr>
         <td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td>
       </table>

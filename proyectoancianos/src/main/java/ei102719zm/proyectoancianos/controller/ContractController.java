@@ -22,14 +22,10 @@ import ei102719zm.proyectoancianos.model.Contract;
 @RequestMapping("/contract") 
 public class ContractController {
 	private ContractDao contractDao;
-	private static List<String> services = new ArrayList<String>();
 	
 	@Autowired
 	 public void setCompanyDao(ContractDao contractDao) { 
 	       this.contractDao = contractDao;
-	       services.add("cleanning");
-	       services.add("catering");
-	       services.add("health");
 	}
 	
 	  @RequestMapping("/list")
@@ -43,6 +39,7 @@ public class ContractController {
 		   Contract contract = (Contract) session.getAttribute("contract");
 		   if(contract != null) {
 			   contractDao.addContract(contract);
+			   session.removeAttribute("contract");
 			   return "redirect:list";
 		   }
 		   model.addAttribute("contract", new Contract());
@@ -54,7 +51,6 @@ public class ContractController {
 	                                   BindingResult bindingResult) {  
 		   ContractValidator contractValidator = new ContractValidator();
 		   contractValidator.validate(contract, bindingResult);
-		   System.out.println(bindingResult.toString());
 		   if(bindingResult.hasErrors())
 			   return "contract/add";
 		   
@@ -81,12 +77,10 @@ public class ContractController {
 		public String processUpdateSubmit(
 	                            @ModelAttribute("contract") Contract contract, 
 	                            BindingResult bindingResult) {
-			 if (bindingResult.hasErrors()) 
-				 return "contract/update";
 			 ContractValidator contractValidator = new ContractValidator();
 			 contractValidator.validate(contract, bindingResult);
 			 if(bindingResult.hasErrors())
-				 return "contract/add";
+				 return "contract/update";
 			 contractDao.updateContract(contract);
 			 return "redirect:list"; 
 		}    

@@ -15,23 +15,23 @@ public class ContractValidator implements Validator {
   public void validate(Object obj, Errors errors) {
 	  Contract contract = (Contract) obj;
 	  if(contract.getCIF().isEmpty())
-	       errors.rejectValue("CIF", "compulsory",
+	       errors.rejectValue("CIF", "CIF",
                    "A value has to be introduced");
 	  if(contract.getStartDate() == null)
-		  errors.rejectValue("startDate", "compulsory",
+		  errors.rejectValue("startDate", "startDate",
                   "A start date has to be introduced");
 	  if(contract.getEndDate() == null)
-		  errors.rejectValue("endDate", "compulsory",
+		  errors.rejectValue("endDate", "endDate",
                   "An end date has to be introduced");
 	  if(contract.getServiceType().isEmpty())
-		  errors.rejectValue("serviceType", "compulsory",
-                  "A value has to be introduced");
-	  if(!contract.getServiceType().equals("catering") && contract.getServiceType().equals("cleaning")
-			  && contract.getServiceType().equals("health"))
 		  errors.rejectValue("serviceType", "serviceType",
-                  "The service has to be catering, cleaning or health");
-		  if(contract.getPrice() <= 0)
-			  errors.rejectValue("price", "error",
-	                  "Price has to be bigger than 0");
+                  "A value has to be introduced");
+	  else if(!contract.getServiceType().equals("catering") && !contract.getServiceType().equals("cleaning")
+			  && !contract.getServiceType().equals("health"))
+		  errors.rejectValue("serviceType", "serviceType",
+                  "Service has to be catering, cleaning or health");
+	  if(contract.getPrice() <= 0)
+		  errors.rejectValue("price", "price",
+				  "Price has to be bigger than 0");
 	  }
   }

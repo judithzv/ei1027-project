@@ -13,30 +13,35 @@
     <form action="#" th:action="@{/company/update}"
                      th:object="${company}" method="post">
       <table>
-        <tr>
-            <td><label>Name</label></td>
-            <td><input type="text" th:field="*{name}" required/></td>
+                <tr>
+            <td><p><label>Name</label></p></td>
+            <td><input type="text" th:field="*{name}" required/>
+			<div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></td>  
         </tr>
         <tr>
-            <td><label>CIF</label></td>
-            <td><input type="text" th:field="*{CIF}" readonly/></td>
+            <td><p><label>CIF</label></p></td>
+            <td><input type="text" th:field="*{CIF}" readonly/>
+			<div class="error" th:if="${#fields.hasErrors('CIF')}" th:errors="*{CIF}"></div></td>            
         </tr>
         <tr>
-            <td><label>Contact Person</label></td>
-            <td><input type="text" th:field="*{contactPerson}" required/></td>
+            <td><p><label>Contact person</label></p></td>
+            <td><input type="text" th:field="*{contactPerson}" required/>
+			<div class="error" th:if="${#fields.hasErrors('contactPerson')}" th:errors="*{contactPerson}"></div></td>  
         </tr>
         <tr>
-            <td><label>Telephone number</label></td>
-            <td><input type="number" th:field="*{telephoneNumber}" required/></td>
+            <td><p><label>Telephone Number</label></p></td>
+            <td><input type="number" th:field="*{telephoneNumber}" required/>
+			<div class="error" th:if="${#fields.hasErrors('telephoneNumber')}" th:errors="*{telephoneNumber}"></div></td>  
         </tr>
         <tr>
-            <td><label>User Name</label></td>
+            <td><p><label>User Name</label></p></td>
             <td><input type="text" th:field="*{userName}" required/>
 			<div class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div></td>  
         </tr>
         <tr>
-            <td><label>password</label></td>
-            <td><input type="text" th:field="*{password}" required/></td>
+            <td><p><label>Password</label></p></td>
+            <td><input type="password" th:field="*{password}" required/>
+			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></td> 
         </tr>
         <td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td>
       </table>
