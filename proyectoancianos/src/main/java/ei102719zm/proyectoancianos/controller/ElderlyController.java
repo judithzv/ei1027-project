@@ -53,23 +53,22 @@ public class ElderlyController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly,
 	                                   BindingResult bindingResult) {  
-		   if (bindingResult.hasErrors()) {
-			   List<FieldError> errors = bindingResult.getFieldErrors();
-			   for(FieldError error : errors) {
-				   bindingResult.rejectValue(error.getField(),error.getField(), error.getDefaultMessage());
-			   }
-			   return "elderly/add";
-		   }
+		 ElderlyValidator elderlyValidator = new ElderlyValidator();
+		 elderlyValidator.validate(elderly, bindingResult);
 		 
-		 if (elderlyDao.getElderly(elderly.getDNI()) != null) {
-			 bindingResult.rejectValue("DNI","DNI", elderly.getDNI()+" is already in use"); 
-			 return "elderly/add";
-		 }
+		 if (elderlyDao.getElderly(elderly.getDNI()) != null) 
+			 bindingResult.rejectValue("DNI","DNI", elderly.getDNI()+" is already in use");
 		 
-		 if(userDao.userAlreadyExists(elderly.getUserName())) {
+		 String IBAN = elderly.getBankData().getIBAN();
+		 if(IBAN != null && elderlyDao.getBankData(IBAN) != null)
+			 bindingResult.rejectValue("bankData.IBAN", "bankData.IBAN", "IBAN " + IBAN + " is already in use");
+
+		 if(userDao.userAlreadyExists(elderly.getUserName())) 
 			 bindingResult.rejectValue("userName","userName", elderly.getUserName()+" is already in use"); 
-			 return "elderly/add";
-		 }
+		 
+		   if (bindingResult.hasErrors())
+			   return "elderly/add";
+		   
 	   	 elderlyDao.addElderly(elderly);
 	   	 elderlyDao.addAddress(elderly.getAddress(), elderly.getDNI());
 	   	 if(elderly.getBankData().getIBAN() != null)
@@ -79,21 +78,38 @@ public class ElderlyController {
 	    }	   
 	   
 	   @RequestMapping(value="/update/{DNI}", method = RequestMethod.GET) 
-		public String editElderly(Model model, @PathVariable String DNI) { 
-			model.addAttribute("elderly", elderlyDao.getElderly(DNI));
+		public String editElderly(HttpSession session, Model model, @PathVariable String DNI) { 
+		   Elderly elderly = elderlyDao.getElderly(DNI);
+			model.addAttribute("elderly", elderly);
+			session.setAttribute("userName", elderly.getUserName());
+			if(elderly.getBankData().getIBAN() != null) {
+				session.setAttribute("IBAN", elderly.getBankData().getIBAN());
+			}
 			return "elderly/update"; 
 		}
+	   
 	    @RequestMapping(value="/update", method = RequestMethod.POST) 
-		public String processUpdateSubmit(
+		public String processUpdateSubmit(HttpSession session,
 	                            @ModelAttribute("elderly") Elderly elderly, 
 	                            BindingResult bindingResult) {
+			 
+	    	ElderlyValidator elderlyValidator = new ElderlyValidator();
+	    	elderlyValidator.validate(elderly, bindingResult);
+			 
+	    	String userName = elderly.getUserName();
+			 if(!userName.equals(session.getAttribute("userName")) && userDao.userAlreadyExists(userName)) 
+				 bindingResult.rejectValue("userName","userName", elderly.getUserName()+" is already in use");
+			 
+			 String IBAN = (String) session.getAttribute("IBAN");
+			 if(IBAN != null && !elderly.getBankData().getIBAN().equals(IBAN) && elderlyDao.getBankData(elderly.getBankData().getIBAN()) != null)
+				 bindingResult.rejectValue("bankData.IBAN","bankData.IBAN", "IBAN " + IBAN + " is already in use");
+			 
 			 if (bindingResult.hasErrors()) 
 				 return "elderly/update";
 			 
-			 if(userDao.userAlreadyExists(elderly.getUserName())) {
-				 bindingResult.rejectValue("userName","userName", elderly.getUserName()+" is already in use"); 
-				 return "elderly/add";
-			 }
+			 session.removeAttribute("userName");
+			 session.removeAttribute("IBAN");
+
 			 elderlyDao.updateAddress(elderly.getAddress(), elderly.getDNI());
 			 elderlyDao.updateBankData(elderly.getBankData(), elderly.getDNI());
 			 elderlyDao.updateElderly(elderly);

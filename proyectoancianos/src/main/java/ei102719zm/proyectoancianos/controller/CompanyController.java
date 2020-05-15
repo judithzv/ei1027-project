@@ -93,22 +93,26 @@ public class CompanyController {
 	    }
 
 	   @RequestMapping(value="/update/{CIF}", method = RequestMethod.GET) 
-	 		public String editCompany(Model model, @PathVariable String CIF) { 
+	 		public String editCompany(HttpSession session, Model model, @PathVariable String CIF) { 
 	 			model.addAttribute("company", companyDao.getCompany(CIF));
+	 			session.setAttribute("userName", companyDao.getCompany(CIF).getUserName());
 	 			return "company/update"; 
 	 		}
 	 	    @RequestMapping(value="/update", method = RequestMethod.POST) 
-	 		public String processUpdateSubmit(
+	 		public String processUpdateSubmit(HttpSession session,
 	 	                            @ModelAttribute("company") Company company, 
 	 	                            BindingResult bindingResult) {
 	 			 CompanyValidator companyValidator = new CompanyValidator();
 	 			 companyValidator.validate(company, bindingResult);
-	 		   
-	 		  if(userDao.userAlreadyExists(company.getUserName()))
+	 			 
+	 			 String userName = (String) session.getAttribute("userName");
+	 		  if(!company.getUserName().equals(userName) && userDao.userAlreadyExists(company.getUserName()))
 	 			  bindingResult.rejectValue("userName","userName", company.getUserName()+" is already in use"); 
 	 		  
 	 		   if(bindingResult.hasErrors())
 	 			   return "company/update";
+	 		   
+	 		   session.removeAttribute("userName");
 	 		   
 	 			 companyDao.updateCompany(company);
 	 			 return "redirect:list"; 

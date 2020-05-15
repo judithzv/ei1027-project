@@ -16,7 +16,6 @@ import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.Invoice;
-import ei102719zm.proyectoancianos.model.UserDetails;
 
 @Repository 
 public class ElderlyDao {
@@ -165,11 +164,11 @@ public class ElderlyDao {
 			
 	   }
 
-	   public BankData getBankData(String DNI) {
+	   public BankData getBankData(String IBAN) {
 	       try {
-	           return jdbcTemplate.queryForObject("SELECT * FROM BankData WHERE DNI =?",
+	           return jdbcTemplate.queryForObject("SELECT * FROM BankData WHERE IBAN =?",
 	        	        new BankDataRowMapper(),
-	        	        DNI);
+	        	        IBAN);
 
 	       }
 	       catch(EmptyResultDataAccessException e) {

@@ -33,5 +33,7 @@ public class ContractValidator implements Validator {
 	  if(contract.getPrice() <= 0)
 		  errors.rejectValue("price", "price",
 				  "Price has to be bigger than 0");
+	  if(contract.getStartDate().isAfter(contract.getEndDate()))
+		  errors.rejectValue("startDate", "startDate", "Start date has to be previous than end date");
 	  }
   }
