@@ -38,10 +38,11 @@ td {
 		</textarea></td></tr>
 		      <table>
 		 <tr><td>Select the start day:</tr></td>
-		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{startDate}"</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{startDate}"</tr>
+		<div class="error" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></div></td>
 		<tr><td><p></p></tr></td>
 		<tr><td>Select the end day:</tr></td>
-		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{endtDate}"</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{endDate}"</tr></td>
         <tr><td><input type="submit" class="btn" onclick="myFunction()" value="SEND" /></td>
       </tr></table>     
     </form>

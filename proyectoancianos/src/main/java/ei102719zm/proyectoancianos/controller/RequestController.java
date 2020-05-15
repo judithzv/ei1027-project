@@ -120,13 +120,23 @@ public class RequestController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(HttpSession session, @ModelAttribute("request") Request request,
 			   							BindingResult bindingResult) {  
-		   if(bindingResult.hasErrors())
-			   return "request/add";
 		   if (session.getAttribute("user") == null) 
 	       { 
 	          session.setAttribute("nextUrl", "/request/add");
 	          return "redirect:../login";
 	       }
+		   
+		   RequestValidator requestValidator = new RequestValidator();
+		   requestValidator.validate(request, bindingResult);
+		   if(bindingResult.hasErrors()) {
+			   request.setDetails(null);
+			   if(request.getService().equals("cleaning"))
+				   return "request/cleaning";
+			   else if(request.getService().equals("health"))
+				   return "request/health";
+			   else
+				   return "request/catering";
+		   }
 		   String number = requestDao.getLastNumber();
 		   	if(number==null)
 		   		number = "199999999";
