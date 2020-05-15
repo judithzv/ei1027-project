@@ -175,6 +175,18 @@ public class ElderlyDao {
 	           return null;
 	       }
 	   }
+	   
+	   public BankData getBankDataByDNI(String DNI) {
+	       try {
+	           return jdbcTemplate.queryForObject("SELECT * FROM BankData WHERE DNI =?",
+	        	        new BankDataRowMapper(),
+	        	        DNI);
+
+	       }
+	       catch(EmptyResultDataAccessException e) {
+	           return null;
+	       }
+	   }
 
 	   public List<BankData> getBankDatas() {
 	       try {	    
