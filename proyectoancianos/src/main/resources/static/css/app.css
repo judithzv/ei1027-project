@@ -70,10 +70,10 @@ span.psw1 {
   background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
   text-decoration: none;
   FONT-SIZE: 20pt; 
-  padding: 20px 20px;
+  padding: 20px 16px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 90%;
+  width: 91%;
   color: black;
 }
