@@ -107,10 +107,10 @@ public class RequestController {
 	       }
 		   UserDetails user = (UserDetails) session.getAttribute("user");
 		   Elderly elderly = userDao.getElderly(user.getUsername());
-		   if(elderlyDao.hasService("cleaning", elderly.getDNI()))
+		   if(elderlyDao.hasService("cleanning", elderly.getDNI()))
 			   return "request/error";
 		   Request request = new Request();
-		   request.setService("cleaning");
+		   request.setService("cleanning");
 		   request.setDNI(elderly.getDNI());
 		   request.setState("in process");
 		   model.addAttribute("request", request);
@@ -135,6 +135,7 @@ public class RequestController {
 		   	Elderly elderly = userDao.getElderly(user.getUsername());
 			request.setNumber(Integer.toString(num));
 			requestDao.addRequest(request);
+			
 			return "redirect:../elderly/perfil/"+elderly.getDNI();
 	   }
 	   
