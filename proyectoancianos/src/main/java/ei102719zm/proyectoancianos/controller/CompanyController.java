@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ei102719zm.proyectoancianos.dao.CompanyDao;
 import ei102719zm.proyectoancianos.dao.ContractDao;
@@ -22,7 +21,6 @@ import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
 import ei102719zm.proyectoancianos.model.Elderly;
-import ei102719zm.proyectoancianos.model.UserDetails;
 
 
 @Controller
@@ -46,10 +44,10 @@ public class CompanyController {
 	       this.elderlyDao = elderlyDao;
 	   }
 	   
-	   @Autowired
-	   public void setUserDao(UserDao userDao) { 
-	       this.userDao = userDao;
-	   }
+		@Autowired
+		 public void setUserDao(UserDao userDao) { 
+			this.userDao = userDao;
+		}
 	   
 	   @RequestMapping("/list")
 	   public String listCompany(Model model) {
@@ -61,8 +59,10 @@ public class CompanyController {
 	   public String addCompany(HttpSession session, Model model) {
 		   Company company = new Company();
 		   Contract contract = (Contract) session.getAttribute("contract");
-		   if(contract != null)
+		   if(contract != null) {
 			   company.setCIF(contract.getCIF());
+			   session.removeAttribute("contract");
+		   }
 		   model.addAttribute("company", company);
 		   return "company/add";
 	   }
@@ -70,22 +70,26 @@ public class CompanyController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(HttpSession session, @ModelAttribute("company") Company company,
 	                                   BindingResult bindingResult) {  
-		   if (bindingResult.hasErrors()) 
-		   	return "company/add";
 		   
-		 if (companyDao.getCompany(company.getCIF())!=null) {
-			 bindingResult.rejectValue("CIF","CIF", company.getCIF() +" is already in use"); 
-			 return "company/add";
-		 }
-		 
-		 if(userDao.userAlreadyExists(company.getUserName())) {
-			 bindingResult.rejectValue("userName","userName", company.getUserName()+" is already in use"); 
-			 return "company/add";
-		 }
-	   	 companyDao.addCompany(company);
-	   	 if(session.getAttribute("contract") != null)
-	   		 return "redirect:../contract/add";
-	   	 return "redirect:list";    	 
+		   CompanyValidator companyValidator = new CompanyValidator();
+		   companyValidator.validate(company, bindingResult);
+		   
+		   if (companyDao.getCompany(company.getCIF()) != null)
+			   bindingResult.rejectValue("CIF", "CIF", company.getCIF() +" is already in use");
+		   
+		   if(userDao.userAlreadyExists(company.getUserName()))
+			   bindingResult.rejectValue("userName","userName", company.getUserName()+" is already in use"); 
+		   
+		   
+		   if(bindingResult.hasErrors())
+			   return "company/add";
+		   
+		   companyDao.addCompany(company);
+		   
+		   if(session.getAttribute("contract") != null)
+			   return "redirect:../contract/add";
+		   
+		   return "redirect:list";    	 
 	    }
 
 	   @RequestMapping(value="/update/{CIF}", method = RequestMethod.GET) 
@@ -97,12 +101,15 @@ public class CompanyController {
 	 		public String processUpdateSubmit(
 	 	                            @ModelAttribute("company") Company company, 
 	 	                            BindingResult bindingResult) {
-	 			 if (bindingResult.hasErrors()) 
-	 				 return "company/update";
-	 			if(userDao.userAlreadyExists(company.getUserName())) {
-	 				 bindingResult.rejectValue("userName","userName", company.getUserName()+" is already in use"); 
-	 				 return "company/update";
-	 			 }
+	 			 CompanyValidator companyValidator = new CompanyValidator();
+	 			 companyValidator.validate(company, bindingResult);
+	 		   
+	 		  if(userDao.userAlreadyExists(company.getUserName()))
+	 			  bindingResult.rejectValue("userName","userName", company.getUserName()+" is already in use"); 
+	 		  
+	 		   if(bindingResult.hasErrors())
+	 			   return "company/update";
+	 		   
 	 			 companyDao.updateCompany(company);
 	 			 return "redirect:list"; 
 	 		}    

@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ei102719zm.proyectoancianos.dao.CompanyDao;
 import ei102719zm.proyectoancianos.dao.ContractDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
-import ei102719zm.proyectoancianos.model.Elderly;
 
 @Controller
 @RequestMapping("/contract") 
@@ -32,7 +30,8 @@ public class ContractController {
 	       services.add("cleanning");
 	       services.add("catering");
 	       services.add("health");
-	   }
+	}
+	
 	  @RequestMapping("/list")
 	   public String listContract(Model model) {
 	      model.addAttribute("contracts", contractDao.getContracts());
@@ -53,16 +52,12 @@ public class ContractController {
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
 	   public String processAddSubmit(HttpSession session, @ModelAttribute("contract") Contract contract,
 	                                   BindingResult bindingResult) {  
+		   ContractValidator contractValidator = new ContractValidator();
+		   contractValidator.validate(contract, bindingResult);
+		   System.out.println(bindingResult.toString());
 		   if(bindingResult.hasErrors())
 			   return "contract/add";
-		   boolean esta = false;
-		   for(String service : services)
-			   if(service.equals(contract.getServiceType()))
-				   esta = true;
-		   if(!esta) {
-			   bindingResult.rejectValue("serviceType","serviceType", contract.getServiceType()+" is not allowed");
-			   return "contract/add";
-		   }
+		   
 		   String lastId = contractDao.getLastId();
 		   if(lastId == null)
 			   lastId = "299999999";
@@ -88,14 +83,10 @@ public class ContractController {
 	                            BindingResult bindingResult) {
 			 if (bindingResult.hasErrors()) 
 				 return "contract/update";
-			   boolean esta = false;
-			   for(String service : services)
-				   if(service.equals(contract.getServiceType()))
-					   esta = true;
-			   if(!esta) {
-				   bindingResult.rejectValue("serviceType","serviceType", contract.getServiceType()+" is not allowed");
-				   return "contract/update";
-			   }
+			 ContractValidator contractValidator = new ContractValidator();
+			 contractValidator.validate(contract, bindingResult);
+			 if(bindingResult.hasErrors())
+				 return "contract/add";
 			 contractDao.updateContract(contract);
 			 return "redirect:list"; 
 		}    

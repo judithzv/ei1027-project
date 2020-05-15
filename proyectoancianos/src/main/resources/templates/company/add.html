@@ -15,20 +15,23 @@
       <table>
         <tr>
             <td><p><label>Name</label></p></td>
-            <td><input type="text" th:field="*{name}" required/></td>
+            <td><input type="text" th:field="*{name}" required/>
+			<div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div></td>  
         </tr>
         <tr>
             <td><p><label>CIF</label></p></td>
             <td><input type="text" th:field="*{CIF}" required/>
-            <div class="error" th:if="${#fields.hasErrors('CIF')}" th:errors="*{CIF}"></div></td>             
+			<div class="error" th:if="${#fields.hasErrors('CIF')}" th:errors="*{CIF}"></div></td>            
         </tr>
         <tr>
             <td><p><label>Contact person</label></p></td>
-            <td><input type="text" th:field="*{contactPerson}" required/></td>
+            <td><input type="text" th:field="*{contactPerson}" required/>
+			<div class="error" th:if="${#fields.hasErrors('contactPerson')}" th:errors="*{contactPerson}"></div></td>  
         </tr>
         <tr>
             <td><p><label>Telephone Number</label></p></td>
-            <td><input type="number" th:field="*{telephoneNumber}" required/></td>
+            <td><input type="number" th:field="*{telephoneNumber}" required/>
+			<div class="error" th:if="${#fields.hasErrors('telephoneNumber')}" th:errors="*{telephoneNumber}"></div></td>  
         </tr>
         <tr>
             <td><p><label>User Name</label></p></td>
@@ -37,7 +40,8 @@
         </tr>
         <tr>
             <td><p><label>Password</label></p></td>
-            <td><input type="password" th:field="*{password}" required/></td>
+            <td><input type="password" th:field="*{password}" required/>
+			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></td> 
         </tr>
          <td colspan="2"><input type="submit" class="btn btn1" value="Register" /></td>
         </tr>
