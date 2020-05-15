@@ -2,41 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
    <meta charset="UTF-8" />
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
    <title>Profile</title>
-   <link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
+   <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+                                    th:href="@{/css/elderly.css}"/>
 </head>
-<style>
-body {
-    background-image: url('../perfil.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;  
-    background-size: cover;
-}
-</style>
 <body>
 <div class="container" style="text-align:center;">
-   <h1>My profile</h1>
+   <h1>My site</h1>
    <table>
    		<tr><td><form method="get" action="/request/choose">
-		<button type="submit" class="btn btn3">Request a service
+		<button type="submit" class="btn">REQUEST A SERVICE
 		</form></tr></td>
-       <tr><td><form method="get" action="../datos">
-		<button type="submit" class="btn btn3">Show personal data
+        <tr><td><form method="get" action="../datos">
+		<button type="submit" class="btn">SHOW PERSONAL DATA
 		</form></tr></td>
 		<tr><td><form method="get" action="/request/list">
-		<button type="submit" class="btn btn3">Show requests
+		<button type="submit" class="btn">SHOW REQUEST
 		</form></tr></td>
 		<tr><td><form method="get" action="/elderly/invoices">
-		<button type="submit" class="btn btn3">Show invoices
+		<button type="submit" class="btn">SHOW INVOICES
 		</form></tr></td>
 		<tr><td><a th:href="@{/elderly/update/{DNI}(DNI=${elderly.DNI})}" 
-		role="button" class="a1">Edit my profile</a></tr></td>
+		role="button" class="a a1">EDIT MY PROFILE</a></tr></td>
 		<tr><td><form method="get" action="../eliminarcuenta">
-		<button type="submit" class="btn btn3">Delete my account
+		<button type="submit" class="btn">DELETE MY ACCOUNT
 		</form></tr></td>
-		<tr><td><a th:href="@{/logout}" role="button" class="a1">Logout
+		<tr><td><a th:href="@{/logout}" role="button" class="a a1">LOGOUT
 		</a></tr></td>
 	</table>
    </div>

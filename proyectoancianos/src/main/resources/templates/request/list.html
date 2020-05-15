@@ -22,22 +22,20 @@ h1{
    <table class="table table-striped table-hover">
      <thead>
        <tr>
-         <th>Number</th>
          <th>State</th>
          <th>Service</th>
          <th>Schedule</th>
-		 <th>ID Contract</th>
+		 <th>Company name</th>
          <th></th>
          <th></th>
        </tr>
      </thead>
      <tbody>
        <tr th:each="request: ${requests}"> 
-         <td th:text="${request.number}"></td> 
          <td th:text="${request.state}"></td>
 		 <td th:text="${request.service}"></td>
          <td th:text="${request.schedule}"></td>
-		 <td th:text="${request.idContract}"></td>
+         <td th:text="${request.schedule}"></td>
 		 <td></td>
 		 <td></td>
        </tr>

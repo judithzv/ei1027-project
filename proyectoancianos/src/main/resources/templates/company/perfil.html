@@ -8,33 +8,27 @@
                                     th:href="@{/css/app.css}"/>
 </head>
 <style>
-body {
-    background-image: url('../perfil.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;  
-    background-size: cover;
-}
 </style>
 <body>
 <div class="container" style="text-align:center;">
    <h1>My profile</h1>
    <table>
        <tr><td><form method="get" action="../datos">
-		<button type="submit" class="btn btn3">Show company data
+		<button type="submit" class="btn">Show company data
 		</form></tr></td>	
 		<tr><td><form method="get" action="../datoscontrato">
-		<button type="submit" class="btn btn3">Show contracts
+		<button type="submit" class="btn">Show contracts
 		</form></tr></td>
 		<tr><td><form method="get" action="../datoselderly">
-		<button type="submit" class="btn btn3">Show clients
+		<button type="submit" class="btn">Show clients
 		</form></tr></td>			
 		<tr><td><a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" 
-		role="button" class="a1">Edit my profile</a></tr></td>			
+		role="button" class="aperfil">Edit my profile</a></tr></td>			
 		<tr><td><form method="get" action="../eliminarcuenta">
-		<button type="submit" class="btn btn3">Delete your account
+		<button type="submit" class="btn">Delete your account
 		</form></tr></td>		
 		<tr><td><form method="get" action="../../logout">
-		<button type="submit" class="btn btn3">Logout
+		<button type="submit" class="btn">Logout
 		</form></tr></td>
 	</table>
    </div>

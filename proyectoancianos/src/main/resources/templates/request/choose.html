@@ -3,33 +3,30 @@
 <head>
    <title>New service</title>
    <meta charset="UTF-8" />
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-   <link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
+   <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+                                    th:href="@{/css/elderly.css}"/>
 </head>
-<style>
-td{
-FONT-SIZE: 15pt; 
-}
-</style>
 <body>
 <div layout:fragment="content">
-    <h1>Service</h1>
-      	<table>
-        <tr><td style="padding: 5px 5px;" ><p>Choose a service:<p>
+    <h1>Choose a service:</h1>
+      	<table>      	
    		<tr><td><form method="get" action="/request/catering">
-		<button type="submit" class="btn btn3" value="catering">CATERING
+		<button type="submit" class="btn" value="catering">CATERING
 		</form></tr></td>
-       <tr><td><form method="get" action="/request/health">
-		<button type="submit" class="btn btn3" value="health">HEALTH
+        <tr><td><form method="get" action="/request/health">
+		<button type="submit" class="btn" value="health">HEALTH
 		</form></tr></td>
 		<tr><td><form method="get" action="/request/cleaning">
-		<button type="submit" class="btn btn3" value="cleaning">CLEANING
+		<button type="submit" class="btn" value="cleaning">CLEANING
 		</form></tr></td>
 		<tr><td><a th:href="@{/elderly/perfil/{DNI}(DNI=${elderly.DNI})}" 
-		role="button" class="a4">GO BACK</a></tr></td>
+		role="button" class="a a2">GO BACK</a></tr></td>	
 		
-      </tr></table>     
+		
+		
+			
+        </tr></table> 
+            
     
 </div>
 </body>
