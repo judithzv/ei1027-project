@@ -25,7 +25,6 @@ h1{
          <th>State</th>
          <th>Service</th>
          <th>Schedule</th>
-		 <th>Company name</th>
          <th></th>
          <th></th>
        </tr>
@@ -34,7 +33,6 @@ h1{
        <tr th:each="request: ${requests}"> 
          <td th:text="${request.state}"></td>
 		 <td th:text="${request.service}"></td>
-         <td th:text="${request.schedule}"></td>
          <td th:text="${request.schedule}"></td>
 		 <td></td>
 		 <td></td>

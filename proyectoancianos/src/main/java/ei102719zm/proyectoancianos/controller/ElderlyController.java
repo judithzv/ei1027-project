@@ -19,6 +19,7 @@ import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
+import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Elderly;
 
 
@@ -141,6 +142,21 @@ public class ElderlyController {
 		   }
 		   return "redirect:../";
 	   }
+	   @RequestMapping(value="/address/{DNI}")
+	   public String mostrarAddress( @PathVariable String DNI, Model model) {
+		   Address address= elderlyDao.getAddress(DNI);
+		   model.addAttribute("address",address);
+		   return "elderly/address";
+	   
+	   }
+	   @RequestMapping(value="/bankdata/{DNI}")
+	   public String mostrarBankdata( @PathVariable String DNI, Model model) {
+		   BankData bankdata= elderlyDao.getBankDataByDNI(DNI);
+		   model.addAttribute("bankdata",bankdata);
+		   return "elderly/bankdata";
+	   
+	   }
+
 	   @RequestMapping(value="/eliminarcuenta")
 	   public String eliminarcuenta(HttpSession session, Model model) {
 		   String DNI = (String) session.getAttribute("dni");

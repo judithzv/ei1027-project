@@ -22,7 +22,6 @@ h1{
    <table class="table table-striped table-hover">
      <thead>
        <tr>
-         <th>ID</th>
          <th>Start date</th>
          <th>End date</th>
          <th>Service Type</th>
@@ -33,13 +32,13 @@ h1{
      </thead>
      <tbody>
          <tr th:each="contract: ${contracts}"> 
-         <td th:text="${contract.id}"></td> 
          <td th:text="${contract.startDate}"></td>
          <td th:text="${contract.endDate}"></td>
          <td th:text="${contract.serviceType}"></td>
          <td th:text="${contract.price}"></td>
          <td th:text="${contract.signatureDate}"></td>
-         <td th:text="${contract.CIF}"></td>
+         <td><a th:href="@{/company/datos/{CIF}(CIF=${contract.CIF})}" 
+		  role="button">Company</td>
          <td><a th:href="@{/contract/update/{id}(id=${contract.id})}" class="btn btn-warning" role="button">Edit</a></td>
          <td><a th:href="@{/contract/delete/{id}(id=${contract.id})}" class="btn btn-danger" role="button">Delete</a>
          </td>

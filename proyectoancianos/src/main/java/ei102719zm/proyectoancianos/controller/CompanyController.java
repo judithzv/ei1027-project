@@ -143,6 +143,13 @@ public class CompanyController {
 			   return "redirect:../";
 		   
 		   }
+		   @RequestMapping(value="/datos/{CIF}")
+		   public String mostrarDatos( @PathVariable String CIF, Model model) {
+			   Company company= companyDao.getCompany(CIF);
+			   model.addAttribute("company",company);
+			   return "company/datos";
+		   
+		   }
 		   @RequestMapping(value="/datoscontrato")
 		   public String mostrarDatosContrato(HttpSession session, Model model) {
 			   String CIF = (String) session.getAttribute("cif");

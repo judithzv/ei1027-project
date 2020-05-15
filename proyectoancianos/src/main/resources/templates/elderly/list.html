@@ -34,13 +34,6 @@ h1{
          <th>Illnesses</th>
          <th>Disability</th>
          <th>Social Worker</th>
-         <th>Street</th>
-		 <th>City</th>
-		 <th>Postal Code</th>
-		 <th>Country</th>
-         <th>IBAN</th>
-		 <th>Bank</th>
-	     <th>Branch Office</th>
          <th></th>
          <th></th>
        </tr>
@@ -59,13 +52,10 @@ h1{
          <td th:text="${elderly.illnesses}"></td>
          <td th:text="${elderly.disability}"></td>
          <td th:text="${elderly.socialWorker}"></td>
-         <td th:text="${elderly.address.street}"></td>
-		 <td th:text="${elderly.address.city}"></td>
-		 <td th:text="${elderly.address.postalCode}"></td>
-	 	 <td th:text="${elderly.address.city}"></td>
-         <td th:text="${elderly.bankData.IBAN}"></td>
-		 <td th:text="${elderly.bankData.bank}"></td>
-		 <td th:text="${elderly.bankData.branch_office}"></td>
+         <td><a th:href="@{/elderly/address/{DNI}(DNI=${elderly.DNI})}" 
+		  role="button">Address</td>
+	 	 <td><a th:href="@{/elderly/bankdata/{DNI}(DNI=${elderly.DNI})}" 
+		  role="button">Bank data</td>
          <td><a th:href="@{/elderly/update/{DNI}(DNI=${elderly.DNI})}" class="btn btn-warning" role="button">Edit</a></td>
          <td><a th:href="@{/elderly/delete/{DNI}(DNI=${elderly.DNI})}" class="btn btn-danger" role="button">Delete</a></td>
        </tr>
