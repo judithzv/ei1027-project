@@ -16,6 +16,7 @@ import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.Invoice;
+import ei102719zm.proyectoancianos.model.Request;
 
 @Repository 
 public class ElderlyDao {
@@ -220,6 +221,15 @@ public class ElderlyDao {
 	        		    "SELECT * FROM Invoice WHERE dni=?", new InvoiceRowMapper(), DNI);
 			} catch(EmptyResultDataAccessException e) {
 				return new ArrayList<Invoice>();
+			}
+		}
+		
+		public List<Request> getRequests(String DNI){
+			try {
+				return jdbcTemplate.query(
+	        		    "SELECT * FROM Request WHERE dni=?", new RequestRowMapper(), DNI);
+			} catch(EmptyResultDataAccessException e) {
+				return new ArrayList<Request>();
 			}
 		}
 		

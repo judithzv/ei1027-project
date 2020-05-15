@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ei102719zm.proyectoancianos.dao.CompanyDao;
 import ei102719zm.proyectoancianos.dao.ContractDao;
@@ -119,9 +120,20 @@ public class CompanyController {
 	 		}    
 
 	 	   @RequestMapping(value="/delete/{CIF}")
-	 		public String processDelete(@PathVariable String CIF) {
-	 		   companyDao.deleteCompany(CIF);
-	 	       return "redirect:../list"; 
+	 		public String processDelete(@PathVariable String CIF, RedirectAttributes redirectAttrs) {
+	 		   List<Contract> contracts = companyDao.getContracts(CIF);
+			   if(contracts.size() != 0) {
+				   // Mostrar mensaje
+				   redirectAttrs
+		            .addFlashAttribute("mensaje", "User can not be deleted because they have requests and invoices")
+		            .addFlashAttribute("clase", "error");
+			   }else {
+				    redirectAttrs
+		            .addFlashAttribute("mensaje", "Successfully deleted")
+		            .addFlashAttribute("clase", "success"); 
+			 		 companyDao.deleteCompany(CIF);
+			   }
+	 		  return "redirect:../list";
 	 		}
 	 	   
 		   @RequestMapping(value="/perfil/{CIF}")

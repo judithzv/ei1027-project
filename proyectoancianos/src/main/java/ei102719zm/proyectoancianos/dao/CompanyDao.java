@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import ei102719zm.proyectoancianos.model.Company;
+import ei102719zm.proyectoancianos.model.Contract;
 
 @Repository 
 public class CompanyDao {
@@ -67,6 +68,20 @@ public class CompanyDao {
 	       }
 	       catch(EmptyResultDataAccessException e) {
 	           return new ArrayList<Company>();
+	       }
+	   }
+	   
+	   public List<Contract> getContracts(String CIF) {
+	       try {
+	    
+	    	   List<Contract> contracts= jdbcTemplate.query(
+	        		    "SELECT * FROM Contract WHERE CIF=?",
+	        		     new ContractRowMapper(), CIF);
+	        		return contracts;
+
+	       }
+	       catch(EmptyResultDataAccessException e) {
+	           return new ArrayList<Contract>();
 	       }
 	   }
 

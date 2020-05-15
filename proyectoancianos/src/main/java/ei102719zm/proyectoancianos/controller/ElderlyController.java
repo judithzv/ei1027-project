@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.dao.UserDao;
@@ -21,6 +22,8 @@ import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Elderly;
+import ei102719zm.proyectoancianos.model.Invoice;
+import ei102719zm.proyectoancianos.model.Request;
 
 
 @Controller
@@ -118,10 +121,23 @@ public class ElderlyController {
 		}    
 
 	   @RequestMapping(value="/delete/{DNI}")
-		public String processDelete(@PathVariable String DNI) {
-		   elderlyDao.deleteAddress(DNI);
-		   elderlyDao.deleteBankData(DNI);
-		   elderlyDao.deleteElderly(DNI);
+		public String processDelete(@PathVariable String DNI, RedirectAttributes redirectAttrs) {
+		   List<Invoice> facturas = elderlyDao.getInvoices(DNI);
+		   List<Request> requests = elderlyDao.getRequests(DNI);
+		   String mensaje = "";
+		   if(facturas.size() != 0 || requests.size() != 0) {
+			   // Mostrar mensaje
+			   redirectAttrs
+	            .addFlashAttribute("mensaje", "User can not be deleted because they have requests and invoices")
+	            .addFlashAttribute("clase", "error");
+		   }else {
+			    redirectAttrs
+	            .addFlashAttribute("mensaje", "Successfully deleted")
+	            .addFlashAttribute("clase", "success");
+			   elderlyDao.deleteAddress(DNI);
+			   elderlyDao.deleteBankData(DNI);
+			   elderlyDao.deleteElderly(DNI);
+		   }
 	       return "redirect:../list"; 
 		}
 	   
