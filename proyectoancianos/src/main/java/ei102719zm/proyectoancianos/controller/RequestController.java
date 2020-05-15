@@ -107,10 +107,10 @@ public class RequestController {
 	       }
 		   UserDetails user = (UserDetails) session.getAttribute("user");
 		   Elderly elderly = userDao.getElderly(user.getUsername());
-		   if(elderlyDao.hasService("cleanning", elderly.getDNI()))
+		   if(elderlyDao.hasService("cleaning", elderly.getDNI()))
 			   return "request/error";
 		   Request request = new Request();
-		   request.setService("cleanning");
+		   request.setService("cleaning");
 		   request.setDNI(elderly.getDNI());
 		   request.setState("in process");
 		   model.addAttribute("request", request);

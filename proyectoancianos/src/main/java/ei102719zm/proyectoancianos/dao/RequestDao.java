@@ -25,9 +25,9 @@ public class RequestDao {
 
 	   public void addRequest(Request request) {		
 			jdbcTemplate.update(
-			  "INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?)",
+			  "INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
 			    request.getNumber(), request.getState(), request.getService(), 
-			    request.getSchedule(), request.getDNI(), request.getIdContract());
+			    request.getStartDate(), request.getEndDate(), request.getDetails(), request.getDNI(), request.getIdContract());
 		
 	   }
 	   
@@ -40,10 +40,10 @@ public class RequestDao {
 	   public void updateRequest(Request request) {
 		  
 			jdbcTemplate.update("UPDATE Request SET DNI = ?, state= ?, service=?, "
-					+ " schedule=?, idContract=?"
+					+ " startDate=?, endDate=?, details=?, idContract=?"
 					+ " WHERE number = ?",
-					request.getDNI(), request.getState(), request.getService(), 
-				    request.getSchedule(), request.getIdContract(), request.getNumber());
+					request.getDNI(), request.getState(), request.getService(), request.getStartDate(),
+				    request.getEndDate(), request.getDetails(), request.getIdContract(), request.getNumber());
 			
 	   }
 

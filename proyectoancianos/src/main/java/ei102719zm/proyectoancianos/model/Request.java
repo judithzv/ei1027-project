@@ -1,10 +1,18 @@
 package ei102719zm.proyectoancianos.model;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Request {
 	private String number;
 	private String state;
 	private String service;
-	private String schedule;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+	public LocalDate startDate;
+	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+	public LocalDate endDate;
+	private String details;
 	private String DNI;
 	private String idContarct;
 	
@@ -42,11 +50,23 @@ public class Request {
 	public void setService(String service) {
 		this.service=service;
 	}
-	public String getSchedule() {
-		return schedule;
+	public void setStartDate(LocalDate startDate) {
+		this.startDate=startDate;
 	}
-	public void setSchedule(String schedule) {
-		this.schedule=schedule;
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+	public void setEndDate(LocalDate endDate) {
+		this.endDate=endDate;
+	}
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details=details;
 	}
 	@Override
 	   public String toString() {
@@ -54,7 +74,9 @@ public class Request {
 	               "number='" + number + "\'" +
 	               ", state='" + state + "\'" +
 	               ", service='" + service + "\'" +
-	               ", schedule=" + schedule +
+	               ", startDate=" + startDate +
+	               ", endDate =" + endDate +
+	               ", details =" + details + 
 	               ", DNI=" + DNI +
 	               "}";
 	   }
