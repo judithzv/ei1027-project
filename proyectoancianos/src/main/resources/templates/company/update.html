@@ -42,7 +42,7 @@
 			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></td> 
         </tr>
         <tr><td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td></tr>
-		<tr><td><a th:href="@{{URL}(URL=${URL})}" role="button" class="aperfil a3">Back</a></td></tr>
+		<tr><td colspan="2"><a th:href="@{{URL}(URL=${URL})}" role="button" class="aperfil a3">Back</a></td></tr>
       </table>
     </form>
 </body>
