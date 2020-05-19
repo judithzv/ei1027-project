@@ -43,6 +43,7 @@ public class ElderlyController {
 	   public String listElderly(HttpSession session, Model model) {
 	      model.addAttribute("elderlies", elderlyDao.getElderlies());
 	      session.setAttribute("nextURL", "redirect:list");
+	      session.setAttribute("back", "../list");
 	      return "elderly/list";
 	   }
 	   @RequestMapping(value="/add") 
@@ -90,6 +91,9 @@ public class ElderlyController {
 			if(elderly.getBankData().getIBAN() != null) {
 				session.setAttribute("IBAN", elderly.getBankData().getIBAN());
 			}
+			String URL = (String) session.getAttribute("back");
+			model.addAttribute("URL", URL);
+			
 			return "elderly/update"; 
 		}
 	   
@@ -150,6 +154,7 @@ public class ElderlyController {
 		   session.setAttribute("dni", DNI);
 		   model.addAttribute("dni", DNI);
 		   model.addAttribute("elderly",elderlyDao.getElderly(DNI));
+		   session.setAttribute("back", "../perfil/"+DNI);
 		   return "elderly/perfil";
 	   }
 	   @RequestMapping(value="/datos")
@@ -190,6 +195,7 @@ public class ElderlyController {
 	   @RequestMapping(value="/invoices")
 	   public String mostrarFacturas(HttpSession session, Model model) {
 		   String DNI = (String) session.getAttribute("dni");
+		   model.addAttribute("DNI", DNI);
 		   if(DNI!=null) {
 			   model.addAttribute("invoices", elderlyDao.getInvoices(DNI));
 			   return "invoice/list";

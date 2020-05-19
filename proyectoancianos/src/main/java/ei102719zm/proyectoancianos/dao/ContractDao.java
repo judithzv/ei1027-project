@@ -53,7 +53,7 @@ public class ContractDao {
 
 	   public Contract getContract(String id) {
 	       try {
-	           return jdbcTemplate.queryForObject("SELECT * FROM contract WHERE id=?",
+	           return jdbcTemplate.queryForObject("SELECT * FROM Contract INNER JOIN Company ON Contract.CIF = Company.CIF WHERE id=?",
 	        	        new ContractRowMapper(),
 	        	        id);
 

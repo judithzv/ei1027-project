@@ -54,6 +54,7 @@ public class CompanyController {
 	   public String listCompany(HttpSession session, Model model) {
 	      model.addAttribute("companies", companyDao.getCompanies());
 	      session.setAttribute("nextURL", "redirect:list");
+	      session.setAttribute("back", "../list");
 	      return "company/list";
 	   }
 	   
@@ -98,6 +99,7 @@ public class CompanyController {
 	 		public String editCompany(HttpSession session, Model model, @PathVariable String CIF) { 
 	 			model.addAttribute("company", companyDao.getCompany(CIF));
 	 			session.setAttribute("userName", companyDao.getCompany(CIF).getUserName());
+	 			model.addAttribute("URL", session.getAttribute("back"));
 	 			return "company/update"; 
 	 		}
 	 	    @RequestMapping(value="/update", method = RequestMethod.POST) 
@@ -146,6 +148,7 @@ public class CompanyController {
 			   model.addAttribute("cif", CIF);
 			   model.addAttribute("company",companyDao.getCompany(CIF));
 			   model.addAttribute("contract", contractDao.getContractsCIF(CIF));
+			   session.setAttribute("back", "../perfil/"+CIF);
 			   return "company/perfil";
 		   }
 		   @RequestMapping(value="/datos")

@@ -43,7 +43,8 @@
             <td><input type="password" th:field="*{password}" required/>
 			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></td> 
         </tr>
-        <td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td>
+        <td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td></tr>
+		<tr><td ><a th:href="@{{URL}(URL=${URL})}" class="btn btn-primary" role="button">Back</a></td></tr>
       </table>
     </form>
 </body>

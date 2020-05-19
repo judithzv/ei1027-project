@@ -46,7 +46,8 @@
             <td><input type="text" th:field="*{CIF}" readonly/>
 			<div class="error" th:if="${#fields.hasErrors('CIF')}" th:errors="*{CIF}"></div></td>
         </tr>
-        <td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td>
+        <tr><td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td></tr>
+		<tr><td colspan="2"><a href="../list" class="btn btn-primary" role="button">Back</a></td><tr>
       </table>
     </form>
 </body>

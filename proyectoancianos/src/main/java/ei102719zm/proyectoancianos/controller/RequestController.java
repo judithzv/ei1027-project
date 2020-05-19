@@ -163,6 +163,7 @@ public class RequestController {
 	          return "redirect:../login";
 	       }
 		   String DNI = (String) session.getAttribute("dni");
+		   model.addAttribute("DNI", DNI);
 		   if(DNI != null) {
 			   model.addAttribute("requests", requestDao.getRequests(DNI));
 			   return "request/list";
@@ -182,7 +183,7 @@ public class RequestController {
 		   if (session.getAttribute("user") == null) 
 	       { 
 	          session.setAttribute("nextUrl", "/request/accept/"+number);
-	          return "redirect:../login";
+	          return "redirect:../../login";
 	       }
 		   Request request = requestDao.getRequest(number);
 		   List<Contract> contracts = requestDao.getPossibleContracts(request.getService());
@@ -196,7 +197,7 @@ public class RequestController {
 		   if (session.getAttribute("user") == null) 
 	       { 
 	          session.setAttribute("nextUrl", "/request/accepted/"+idContract);
-	          return "redirect:../login";
+	          return "redirect:../../login";
 	       }
 		   Request request = (Request) session.getAttribute("request");
 		   request.setState("accepted");
@@ -210,7 +211,7 @@ public class RequestController {
 		   if (session.getAttribute("user") == null) 
 	       { 
 	          session.setAttribute("nextUrl", "/request/cancel/"+number);
-	          return "redirect:../login";
+	          return "redirect:../../login";
 	       }
 		   Request request = requestDao.getRequest(number);
 		   request.setState("rejected");

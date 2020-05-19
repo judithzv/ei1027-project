@@ -9,7 +9,7 @@
                                     th:href="@{/css/app.css}"/>
 </head>
 <body>
-    <h1>Edit my profile</h1>
+    <h1>Edit user</h1>
     <form action="#" th:action="@{/elderly/update}"
                      th:object="${elderly}" method="post">
       <table>
@@ -103,10 +103,9 @@
             <td><input type="text" th:field="*{bankData.branch_office}" /></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" class="btn btn1" value="Register" /></td>
-        </tr>
         <td colspan="2"><input type="submit" class="btn btn1" value="Edit" /></td>
         </tr>
+		<tr><td ><a th:href="@{{URL}(URL=${URL})}" class="btn btn-primary" role="button">Back</a></td></tr>
       </table>
     </form>
 </body>
