@@ -32,6 +32,11 @@
 		 <tr><td>Bank: </td><td th:text="${elderly.bankData.bank}"></td></tr>
 	     <tr><td>Branch Office: </td><td th:text="${elderly.bankData.branch_office}"></td></tr>
 	</table>
+	<table>
+	<tr><td>
+	<a th:href="@{perfil/{DNI}(DNI=${elderly.DNI})}" class="btn btn-primary" role="button">Back</a>
+	</tr></td>
+	</table>
 	</div>
 </body>
 </html>

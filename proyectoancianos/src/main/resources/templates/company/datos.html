@@ -4,9 +4,22 @@
    <title>Profile</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
 </head>
+<style>
+
+h1{
+  font-size: 72px;  
+  font-weight: bold;
+  background: -webkit-linear-gradient(left top, red, yellow);
+  background: linear-gradient(to bottom right, red, yellow);
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent; 
+  text-align:center; 
+}  
+table{
+margin: 0 auto;
+}
+</style>
 <body>
 	<h1>Company profile</h1>
 	<div class="container">
@@ -19,5 +32,10 @@
          <tr><td>Password: </td><td th:text="${company.password}"></td></tr>
 	</table>
 	</div>
+	<table>
+	<tr><td>
+	<a th:href="@{perfil/{CIF}(CIF=${company.CIF})}" class="btn btn-primary" role="button">Back</a>
+	</tr></td>
+	</table>
 </body>
 </html>

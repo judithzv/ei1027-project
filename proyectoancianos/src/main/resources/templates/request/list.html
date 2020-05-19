@@ -43,7 +43,14 @@ h1{
        </tr>
      </tbody>
    </table>
-   <a th:href="@{/request/choose}"  class="btn btn-success" role="button">Add new request</a>
+   <table>
+   <tr><td>
+	<a th:href="@{/request/choose}"  class="btn btn-success" role="button">Add new request</a>
+	</tr></td>
+   <tr><td>
+	<a th:href="@{perfil/{DNI}(DNI=${elderly.DNI})}" class="btn btn-primary" role="button">Back</a>
+	</tr></td>
+   </table>
    </div>
 </body>
 </html>

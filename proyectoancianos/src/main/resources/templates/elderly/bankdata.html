@@ -4,6 +4,7 @@
    <title>Manage elderly</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
 </head>
 <style>
 h1{
@@ -34,6 +35,11 @@ h1{
 		 <td th:text="${bankdata.bank}"></td>
 		 <td th:text="${bankdata.branch_office}"></td>
      </tbody>
+   </table>
+   <table>
+   <tr><td><form method="get" action="../list">
+   <button type="submit" class="btn btn-primary"> Back
+   </form><tr><td>
    </table>
    </div>
 </body>

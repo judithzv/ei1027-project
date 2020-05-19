@@ -169,6 +169,7 @@ public class CompanyController {
 		   @RequestMapping(value="/datoscontrato")
 		   public String mostrarDatosContrato(HttpSession session, Model model) {
 			   String CIF = (String) session.getAttribute("cif");
+			   model.addAttribute("CIF",CIF);
 			   if(CIF!=null) {
 				   List<Contract> contract = contractDao.getContractsCIF(CIF);
 				   model.addAttribute("contracts",contract);
@@ -193,6 +194,7 @@ public class CompanyController {
 		   @RequestMapping(value="/datoselderly")
 		   public String datoselderly(HttpSession session, Model model) {
 			   String CIF = (String) session.getAttribute("cif");
+			   model.addAttribute("CIF",CIF);
 			   List<Contract> contratos=contractDao.getContractsCIF(CIF);
 			   List<Elderly> elderlies = new ArrayList<Elderly>();
 			   for (Contract contract: contratos) {

@@ -31,11 +31,18 @@ h1{
        </tr>
      </thead>
      <tbody>
+     <tr>
         <td th:text="${address.street}"></td>
-		 <td th:text="${address.city}"></td>
-		 <td th:text="${address.postalCode}"></td>
-	 	 <td th:text="${address.city}"></td>
+		<td th:text="${address.city}"></td>
+		<td th:text="${address.postalCode}"></td>
+	 	<td th:text="${address.city}"></td>
+	 </tr>
      </tbody>
+   </table>
+   <table>
+   <tr><td><form method="get" action="../list">
+   <button type="submit" class="btn btn-primary"> Back
+   </form><tr><td>
    </table>
    </div>
 </body>
