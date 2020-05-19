@@ -41,6 +41,21 @@ td {
 		<tr><td><p></p></tr></td>
 		<tr><td>Select the end day:</tr></td>
 		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{endDate}"</tr></td>
+		</table>
+		<table>
+
+		    <tr><td><label>IBAN</label></td></tr>
+            <tr><td><input style="height: 50px; width:430px;" type="text" th:field="*{bankData.IBAN}" />
+			<div class="error" th:if="${#fields.hasErrors('bankData.IBAN')}" th:errors="*{bankData.IBAN}"></div></td>
+        </tr>
+        <tr>
+            <td><label>Bank</label></td></tr>
+            <tr><td><input style="height: 50px; width:430px;" type="text" th:field="*{bankData.bank}" /></td>
+        </tr>
+        <tr>
+            <td><label>Branch Office</label></td></tr>
+            <tr><td><input style="height: 50px; width:430px;" type="text" th:field="*{bankData.branch_office}" /></td>
+        </tr>
       <tr><td><input type="submit" class="btn" onclick="myFunction()"  value="SEND" /></td>
       </tr></table>     
     </form>

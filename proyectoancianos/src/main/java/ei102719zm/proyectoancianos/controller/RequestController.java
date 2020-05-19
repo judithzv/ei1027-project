@@ -75,6 +75,8 @@ public class RequestController {
 		   request.setService("catering");
 		   request.setDNI(elderly.getDNI());
 		   request.setState("in process");
+		   BankData bankData = elderly.getBankData();
+		   request.setBankData(bankData);
 		   model.addAttribute("request", request);
 		   return "request/catering";
 	   }
@@ -94,6 +96,8 @@ public class RequestController {
 		   request.setService("health");
 		   request.setDNI(elderly.getDNI());
 		   request.setState("in process");
+		   BankData bankData = elderly.getBankData();
+		   request.setBankData(bankData);
 		   model.addAttribute("request", request);
 		   return "request/health";
 	   }
@@ -113,6 +117,8 @@ public class RequestController {
 		   request.setService("cleaning");
 		   request.setDNI(elderly.getDNI());
 		   request.setState("in process");
+		   BankData bankData = elderly.getBankData();
+		   request.setBankData(bankData);
 		   model.addAttribute("request", request);
 		   return "request/cleaning";
 	   }

@@ -78,7 +78,7 @@ public class ContractDao {
 	   public List<Contract> getContracts() {
 	       try {	    
 	    	   List<Contract> contracts = jdbcTemplate.query(
-	        		    "SELECT * FROM Contract",
+	        		    "SELECT * FROM Contract INNER JOIN Company ON Contract.CIF = Company.CIF",
 	        		     new ContractRowMapper());
 	        		return contracts;
 
@@ -105,6 +105,5 @@ public class ContractDao {
 		   }
 		   
 	   }
-	
 
 }

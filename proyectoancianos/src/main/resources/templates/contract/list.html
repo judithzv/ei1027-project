@@ -38,7 +38,7 @@ h1{
          <td th:text="${contract.price}"></td>
          <td th:text="${contract.signatureDate}"></td>
          <td><a th:href="@{/company/datos/{CIF}(CIF=${contract.CIF})}" 
-		  role="button">Data</td>
+		  th:text="${contract.company.name}" role="button"></td>
          <td><a th:href="@{/contract/update/{id}(id=${contract.id})}" class="btn btn-warning" role="button">Edit</a></td>
          <td><a th:href="@{/contract/delete/{id}(id=${contract.id})}" class="btn btn-danger" role="button">Delete</a>
          </td>

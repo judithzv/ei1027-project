@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import ei102719zm.proyectoancianos.model.BankData;
 import ei102719zm.proyectoancianos.model.Request;
 
 public class RequestValidator implements Validator {
@@ -20,5 +21,8 @@ public class RequestValidator implements Validator {
 	  LocalDate endDate = request.getEndDate();
 	  if(startDate != null && endDate != null && startDate.isAfter(endDate))
 		  errors.rejectValue("startDate", "startDate", "Start date has to be previous than end date");
+	  BankData bankData = request.getBankData();
+	  if(bankData.getIBAN().isEmpty())
+		  errors.rejectValue("bankData.IBAN", "bankData.IBAN", "IBAN cannot be empty");
   }
 }

@@ -1,6 +1,7 @@
 package ei102719zm.proyectoancianos.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ei102719zm.proyectoancianos.dao.CompanyDao;
 import ei102719zm.proyectoancianos.dao.ContractDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
@@ -22,10 +24,15 @@ import ei102719zm.proyectoancianos.model.Contract;
 @RequestMapping("/contract") 
 public class ContractController {
 	private ContractDao contractDao;
+	private CompanyDao companyDao;
 	
 	@Autowired
-	 public void setCompanyDao(ContractDao contractDao) { 
+	 public void setContractDao(ContractDao contractDao) { 
 	       this.contractDao = contractDao;
+	}
+	@Autowired
+	 public void setCompanyDao(CompanyDao companyDao) { 
+	       this.companyDao = companyDao;
 	}
 	
 	  @RequestMapping("/list")

@@ -15,6 +15,7 @@ public class Request {
 	private String details;
 	private String DNI;
 	private String idContarct;
+	private BankData bankData;
 	
 	
 	public Request(){
@@ -67,6 +68,12 @@ public class Request {
 	}
 	public void setDetails(String details) {
 		this.details=details;
+	}
+	public BankData getBankData() {
+		return bankData;
+	}
+	public void setBankData(BankData bankData) {
+		this.bankData = bankData;
 	}
 	@Override
 	   public String toString() {

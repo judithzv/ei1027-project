@@ -15,6 +15,7 @@ public class Contract {
 	@DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
 	public LocalDate signatureDate;
 	public String CIF;
+	public Company company;
 	
 	
 	public Contract() {
@@ -61,6 +62,13 @@ public class Contract {
 	}
 	public String getCIF() {
 		return CIF;
+	}
+	
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 	@Override
 	   public String toString() {
