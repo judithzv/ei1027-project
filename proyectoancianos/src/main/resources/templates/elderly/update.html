@@ -3,10 +3,8 @@
 <head>
    <title>Edit user</title>
    <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-     <link rel="stylesheet" type="text/css" href="/css/app.css"
-                                    th:href="@{/css/app.css}"/>
+     <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+                                    th:href="@{/css/elderly.css}"/>
 </head>
 <body>
     <h1>Edit user</h1>
@@ -103,9 +101,9 @@
             <td><input type="text" th:field="*{bankData.branch_office}" /></td>
         </tr>
         <tr>
-        <td colspan="2"><input type="submit" class="btn btn1" value="Edit" /></td>
+        <td colspan="2"><input type="submit" class="btn btnupdate" value="Edit" /></td>
         </tr>
-		<tr><td ><a th:href="@{{URL}(URL=${URL})}" class="btn btn-primary" role="button">Back</a></td></tr>
+		<tr><td><a th:href="@{{URL}(URL=${URL})}" role="button"  class="a a3">Back</a></td></tr>
       </table>
     </form>
 </body>

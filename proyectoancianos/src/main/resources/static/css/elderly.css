@@ -16,6 +16,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   margin: 8px 0;
   padding: 20px 70px;
   width: 100%;
+  border-radius: 6px;
 }
 .btnupdate {
  width: 113%;
@@ -62,6 +63,7 @@ input[type=text], input[type=password],input[type=month], input[type=date], inpu
   color: black;
   FONT-SIZE: 25pt; 
   margin: 8px 0;
+  border-radius: 6px;
 }
 .a1 {
   padding: 20px 25px;
@@ -70,5 +72,14 @@ input[type=text], input[type=password],input[type=month], input[type=date], inpu
 .a2 {
   padding: 20px 15px;
 }
+.a3 {
+  padding: 20px 20px;
+  width: 270%
+}
 
+.a4{
+ padding: 20px 10px;
+ width: 95%
+
+}
 

@@ -3,7 +3,6 @@
 <head>
    <title>New request</title>
    <meta charset="UTF-8" />
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
    <link rel="stylesheet" type="text/css" href="/css/elderly.css"
                                     th:href="@{/css/elderly.css}"/>
 </head>
@@ -45,7 +44,6 @@ td {
 		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{endDate}"</tr></td>
 		</table>
 		<table>
-
 		    <tr><td><label>IBAN</label></td></tr>
             <tr><td><input style="height: 50px; width:430px;" type="text" th:field="*{bankData.IBAN}" />
 			<div class="error" th:if="${#fields.hasErrors('bankData.IBAN')}" th:errors="*{bankData.IBAN}"></div></td>
@@ -59,7 +57,7 @@ td {
             <tr><td><input style="height: 50px; width:430px;" type="text" th:field="*{bankData.branch_office}" /></td>
         </tr>
         <tr><td><input type="submit" class="btn" onclick="myFunction()" value="SEND" /></td>
-   		<tr><td><a th:href="@{choose}" class="btn" role="button">Back</a></tr></td>
+   		<tr><td><a th:href="@{choose}" role="button" class="a a4">BACK</a></tr></td>
       </tr>
 	</table>     
     </form>

@@ -2,9 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
    <title>Edit company</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <meta charset="UTF-8" /> 
      <link rel="stylesheet" type="text/css" href="/css/app.css"
                                     th:href="@{/css/app.css}"/>
 </head>
@@ -43,8 +41,8 @@
             <td><input type="password" th:field="*{password}" required/>
 			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div></td> 
         </tr>
-        <td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td></tr>
-		<tr><td ><a th:href="@{{URL}(URL=${URL})}" class="btn btn-primary" role="button">Back</a></td></tr>
+        <tr><td colspan="2"><input class="btn btn1" type="submit" value="Edit" /></td></tr>
+		<tr><td><a th:href="@{{URL}(URL=${URL})}" role="button" class="aperfil a3">Back</a></td></tr>
       </table>
     </form>
 </body>

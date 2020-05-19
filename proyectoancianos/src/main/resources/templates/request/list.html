@@ -4,18 +4,9 @@
    <title>Manage requests</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/admin.css"
+                                    th:href="@{/css/admin.css}"/>
 </head>
-<style>
-h1{
-  font-size: 72px;  
-  font-weight: bold;
-  background: -webkit-linear-gradient(left top, red, yellow);
-  background: linear-gradient(to bottom right, red, yellow);
-  -webkit-background-clip: text;  
-  -webkit-text-fill-color: transparent; 
-  text-align:center; 
-}  
-</style>
 <body>
 <div class="table-responsive">
    <h1>Requests list</h1>
@@ -45,11 +36,11 @@ h1{
    </table>
    <table>
    <tr><td>
-	<a th:href="@{/request/choose}"  class="btn btn-success" role="button">Add new request</a>
-	</tr></td>
-   <tr><td>
-	<a th:href="@{../elderly/perfil/{DNI}(DNI=${DNI})}" class="btn btn-primary" role="button">Back</a>
-	</tr></td>
+	<a th:href="@{/request/choose}"  class="btn btn-success btn-lg" role="button">Add</a>
+	</td>
+   <td>
+	<a th:href="@{../elderly/perfil/{DNI}(DNI=${DNI})}" class="btn btn-primary btn-lg" role="button">Back</a>
+	</td></tr>
    </table>
    </div>
 </body>
