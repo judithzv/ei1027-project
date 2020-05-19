@@ -3,8 +3,6 @@
 <head>
    <title>Register new elderly</title>
    <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
      <link rel="stylesheet" type="text/css" href="/css/app.css"
                                     th:href="@{/css/app.css}"/>
 </head>
@@ -105,6 +103,7 @@
         <tr>
             <td colspan="2"><input type="submit" class="btn btn1" value="Register" /></td>
         </tr>
+	   <tr><td><a th:href="@{{URL}(URL=${URL})}" role="button"  class="btn btn1">Back</a></td></tr>
       </table>
     </form>
 </body>

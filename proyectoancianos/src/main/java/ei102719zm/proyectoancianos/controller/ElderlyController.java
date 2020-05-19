@@ -47,10 +47,15 @@ public class ElderlyController {
 	      return "elderly/list";
 	   }
 	   @RequestMapping(value="/add") 
-		public String addElderly(Model model) {
+		public String addElderly(HttpSession session, Model model) {
 			model.addAttribute("elderly", new Elderly());
 			model.addAttribute("address", new Address());
 			model.addAttribute("bankData", new BankData());
+			String URL = (String) session.getAttribute("back");
+			if(URL != null)
+				model.addAttribute("URL", "elderly/" + URL);
+			else
+				model.addAttribute("URL", "../login");
 			return "elderly/add";
 		}
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 

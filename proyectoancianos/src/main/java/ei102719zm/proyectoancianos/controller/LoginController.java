@@ -58,6 +58,7 @@ public class LoginController {
 			return "login";
 		}
 		String nextUrl = (String) session.getAttribute("nextUrl");
+		session.setAttribute("back", "../login");
 		if(nextUrl != null) {
 			session.removeAttribute("nextUrl");
 			return "redirect:"+nextUrl;
