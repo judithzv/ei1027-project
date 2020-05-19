@@ -65,7 +65,7 @@ public class ContractDao {
 	   public List<Contract> getContractsCIF(String CIF) {
 	       try {	    
 	    	   List<Contract> contracts = jdbcTemplate.query(
-	        		    "SELECT * FROM contract WHERE CIF=?",
+	        		    "SELECT * FROM contract INNER JOIN Company ON Contract.CIF = Company.CIF WHERE Contract.CIF=?",
 	        		     new ContractRowMapper(), CIF);
 	        		return contracts;
 
