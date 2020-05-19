@@ -8,19 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.dao.UserDao;
 import ei102719zm.proyectoancianos.model.Address;
 import ei102719zm.proyectoancianos.model.BankData;
-import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Elderly;
 import ei102719zm.proyectoancianos.model.Invoice;
 import ei102719zm.proyectoancianos.model.Request;
@@ -43,8 +40,9 @@ public class ElderlyController {
 	   }
 
 	   @RequestMapping("/list")
-	   public String listElderly(Model model) {
+	   public String listElderly(HttpSession session, Model model) {
 	      model.addAttribute("elderlies", elderlyDao.getElderlies());
+	      session.setAttribute("nextURL", "redirect:list");
 	      return "elderly/list";
 	   }
 	   @RequestMapping(value="/add") 
@@ -55,7 +53,7 @@ public class ElderlyController {
 			return "elderly/add";
 		}
 	   @RequestMapping(value="/add", method=RequestMethod.POST) 
-	   public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly,
+	   public String processAddSubmit(HttpSession session, @ModelAttribute("elderly") Elderly elderly,
 	                                   BindingResult bindingResult) {  
 		 ElderlyValidator elderlyValidator = new ElderlyValidator();
 		 elderlyValidator.validate(elderly, bindingResult);
@@ -77,7 +75,10 @@ public class ElderlyController {
 	   	 elderlyDao.addAddress(elderly.getAddress(), elderly.getDNI());
 	   	 if(elderly.getBankData().getIBAN() != null)
 	   		 elderlyDao.addBankData(elderly.getBankData(), elderly.getDNI());
-	   	 return "redirect:list"; 
+	   	 String nextURL = (String) session.getAttribute("nextURL");
+	   	 if (nextURL != null)
+	   		 return nextURL;
+	   	 return "redirect:perfil/"+ elderly.getDNI(); 
 	   	 
 	    }	   
 	   
@@ -117,7 +118,10 @@ public class ElderlyController {
 			 elderlyDao.updateAddress(elderly.getAddress(), elderly.getDNI());
 			 elderlyDao.updateBankData(elderly.getBankData(), elderly.getDNI());
 			 elderlyDao.updateElderly(elderly);
-			 return "redirect:list"; 
+		   	 String nextURL = (String) session.getAttribute("nextURL");
+		   	 if (nextURL != null)
+		   		 return nextURL;
+		   	 return "redirect:perfil/"+ elderly.getDNI(); 
 		}    
 
 	   @RequestMapping(value="/delete/{DNI}")

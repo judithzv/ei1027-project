@@ -51,8 +51,9 @@ public class CompanyController {
 		}
 	   
 	   @RequestMapping("/list")
-	   public String listCompany(Model model) {
+	   public String listCompany(HttpSession session, Model model) {
 	      model.addAttribute("companies", companyDao.getCompanies());
+	      session.setAttribute("nextURL", "redirect:list");
 	      return "company/list";
 	   }
 	   
@@ -116,7 +117,10 @@ public class CompanyController {
 	 		   session.removeAttribute("userName");
 	 		   
 	 			 companyDao.updateCompany(company);
-	 			 return "redirect:list"; 
+	 		   	 String nextURL = (String) session.getAttribute("nextURL");
+	 		   	 if (nextURL != null)
+	 		   		 return nextURL;
+	 		   	 return "redirect:perfil/"+ company.getCIF(); 
 	 		}    
 
 	 	   @RequestMapping(value="/delete/{CIF}")
