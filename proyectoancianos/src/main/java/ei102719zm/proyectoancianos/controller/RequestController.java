@@ -151,7 +151,7 @@ public class RequestController {
 		   	Elderly elderly = userDao.getElderly(user.getUsername());
 			request.setNumber(Integer.toString(num));
 			requestDao.addRequest(request);						
-			return "elderly/feedback";
+			return "redirect:../elderly/feedback";
 	   }
 	   
 	   

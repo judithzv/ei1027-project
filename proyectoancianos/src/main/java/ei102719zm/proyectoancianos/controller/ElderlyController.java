@@ -207,5 +207,15 @@ public class ElderlyController {
 		   }
 		   return "redirect:/";
 	   }
+	   
+	   @RequestMapping(value="/feedback")
+	   public String mostrarFeedback(HttpSession session, Model model) {
+		   String DNI = (String) session.getAttribute("dni");
+		   if(DNI!=null) {
+			   model.addAttribute("DNI", DNI);
+			   return "elderly/feedback";
+		   }
+		   return "redirect:/";
+	   }
 
 }
