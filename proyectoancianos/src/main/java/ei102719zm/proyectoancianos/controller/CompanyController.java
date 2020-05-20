@@ -148,12 +148,14 @@ public class CompanyController {
 			   model.addAttribute("cif", CIF);
 			   model.addAttribute("company",companyDao.getCompany(CIF));
 			   model.addAttribute("contract", contractDao.getContractsCIF(CIF));
-			   session.setAttribute("back", "../perfil/"+CIF);
+			   session.setAttribute("back", "perfil/"+CIF);
 			   return "company/perfil";
 		   }
 		   @RequestMapping(value="/datos")
 		   public String mostrarDatos(HttpSession session, Model model) {
 			   String CIF = (String) session.getAttribute("cif");
+			   String URL = (String) session.getAttribute("back");
+			   model.addAttribute("URL", URL);
 			   if(CIF!=null) {
 				   Company company = companyDao.getCompany(CIF);
 				   model.addAttribute("company",company);
@@ -163,9 +165,10 @@ public class CompanyController {
 		   
 		   }
 		   @RequestMapping(value="/datos/{CIF}")
-		   public String mostrarDatos( @PathVariable String CIF, Model model) {
+		   public String mostrarDatos(@PathVariable String CIF, Model model) {
 			   Company company= companyDao.getCompany(CIF);
 			   model.addAttribute("company",company);
+			   model.addAttribute("URL", "../../contract/list");
 			   return "company/datos";
 		   
 		   }
