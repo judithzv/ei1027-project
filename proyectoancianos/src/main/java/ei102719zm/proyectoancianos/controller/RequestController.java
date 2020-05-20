@@ -150,10 +150,12 @@ public class RequestController {
 		   	UserDetails user = (UserDetails) session.getAttribute("user");
 		   	Elderly elderly = userDao.getElderly(user.getUsername());
 			request.setNumber(Integer.toString(num));
-			requestDao.addRequest(request);
-			
-			return "redirect:../elderly/perfil/"+elderly.getDNI();
+			requestDao.addRequest(request);						
+			return "elderly/feedback";
 	   }
+	   
+	   
+	   
 	   
 	   @RequestMapping(value="list")
 	   public String listRequests(HttpSession session, Model model) {

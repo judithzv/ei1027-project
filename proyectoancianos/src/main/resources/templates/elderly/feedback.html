@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <meta charset="UTF-8" />
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+   <title>Delete your account</title>
+   <link rel="stylesheet" type="text/css" href="/css/elderly.css"
+                                    th:href="@{/css/elderly.css}"/>
+</head>
+<style>
+body {
+    background-image: url('../perfil.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+</style>
+<body>
+<div class="container" style="text-align:center;">
+   <h1>Your request has been sent successfully. You will receive more information shortly</h1>   
+   <table>
+   <tr><td><a th:href="@{../elderly/perfil/{DNI}(DNI=${elderly.DNI})}" 
+		role="button" class="a a1">ACCEPT</a></tr></td>
+	</table>
+   
+   </div>
+</body>
+</html>
