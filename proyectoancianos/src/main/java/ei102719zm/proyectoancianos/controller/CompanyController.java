@@ -148,7 +148,7 @@ public class CompanyController {
 			   model.addAttribute("cif", CIF);
 			   model.addAttribute("company",companyDao.getCompany(CIF));
 			   model.addAttribute("contract", contractDao.getContractsCIF(CIF));
-			   session.setAttribute("back", "perfil/"+CIF);
+			   session.setAttribute("back", "../perfil/"+CIF);
 			   return "company/perfil";
 		   }
 		   @RequestMapping(value="/datos")

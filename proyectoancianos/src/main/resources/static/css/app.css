@@ -51,9 +51,7 @@ input[type=text], input[type=password],input[type=month], input[type=date], inpu
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-.input{
-	
-}
+
 .container1 {
   padding: 16px;
   background-color:#f1f1f1
