@@ -90,7 +90,7 @@ public class ContractDao {
 	   
 	   public String getLastId() {
 		   try {
-			   Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE id=(SELECT MAX(id) FROM Contract)" , new ContractRowMapper());
+			   Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract INNER JOIN Company ON Contract.CIF = Company.CIF WHERE id=(SELECT MAX(id) FROM Contract)" , new ContractRowMapper());
 			   return contract.getId();
 		   } catch(EmptyResultDataAccessException e) {
 			   return null;

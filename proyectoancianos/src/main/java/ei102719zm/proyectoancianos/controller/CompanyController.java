@@ -62,10 +62,8 @@ public class CompanyController {
 	   public String addCompany(HttpSession session, Model model) {
 		   Company company = new Company();
 		   Contract contract = (Contract) session.getAttribute("contract");
-		   if(contract != null) {
+		   if(contract != null)
 			   company.setCIF(contract.getCIF());
-			   session.removeAttribute("contract");
-		   }
 		   model.addAttribute("company", company);
 		   return "company/add";
 	   }
@@ -89,8 +87,10 @@ public class CompanyController {
 		   
 		   companyDao.addCompany(company);
 		   
-		   if(session.getAttribute("contract") != null)
+		   if(session.getAttribute("contract") != null) {
+			   System.out.println("añadiendo contrato");
 			   return "redirect:../contract/add";
+		   }
 		   
 		   return "redirect:list";    	 
 	    }
@@ -99,7 +99,7 @@ public class CompanyController {
 	 		public String editCompany(HttpSession session, Model model, @PathVariable String CIF) { 
 	 			model.addAttribute("company", companyDao.getCompany(CIF));
 	 			session.setAttribute("userName", companyDao.getCompany(CIF).getUserName());
-	 			model.addAttribute("URL", session.getAttribute("back"));
+	 			model.addAttribute("URL", "../" + session.getAttribute("back"));
 	 			return "company/update"; 
 	 		}
 	 	    @RequestMapping(value="/update", method = RequestMethod.POST) 
@@ -148,7 +148,7 @@ public class CompanyController {
 			   model.addAttribute("cif", CIF);
 			   model.addAttribute("company",companyDao.getCompany(CIF));
 			   model.addAttribute("contract", contractDao.getContractsCIF(CIF));
-			   session.setAttribute("back", "../perfil/"+CIF);
+			   session.setAttribute("back", "perfil/"+CIF);
 			   return "company/perfil";
 		   }
 		   @RequestMapping(value="/datos")

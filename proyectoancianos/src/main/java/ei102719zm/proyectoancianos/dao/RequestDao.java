@@ -98,7 +98,7 @@ public class RequestDao {
 	       try {
 	   	    
 	    	   List<Contract> contracts = jdbcTemplate.query(
-	        		    "SELECT * FROM Contract WHERE id NOT IN (SELECT idContract FROM Request WHERE idContract IS NOT NULL) AND serviceType=?",
+	        		    "SELECT * FROM Contract INNER JOIN Company ON Contract.CIF = Company.CIF WHERE id NOT IN (SELECT idContract FROM Request WHERE idContract IS NOT NULL) AND serviceType=?",
 	        		     new ContractRowMapper(), serviceType);
 	        		return contracts;
 

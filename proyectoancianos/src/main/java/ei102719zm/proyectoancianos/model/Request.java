@@ -16,6 +16,7 @@ public class Request {
 	private String DNI;
 	private String idContarct;
 	private BankData bankData;
+	private Elderly elderly;
 	
 	
 	public Request(){
@@ -74,6 +75,13 @@ public class Request {
 	}
 	public void setBankData(BankData bankData) {
 		this.bankData = bankData;
+	}
+	
+	public Elderly getElderly() {
+		return elderly;
+	}
+	public void setElderly(Elderly elderly) {
+		this.elderly = elderly;
 	}
 	@Override
 	   public String toString() {
