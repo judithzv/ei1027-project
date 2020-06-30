@@ -105,5 +105,14 @@ public class ContractDao {
 		   }
 		   
 	   }
+	   
+	   public List<Request> getRequests(String id){
+		   try {
+			   return jdbcTemplate.query("SELECT * FROM Request WHERE idContract=?", new RequestRowMapper(), id);
+		   } catch(EmptyResultDataAccessException e) {
+			   return new ArrayList<Request>();
+		   }
+		   
+	   }
 
 }

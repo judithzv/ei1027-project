@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ei102719zm.proyectoancianos.dao.CompanyDao;
 import ei102719zm.proyectoancianos.dao.ContractDao;
 import ei102719zm.proyectoancianos.model.Company;
 import ei102719zm.proyectoancianos.model.Contract;
+import ei102719zm.proyectoancianos.model.Invoice;
+import ei102719zm.proyectoancianos.model.Request;
 
 @Controller
 @RequestMapping("/contract") 
@@ -93,8 +96,20 @@ public class ContractController {
 		}    
 
 	   @RequestMapping(value="/delete/{id}")
-		public String processDelete(@PathVariable String id) {
-		   contractDao.deleteContract(id);
+		public String processDelete(@PathVariable String id, RedirectAttributes redirectAttrs) {
+		   List<Request> requests = contractDao.getRequests(id);
+		   String mensaje = "";
+		   if(requests.size() != 0) {
+			   // Mostrar mensaje
+			   redirectAttrs
+	            .addFlashAttribute("mensaje", "Contract can not be deleted because there are request associated with it")
+	            .addFlashAttribute("clase", "error");
+		   }else {
+			    redirectAttrs
+	            .addFlashAttribute("mensaje", "Successfully deleted")
+	            .addFlashAttribute("clase", "success");
+				contractDao.deleteContract(id);
+		   }
 	       return "redirect:../list"; 
 		}
 

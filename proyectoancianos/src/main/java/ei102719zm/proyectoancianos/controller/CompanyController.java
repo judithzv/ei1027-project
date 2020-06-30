@@ -131,7 +131,7 @@ public class CompanyController {
 			   if(contracts.size() != 0) {
 				   // Mostrar mensaje
 				   redirectAttrs
-		            .addFlashAttribute("mensaje", "User can not be deleted because they have requests and invoices")
+		            .addFlashAttribute("mensaje", "User can not be deleted because they have a contract")
 		            .addFlashAttribute("clase", "error");
 			   }else {
 				    redirectAttrs

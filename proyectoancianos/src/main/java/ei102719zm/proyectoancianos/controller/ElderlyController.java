@@ -97,6 +97,8 @@ public class ElderlyController {
 				session.setAttribute("IBAN", elderly.getBankData().getIBAN());
 			}
 			String URL = (String) session.getAttribute("back");
+			if(!URL.equals("../list"))
+				URL = "../perfil/"+DNI;
 			model.addAttribute("URL", URL);
 			
 			return "elderly/update"; 
@@ -128,8 +130,9 @@ public class ElderlyController {
 			 elderlyDao.updateBankData(elderly.getBankData(), elderly.getDNI());
 			 elderlyDao.updateElderly(elderly);
 		   	 String nextURL = (String) session.getAttribute("nextURL");
-		   	 if (nextURL != null)
+		   	 if (nextURL != null) {
 		   		 return nextURL;
+		   	 }
 		   	 return "redirect:perfil/"+ elderly.getDNI(); 
 		}    
 
@@ -159,18 +162,19 @@ public class ElderlyController {
 		   session.setAttribute("dni", DNI);
 		   model.addAttribute("dni", DNI);
 		   model.addAttribute("elderly",elderlyDao.getElderly(DNI));
-		   session.setAttribute("back", "../perfil/"+DNI);
+		   session.setAttribute("back", "../../perfil/"+DNI);
 		   return "elderly/perfil";
 	   }
-	   @RequestMapping(value="/datos")
-	   public String mostrarDatos(HttpSession session, Model model) {
-		   String DNI = (String) session.getAttribute("dni");
-		   if(DNI!=null) {
-			   Elderly elderly = elderlyDao.getElderly(DNI);
-			   model.addAttribute("elderly",elderly);
-			   return "elderly/datos";
-		   }
-		   return "redirect:../";
+	   @RequestMapping(value="/datos/{DNI}")
+	   public String mostrarDatos(@PathVariable String DNI, HttpSession session, Model model) {
+			Elderly elderly = elderlyDao.getElderly(DNI);
+			model.addAttribute("elderly",elderly);
+			String URL = (String) session.getAttribute("back");
+			if(URL != null)
+				model.addAttribute("URL", "elderly/" + URL);
+			else
+				model.addAttribute("URL", "/request/gestion");
+			return "elderly/datos";
 	   }
 	   @RequestMapping(value="/address/{DNI}")
 	   public String mostrarAddress( @PathVariable String DNI, Model model) {

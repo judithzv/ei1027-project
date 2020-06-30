@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ei102719zm.proyectoancianos.dao.ElderlyDao;
 import ei102719zm.proyectoancianos.dao.RequestDao;
@@ -150,6 +151,7 @@ public class RequestController {
 		   	UserDetails user = (UserDetails) session.getAttribute("user");
 		   	Elderly elderly = userDao.getElderly(user.getUsername());
 			request.setNumber(Integer.toString(num));
+			request.setElderly(elderly);
 			requestDao.addRequest(request);						
 			return "redirect:../elderly/feedback";
 	   }
@@ -177,6 +179,11 @@ public class RequestController {
 		   public String gestionRequest(Model model) {
 			  List<Request> requests = requestDao.getPendingRequests();
 		      model.addAttribute("requests", requests);
+		      for(Request request: requests) {
+		    	  String DNI = request.getDNI();
+		    	  Elderly elderly = elderlyDao.getElderly(DNI);
+		    	  request.setElderly(elderly);
+		      }
 		      return "request/gestion";
 		   }
 	   
@@ -195,7 +202,7 @@ public class RequestController {
 	   }
 	   
 	   @RequestMapping(value="accepted/{idContract}")
-	   public String processAcceptRequest(HttpSession session, Model model, @PathVariable("idContract") String idContract) {
+	   public String processAcceptRequest(HttpSession session, Model model, @PathVariable("idContract") String idContract,  RedirectAttributes redirectAttrs) {
 		   if (session.getAttribute("user") == null) 
 	       { 
 	          session.setAttribute("nextUrl", "/request/accepted/"+idContract);
@@ -205,6 +212,9 @@ public class RequestController {
 		   request.setState("accepted");
 		   request.setIdContract(idContract);
 		   requestDao.updateRequest(request);
+		   redirectAttrs
+           .addFlashAttribute("mensaje", "Request with number " + request.getNumber() + " succesfully assigned to the contract with id " + idContract)
+           .addFlashAttribute("clase", "success");
 		   return "redirect:../gestion";
 	   }
 	   
@@ -215,11 +225,20 @@ public class RequestController {
 	          session.setAttribute("nextUrl", "/request/cancel/"+number);
 	          return "redirect:../../login";
 	       }
+		   model.addAttribute("number", number);
+		   return "request/confirmation";
+	   }
+	   
+	   
+	   @RequestMapping(value="confirmation/{number}")
+	   public String confirmCancelRequest(HttpSession session, Model model, @PathVariable String number, RedirectAttributes redirectAttrs) {
 		   Request request = requestDao.getRequest(number);
 		   request.setState("rejected");
 		   requestDao.updateRequest(request);
+		   redirectAttrs
+           .addFlashAttribute("mensaje", "Request with number " + request.getNumber() + " succesfully rejected.")
+           .addFlashAttribute("clase", "success");
 		   return "redirect:../gestion";
 	   }
-
 
 }

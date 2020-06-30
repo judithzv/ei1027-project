@@ -36,6 +36,10 @@
        </tr>
      </tbody>
    </table>
+	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+     th:text="${mensaje}"
+     class="alert">
+	</div>
    <a href="add" class="btn btn-success" role="button">Add</a>
    <a href="../portada" class="btn btn-primary" role="button">Back</a>
    </div>

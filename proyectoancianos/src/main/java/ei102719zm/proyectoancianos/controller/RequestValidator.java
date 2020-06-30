@@ -21,6 +21,10 @@ public class RequestValidator implements Validator {
 	  LocalDate endDate = request.getEndDate();
 	  if(startDate != null && endDate != null && startDate.isAfter(endDate))
 		  errors.rejectValue("startDate", "startDate", "Start date has to be previous than end date");
+	  if(startDate == null)
+		  errors.rejectValue("startDate", "startDate", "You have to introduce a start date");
+	  if(startDate == null)
+		  errors.rejectValue("endDate", "endDate", "You have to introduce an end date");
 	  BankData bankData = request.getBankData();
 	  if(bankData.getIBAN().isEmpty())
 		  errors.rejectValue("bankData.IBAN", "bankData.IBAN", "IBAN cannot be empty");

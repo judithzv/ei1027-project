@@ -13,8 +13,8 @@
    		<tr><td><form method="get" action="/request/choose">
 		<button type="submit" class="btn">REQUEST A SERVICE
 		</form></tr></td>
-        <tr><td><form method="get" action="../datos">
-		<button type="submit" class="btn">SHOW PERSONAL DATA
+        <tr><td><a th:href="@{/elderly/datos/{DNI}(DNI=${elderly.DNI})}" 
+		role="button" class="a">SHOW PERSONAL DATA
 		</form></tr></td>
 		<tr><td><form method="get" action="/request/list">
 		<button type="submit" class="btn">SHOW REQUEST

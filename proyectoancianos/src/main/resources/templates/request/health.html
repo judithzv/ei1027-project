@@ -40,7 +40,9 @@ td {
 		<div class="error" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></div></td>
 		<tr><td><p></p></tr></td>
 		<tr><td>Select the end day:</tr></td>
-		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{endDate}"</tr></td>
+		<tr><td><input style="height: 50px; width:430px;" type="date" th:field="*{endDate}"</tr>
+		<div class="error" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></div></td>
+		<tr><td><p></p></tr></td>
 		</table>
 		<table>
 

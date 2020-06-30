@@ -15,7 +15,6 @@
          <td th:text="${elderly.name}"></td></tr>        
          <tr><td>Surnames:</td><td th:text="${elderly.surNames}"></td></tr>
          <tr><td>Username: </td><td th:text="${elderly.userName}"></td></tr>
-         <tr><td>Password: </td><td th:text="${elderly.password}"></td></tr>
          <tr><td>Telephone number: </td><td th:text="${elderly.telephoneNumber}"></td></tr>
          <tr><td>Mail: </td><td th:text="${elderly.mail}"></td></tr>
          <tr><td>Birth date:</td><td th:text="${#temporals.format(elderly.birthDate,'dd MMMM yyyy')}"></td></tr>
@@ -34,7 +33,7 @@
 	</table>
 	<table>
 	<tr><td>
-	<a th:href="@{perfil/{DNI}(DNI=${elderly.DNI})}" class="btn" role="button">Back</a>
+	<a th:href="@{{URL}(URL=${URL})}" class="btn" role="button">Back</a>
 	</tr></td>
 	</table>
 	</div>

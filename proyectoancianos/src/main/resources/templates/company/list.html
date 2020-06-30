@@ -18,7 +18,6 @@
          <th>Persona de contacto</th>
          <th>Número de telefono</th>
          <th>User Name</th>
-         <th>password</th>
        </tr>
      </thead>
      <tbody>
@@ -28,7 +27,6 @@
          <td th:text="${company.contactPerson}"></td>
          <td th:text="${company.telephoneNumber}"></td>
          <td th:text="${company.userName}"></td>
-         <td th:text="${company.password}"></td>
          <td><a th:href="@{/company/update/{CIF}(CIF=${company.CIF})}" class="btn btn-warning" role="button">Edit</a></td>
          <td><a th:href="@{/company/delete/{CIF}(CIF=${company.CIF})}" class="btn btn-danger" role="button">Delete</a>
          </td>

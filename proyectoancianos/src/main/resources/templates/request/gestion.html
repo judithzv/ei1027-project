@@ -13,30 +13,32 @@
    <table class="table table-striped">
      <thead>
        <tr>
-         <th>State</th>
          <th>Service</th>
          <th>Start Date</th>
 		 <th>End Date</th>
 		 <th>Details</th>
-		 <th>Elderly DNI</th>
-         <th></th>
+		 <th>Elderly</th>
          <th></th>
        </tr>
      </thead>
      <tbody>
        <tr th:each="request: ${requests}"> 
-         <td th:text="${request.state}"></td>
 		 <td th:text="${request.service}"></td>
          <td th:text="${request.startDate}"></td>
 		 <td th:text="${request.endDate}"></td>
 		 <td th:text="${request.details}"></td>
-		 <td th:text="${request.DNI}"></td>
+         <td><a th:href="@{/elderly/datos/{DNI}(DNI=${request.DNI})}" 
+		  th:text="${request.elderly.name}" role="button"></td>
 		 <td><a th:href="@{/request/accept/{number}(number=${request.number})}" class="btn btn-warning" role="button">Accept</a></td>
          <td><a th:href="@{/request/cancel/{number}(number=${request.number})}" class="btn btn-danger" role="button">Reject</a></td>
        </tr>
      </tbody>
    </table>
 	<table>
+	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+     th:text="${mensaje}"
+     class="alert">
+	</div>
    <tr><td><a href="../portada" class="btn btn-primary" role="button">Back</a></td></tr> 
 	</table>
    </div>
