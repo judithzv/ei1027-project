@@ -39,7 +39,8 @@ public class ContractController {
 	}
 	
 	  @RequestMapping("/list")
-	   public String listContract(Model model) {
+	   public String listContract(HttpSession session, Model model) {
+	      session.setAttribute("back", "../../contract/list");
 	      model.addAttribute("contracts", contractDao.getContracts());
 	      return "contract/list";
 	   }	   

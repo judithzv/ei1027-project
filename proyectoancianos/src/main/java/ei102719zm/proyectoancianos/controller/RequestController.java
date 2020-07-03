@@ -176,7 +176,8 @@ public class RequestController {
 	   }
 	   
 		  @RequestMapping("/gestion")
-		   public String gestionRequest(Model model) {
+		   public String gestionRequest(HttpSession session, Model model) {
+			  session.setAttribute("back", "../../../request/gestion");
 			  List<Request> requests = requestDao.getPendingRequests();
 		      model.addAttribute("requests", requests);
 		      for(Request request: requests) {
@@ -194,6 +195,7 @@ public class RequestController {
 	          session.setAttribute("nextUrl", "/request/accept/"+number);
 	          return "redirect:../../login";
 	       }
+		   session.setAttribute("back", "../../request/accept/"+number);
 		   Request request = requestDao.getRequest(number);
 		   List<Contract> contracts = requestDao.getPossibleContracts(request.getService());
 		   session.setAttribute("request", request);

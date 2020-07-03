@@ -54,7 +54,7 @@ public class CompanyController {
 	   public String listCompany(HttpSession session, Model model) {
 	      model.addAttribute("companies", companyDao.getCompanies());
 	      session.setAttribute("nextURL", "redirect:list");
-	      session.setAttribute("back", "../list");
+	      session.setAttribute("back", "../company/list");
 	      return "company/list";
 	   }
 	   
@@ -165,10 +165,11 @@ public class CompanyController {
 		   
 		   }
 		   @RequestMapping(value="/datos/{CIF}")
-		   public String mostrarDatos(@PathVariable String CIF, Model model) {
+		   public String mostrarDatos(HttpSession session, @PathVariable String CIF, Model model) {
 			   Company company= companyDao.getCompany(CIF);
 			   model.addAttribute("company",company);
-			   model.addAttribute("URL", "../../contract/list");
+			   String URL = (String) session.getAttribute("back");
+			   model.addAttribute("URL", URL);
 			   return "company/datos";
 		   
 		   }
